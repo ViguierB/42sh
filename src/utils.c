@@ -1,11 +1,11 @@
 /*
 ** utils.c for minishell in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Tue Apr 11 23:32:27 2017 Benjamin Viguier
+** Last update Fri Apr 28 13:15:34 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -28,6 +28,8 @@ int		fexists(char *name)
 
 int	is_local_cmd(char *name)
 {
+  if (!name)
+    return (0);
   if (!my_strncmp(name, "./", 2) ||
       !my_strncmp(name, "../", 3) ||
       !my_strncmp(name, "/", 1))
