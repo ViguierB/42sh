@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Tue Apr 11 23:39:02 2017 Benjamin Viguier
+## Last update Fri Apr 28 13:12:28 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -33,7 +33,7 @@ _OBJ	=	$(SRC:.c=.o)
 
 OBJ	=	$(patsubst %,$(ODIR)/%,$(_OBJ))
 
-NAME	=	mysh
+NAME	=	42sh
 
 all		:	$(NAME)
 
@@ -59,7 +59,7 @@ re		:	fclib fclean all
 full		:	fclean all
 
 fclib		:
-	$(MKLIB) fclean 
+	$(MKLIB) fclean
 
 mlib		:
 	$(MKLIB)
