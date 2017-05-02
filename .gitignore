@@ -1,0 +1,15 @@
+//Temporary files
+*~
+#*
+*#
+*.#*
+
+//Binary Files
+*.a
+*.o
+mysh
+
+//Tests Directory
+tests/
+
+bonus

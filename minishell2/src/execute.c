@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Tue Apr 11 23:58:31 2017 Benjamin Viguier
+** Last update Tue May  2 12:21:26 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -22,7 +22,6 @@ int	redir_ff(t_mysh_fd *fd, int mpp[2])
 
   if (fd->filename)
     {
-      my_printf("%s\n", fd->filename);
       file_fd = open(fd->filename, fd->flags, fd->right);
       if (file_fd < 0)
 	return (my_pwarning(fd->filename));

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Apr  3 18:05:31 2017 Benjamin Viguier
-** Last update Tue Apr 11 21:44:21 2017 Benjamin Viguier
+** Last update Tue May  2 12:05:33 2017 Benjamin Viguier
 */
 
 #ifndef PARSER_H_
@@ -130,6 +130,8 @@ char	*get_block(char *cur, t_strbuilder *sb);
 void	free_tree(t_tree *node);
 int	execute_tree(t_mysh *sh, t_tree *tree, t_exec_opts *opts);
 int	parse_cmd_args(t_process *proc, char *cmd);
+int	parse_simple_cmd(t_process *proc, t_token *token);
+char*	get_real_cmd(char *name, t_mysh *sh, t_process *proc);
 
 int	op_or(t_mysh *sh, t_tree *node, t_exec_opts *opts);
 int	op_and(t_mysh *sh, t_tree *node, t_exec_opts *opts);
