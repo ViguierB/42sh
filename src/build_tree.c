@@ -1,11 +1,11 @@
 /*
 ** build_tree.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Tue May  2 12:15:30 2017 Benjamin Viguier
+** Last update Sat May  6 20:38:22 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -90,8 +90,8 @@ t_tree		*parse_cmd(char *cmd)
   t_tree	*tree;
   t_clist	*list;
 
-  if (!cmd)
-    exit(0);
+  if (!(cmd = globbing(cmd)))
+    return (NULL);
   if (!get_tokens(cmd, &list, g_ops_tab))
     {
       if (create_node(&tree, list, list) < 0)

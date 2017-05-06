@@ -1,11 +1,11 @@
 /*
 ** execute.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Tue May  2 12:50:17 2017 Benjamin Viguier
+** Last update Sat May  6 21:34:28 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -20,6 +20,7 @@ int	redir_ff(t_mysh_fd *fd, int mpp[2])
 {
   int	file_fd;
 
+  (void) mpp;
   if (fd->filename)
     {
       file_fd = open(fd->filename, fd->flags, fd->right);

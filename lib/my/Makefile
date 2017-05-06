@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ##
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sat May  6 14:36:23 2017 Alexandre Chamard-bois
+## Last update Sat May  6 15:16:13 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -66,6 +66,7 @@ SRC	=	my_strlen.c		\
 		clean_line.c		\
 		my_nbline.c		\
 		my_atof.c		\
+		match.c		\
 
 CFLAGS	+=	-I./include/
 

@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Fri Apr 28 13:12:28 2017 Alexandre Chamard-bois
+## Last update Sat May  6 23:44:28 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -21,6 +21,8 @@ SRC	= 	main.c		\
 		parse_argv.c	\
 		execute.c	\
 		utils.c		\
+		globbing1.c		\
+		globbing2.c		\
 		get_path.c
 
 MKLIB	=	make -C ./lib/my/

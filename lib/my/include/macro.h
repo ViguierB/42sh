@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:41:43 2017 Alexandre Chamard-bois
-** Last update Sat May  6 13:41:49 2017 Alexandre Chamard-bois
+** Last update Sat May  6 20:57:37 2017 Alexandre Chamard-bois
 */
 
 #ifndef MACRO_H_
@@ -40,6 +40,9 @@
 #endif
 #ifndef BLANK
 # define BLANK(c) ((c) == ' ' || (c) == '\t' || (c) == '\n' ? 1 : 0)
+#endif
+#ifndef GLOBING
+# define GLOBING(c) ((c) == '*' || (c) == '?' ? 1 : 0)
 #endif
 #ifndef READ_SIZE
 # define READ_SIZE  1024

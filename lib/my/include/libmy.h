@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Sat May  6 14:35:44 2017 Alexandre Chamard-bois
+** Last update Sat May  6 23:28:41 2017 Alexandre Chamard-bois
 */
 
 #ifndef LIBMY_H_
@@ -117,6 +117,9 @@ int my_isfloat(char *str);
 char *clean_line(char *str);
 int my_nbline(char **tab);
 double my_atof(char *str);
+int	match(char *s1, char *s2);
+int	nmatch(char *s1, char *s2);
+char *str_conca(int n, ...);
 
 /*
 ** my_fd functions
