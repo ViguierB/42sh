@@ -5,13 +5,13 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 11:30:21 2017 Alexandre Chamard-bois
-** Last update Sat May  6 11:37:20 2017 Alexandre Chamard-bois
+** Last update Sat May  6 12:10:16 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
 
 #ifndef SCRIPT_H_
-#define SCRIPT_H_
+# define SCRIPT_H_
 
 typedef struct  s_cond
 {

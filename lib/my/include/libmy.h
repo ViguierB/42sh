@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Wed Apr  5 17:12:26 2017 Benjamin Viguier
+** Last update Sat May  6 14:18:14 2017 Alexandre Chamard-bois
 */
 
 #ifndef LIBMY_H_
@@ -13,6 +13,7 @@
 
 # include <stdlib.h>
 # include <sys/types.h>
+# include "macro.h"
 
 # define S_IN 0
 # define S_OUT 1
@@ -21,8 +22,6 @@
 # define LIBMY_GET 42
 # define MY_FD_BUFF_LEN 1024
 # define PSQ(x) ((x) * (x))
-# define MIN(a, b) (((a) < (b)) ? (a) : (b))
-# define MAX(a, b) (((a) > (b)) ? (a) : (b))
 # define CLIST_NEXT(l, e) ((((e)->next) == (l)) ? ((void*) 0) : ((e)->next))
 
 typedef struct	s_my_fd
@@ -112,6 +111,10 @@ int	my_strtol(char *str, long *res);
 void	my_upper(char *str);
 void	my_lower(char *str);
 int	my_gethex(char *hex, int *res);
+int my_isfloat(char *str);
+char *clean_line(char *str);
+int my_nbline(char **tab);
+double my_atof(char *str);
 
 /*
 ** my_fd functions

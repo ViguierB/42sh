@@ -1,11 +1,11 @@
 ##
 ## Makefile<PSU_2016_my_printf_bootstrap> for Makefile_my_printf in /home/benji_epitech/C_Prog_Elem/PSU_2016_my_printf_bootstrap
-## 
+##
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.net>
-## 
+##
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Tue Apr  4 21:35:46 2017 Benjamin Viguier
+## Last update Sat May  6 14:18:31 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -61,7 +61,10 @@ SRC	=	my_strlen.c		\
 		my_strbuilder_ext.c	\
 		my_gethex.c		\
 		my_hash_table.c		\
-		my_hash_table_utils.c
+		my_hash_table_utils.c	\
+		clean_line.c		\
+		my_nbline.c		\
+		my_atof.c		\
 
 CFLAGS	+=	-I./include/
 

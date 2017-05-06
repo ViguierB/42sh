@@ -1,11 +1,11 @@
 /*
 ** my_clist_rem.c for libmy in /home/benji_epitech/System_Unix/PSU_2016_tetris/lib/my
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Mon Feb 27 15:02:58 2017 Benjamin Viguier
-** Last update Thu Apr  6 15:06:12 2017 Benjamin Viguier
+** Last update Sat May  6 13:11:18 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -17,7 +17,7 @@ t_clist		*clist_remove(t_clist *list, t_clist_elm *elm)
 
   next = elm->next;
   prev = elm->prev;
-  
+
   my_printf("test1\n");
   if (next == elm || prev == elm)
     {
@@ -39,7 +39,6 @@ t_clist		*clist_remove(t_clist *list, t_clist_elm *elm)
 t_clist		*clist_rem_fdata(t_clist *list, t_clist_elm *elm,
 				 void (*my_free)(void*))
 {
-  
   my_printf("test3\n");
   my_free(elm->ptr);
   list = clist_remove(list, elm);

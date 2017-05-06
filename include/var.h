@@ -5,19 +5,29 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May  5 19:23:43 2017 Alexandre Chamard-bois
-** Last update Sat May  6 12:08:59 2017 Alexandre Chamard-bois
+** Last update Sat May  6 13:52:04 2017 Alexandre Chamard-bois
 */
 
-#ifndef VAR_H_
-#define VAR_H_
 
-typedef struct  s_var
+#ifndef VAR_H_
+# define VAR_H_
+
+# include "libmy.h"
+
+#define T_STR     0b00
+#define T_INT     0b01
+#define T_FLOAT   0b10
+
+typedef struct  s_var_elm
 {
   int           type;
   char          *name;
   void          *ptr;
-  struct s_var  *next;
-}               t_var;
+}               t_var_elm;
+
+typedef t_clist t_var;
+
+extern t_var *var;
 
 #endif
 
