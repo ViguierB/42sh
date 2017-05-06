@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Wed Feb 15 13:28:38 2017 Benjamin Viguier
-** Last update Sat May  6 13:46:00 2017 Alexandre Chamard-bois
+** Last update Sat May  6 14:40:12 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -37,7 +37,7 @@ int	my_isnum(char *str)
   return (1);
 }
 
-int my_isfloat(const char *str)
+int my_isfloat(char *str)
 {
 	if (*str == '-')
 		str++;
