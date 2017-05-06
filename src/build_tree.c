@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Wed Apr 12 00:00:33 2017 Benjamin Viguier
+** Last update Tue May  2 12:15:30 2017 Benjamin Viguier
 */
 
 #include "mysh.h"
@@ -57,9 +57,7 @@ int	create_node(t_tree **node, t_clist *begin, t_clist *end)
       (*node)->l = NULL;
       (*node)->r = NULL;
       if (parse_simple_cmd(&((*node)->value.proc), cur->ptr) < 0)
-	{
-	  return (-1);
-	}
+	return (-1);
       return (0);
     }
   (*node)->type = NODE_SEP;

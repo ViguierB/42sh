@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Apr 11 15:58:10 2017 Benjamin Viguier
-** Last update Tue Apr 11 15:58:24 2017 Benjamin Viguier
+** Last update Tue May  2 12:13:17 2017 Benjamin Viguier
 */
 
 #include "parser.h"
@@ -64,6 +64,7 @@ int	parse_cmd_args(t_process *proc, char *cmd)
   int		i;
 
   argv = init_argv(&sb);
+  i = 0;
   while (*cmd)
     {
       if (*cmd == '\'' || *cmd == '"')
