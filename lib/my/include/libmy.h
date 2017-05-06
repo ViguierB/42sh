@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Sat May  6 14:18:14 2017 Alexandre Chamard-bois
+** Last update Sat May  6 14:35:44 2017 Alexandre Chamard-bois
 */
 
 #ifndef LIBMY_H_
@@ -95,6 +95,8 @@ char	*my_strcpy(char *dest, char *from);
 char	*my_strncpy(char *dest, char *from, int n);
 int	my_strcmp(char *s1, char *s2);
 int	my_strncmp(char *s1, char *s2, int n);
+char    *my_strstr(char *haystack, char *needle);
+char	*my_strnstr(char *haystack, char *needle, int n);
 char	*my_strdup(char *str);
 char	*my_strndup(char *str, int n);
 char	**my_split(char *inp, char sep, int *nb_lines);

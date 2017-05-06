@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ##
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sat May  6 14:18:31 2017 Alexandre Chamard-bois
+## Last update Sat May  6 14:36:23 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -16,6 +16,7 @@ SRC	=	my_strlen.c		\
 		my_strcpy.c		\
 		my_strncpy.c		\
 		my_strcmp.c		\
+		my_strstr.c		\
 		my_split.c		\
 		my_printf.c		\
 		my_printf_extend.c	\
