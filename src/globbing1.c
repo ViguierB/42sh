@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 15:21:25 2017 Alexandre Chamard-bois
-** Last update Sun May  7 10:33:37 2017 Alexandre Chamard-bois
+** Last update Sun May  7 12:09:42 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -59,6 +59,16 @@ char **_cut_word(char *cmd)
   return (tab);
 }
 
+static char *path_conca(char *path, char *name)
+{
+  if (*name == '.' && path[my_strlen(path) - 1] == '.')
+    return (my_strdup(name));
+  if (path[my_strlen(path) - 1] != '/')
+    path = my_strconca(path, "/");
+  path = my_strconca(path, name);
+  return (path);
+}
+
 t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
 {
   struct dirent *info;
@@ -66,15 +76,16 @@ t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
 
   if (!cutted_word[i])
     return (_new_path(add, path));
-  if (!(dirent = opendir((path ? path : "."))))
+  if (!(dirent = opendir(path)))
     return (add);
   while ((info = readdir(dirent)))
   {
-    if ((*info->d_name != '.' || *cutted_word[i] == '.'))
+    if ((*info->d_name != '.' ||
+        *(cutted_word[i] + (*cutted_word[i] == '/')) == '.'))
     {
       if (match(info->d_name, cutted_word[i] + (*cutted_word[i] == '/')))
-        add = _find_path(cutted_word, i + 1,
-              str_conca(3, path, (path ? "/" : ""), info->d_name), add);
+        add = _find_path(cutted_word, i + 1, path_conca(path, info->d_name)
+              , add);
     }
   }
   closedir(dirent);
@@ -99,7 +110,7 @@ int globbing(char ***cmd)
     {
       if (!(cutted_word = _cut_word((*cmd)[i])))
         return (1);
-      add = _find_path(cutted_word, 0, NULL, add);
+      add = _find_path(cutted_word, 0, FFIRST(cutted_word), add);
       *cmd = _remplace_cmd(*cmd, i, add);
       add = NULL;
       j = 0;
@@ -108,20 +119,20 @@ int globbing(char ***cmd)
   return (0);
 }
 
-int main(int ac, char **av)
-{
-  char **tab;
-
-  tab = malloc(sizeof(char*) * ac);
-  for (int i = 1; i < ac; i++)
-    tab[i - 1] = my_strdup(av[i]);
-  tab[ac - 1] = NULL;
-  globbing(&tab);
-  int a = 0;
-  while (tab[a])
-    my_printf("%s\n", tab[a++]);
-  return (0);
-}
+// int main(int ac, char **av)
+// {
+//   char **tab;
+//
+//   tab = malloc(sizeof(char*) * ac);
+//   for (int i = 1; i < ac; i++)
+//     tab[i - 1] = my_strdup(av[i]);
+//   tab[ac - 1] = NULL;
+//   globbing(&tab);
+//   int a = 0;
+//   while (tab[a])
+//     my_printf("%s\n", tab[a++]);
+//   return (0);
+// }
 
 // i = -1;
 // while ((*cmd)[++i])

@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 22:12:44 2017 Alexandre Chamard-bois
-** Last update Sun May  7 11:20:16 2017 Alexandre Chamard-bois
+** Last update Sun May  7 11:22:47 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -52,15 +52,6 @@ char **_remplace_cmd(char **cmd, int unused, t_glob *add)
   }
   new_cmd[len] = NULL;
   return (new_cmd);
-}
-
-void _print_add(t_glob *add)
-{
-  while (add)
-  {
-    my_printf("%s\n", add->str);
-    add = add->next;
-  }
 }
 
 t_glob *_new_path(t_glob *list, char *path)
