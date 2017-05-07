@@ -5,11 +5,54 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 22:12:44 2017 Alexandre Chamard-bois
-** Last update Sat May  6 23:42:34 2017 Alexandre Chamard-bois
+** Last update Sun May  7 11:20:16 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
 #include "glob.h"
+
+static int _size(char **cmd, t_glob *add)
+{
+  int i;
+
+  i = 0;
+  while (cmd[i])
+    i++;
+  while (add)
+  {
+    add = add->next;
+    i++;
+  }
+  return (i);
+}
+
+char **_remplace_cmd(char **cmd, int unused, t_glob *add)
+{
+  char **new_cmd;
+  int i;
+  int j;
+  int len;
+
+  len = _size(cmd, add) - 1;
+  if (!(new_cmd = malloc(sizeof(char *) * (len + 1))))
+    return (NULL);
+  i = 0;
+  j = 0;
+  while (cmd[i])
+  {
+    if (i != unused)
+      new_cmd[j++] = cmd[i];
+    else
+      while (add)
+      {
+        new_cmd[j++] = add->str;
+        add = add->next;
+      }
+    i++;
+  }
+  new_cmd[len] = NULL;
+  return (new_cmd);
+}
 
 void _print_add(t_glob *add)
 {
@@ -29,49 +72,4 @@ t_glob *_new_path(t_glob *list, char *path)
   new->str = path;
   new->next = list;
   return (new);
-}
-
-static int _count_folder(char *cmd)
-{
-  int i;
-  int nb;
-
-  i = 0;
-  nb = 0;
-  while (cmd[i])
-  {
-    if (cmd[i] == '/')
-      nb++;
-    i++;
-  }
-  return (nb + 1);
-}
-
-char **_cut_word(char *cmd)
-{
-  char **tab;
-  int nb_folder;
-  int i;
-  int start;
-  int end;
-
-  nb_folder = _count_folder(cmd);
-  if (!(tab = malloc(sizeof(char *) * (nb_folder + 1))))
-    return (NULL);
-  i = 0;
-  start = 0;
-  while (cmd[start] && i < nb_folder)
-  {
-    end = start + 1;
-    while (cmd[end] && cmd[end] != '/')
-      end++;
-    if (!(tab[i] = my_strndup(cmd + start, end - start)))
-      return (NULL);
-    start = end;
-    while (cmd[start] == '/')
-      start++;
-    i++;
-  }
-  tab[i] = NULL;
-  return (tab);
 }
