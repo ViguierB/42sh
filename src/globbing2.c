@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 22:12:44 2017 Alexandre Chamard-bois
-** Last update Thu May 11 18:16:19 2017 Alexandre Chamard-bois
+** Last update Thu May 11 18:48:51 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -49,8 +49,9 @@ int cmp_add(void *s1, void *s2)
   char c1;
   char c2;
 
-  return (1);
-  while (*(char*)s1 && *(char*)s2)
+  c1 = *(char*)s1;
+  c2 = *(char*)s2;
+  while (*(char*)s1 || *(char*)s2)
   {
     c1 = *(char*)s1;
     if (c1 >= 'A' && c1 <= 'Z')
@@ -63,9 +64,7 @@ int cmp_add(void *s1, void *s2)
     s1++;
     s2++;
   }
-  if (s1)
-    return (-1);
-  return (1);
+  return (c1 - c2);
 }
 
 char **_remplace_cmd(char **cmd, int unused, t_clist *add, char *cut)
@@ -75,7 +74,7 @@ char **_remplace_cmd(char **cmd, int unused, t_clist *add, char *cut)
   int j;
   int len;
 
-  clist_sort(add, cmp_add);
+  clist_qsort(add, cmp_add);
   len = _size(cmd, add) - 1;
   if (!(new_cmd = malloc(sizeof(char *) * (len + 1))))
     return (NULL);
