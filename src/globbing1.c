@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 15:21:25 2017 Alexandre Chamard-bois
-** Last update Sun May  7 17:18:11 2017 Alexandre Chamard-bois
+** Last update Thu May 11 12:39:58 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -113,25 +113,11 @@ int globbing(char ***cmd)
       if (!(cutted_word = _cut_word((*cmd)[i])))
         return (1);
       add = _find_path(cutted_word, 0, FIRST(cutted_word), add);
-      *cmd = _remplace_cmd(*cmd, i, add);
+      if (add)
+        *cmd = _remplace_cmd(*cmd, i, add, *cutted_word);
       add = NULL;
       j = 0;
     }
   }
   return (0);
 }
-
-// int main(int ac, char **av)
-// {
-//   char **tab;
-//
-//   tab = malloc(sizeof(char*) * ac);
-//   for (int i = 1; i < ac; i++)
-//     tab[i - 1] = my_strdup(av[i]);
-//   tab[ac - 1] = NULL;
-//   globbing(&tab);
-//   int a = 0;
-//   while (tab[a])
-//     my_printf("-%s-", tab[a++]);
-//   return (0);
-// }

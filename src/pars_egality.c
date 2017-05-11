@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Thu May 11 09:31:19 2017 Alexandre Chamard-bois
-** Last update Thu May 11 10:08:10 2017 Alexandre Chamard-bois
+** Last update Thu May 11 10:31:27 2017 Alexandre Chamard-bois
 */
 
 #include "script.h"
@@ -43,7 +43,8 @@ int find_type_appel(char *str)
       return (A_CALC);
     i++;
   }
-  nb_word(str);
+  if (nb_word(str) == 1 && *str == '$')
+    return (A_VAR);
   return (A_ERR);
 }
 

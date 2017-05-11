@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 22:12:44 2017 Alexandre Chamard-bois
-** Last update Sun May  7 11:22:47 2017 Alexandre Chamard-bois
+** Last update Thu May 11 12:42:20 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -26,7 +26,7 @@ static int _size(char **cmd, t_glob *add)
   return (i);
 }
 
-char **_remplace_cmd(char **cmd, int unused, t_glob *add)
+char **_remplace_cmd(char **cmd, int unused, t_glob *add, char *cut)
 {
   char **new_cmd;
   int i;
@@ -45,7 +45,7 @@ char **_remplace_cmd(char **cmd, int unused, t_glob *add)
     else
       while (add)
       {
-        new_cmd[j++] = add->str;
+        new_cmd[j++] = add->str + (*add->str == '.' && *cut != '.' ? 2 : 0);
         add = add->next;
       }
     i++;
