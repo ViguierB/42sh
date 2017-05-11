@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ##
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Thu May 11 10:11:03 2017 Alexandre Chamard-bois
+## Last update Thu May 11 13:48:00 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -84,7 +84,7 @@ OBJ	=	$(patsubst %,$(ODIR)/%,$(_OBJ))
 
 NAME	=	libmy.a
 
-all		:	$(NAME)
+all		:	mkobj $(NAME)
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
 	$(CC) $(CFLAGS)	-c -o $@ $<
@@ -92,7 +92,7 @@ $(ODIR)/%.o	:	$(SDIR)/%.c
 mkobj		:
 	./tools/verif_objdir
 
-$(NAME)		:	mkobj $(OBJ)
+$(NAME)		: $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 	ranlib $(NAME)
 

@@ -5,12 +5,38 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Sat May  6 14:41:53 2017 Alexandre Chamard-bois
+** Last update Thu May 11 13:44:47 2017 Alexandre Chamard-bois
 */
 
+#include <unistd.h>
 #include "mysh.h"
 #include "my_env.h"
 #include "parser.h"
+
+t_my_fd *init_main(int ac, t_mysh *sh, char **av, char **env)
+{
+  (void) ac;
+  my_memset(sh, 0, sizeof(sh));
+  my_init_env(&sh->env, env);
+  my_name(LIBMY_INIT, av[0]);
+  return (my_fd_from_fd(0));
+}
+
+char *waitline(t_my_fd *in)
+{
+  char *cmd;
+
+  if (isatty(0))
+    my_printf("$> ");
+  if (!(cmd = my_getline(in)))
+    return (NULL);
+  if (!(*cmd))
+  {
+    free(cmd);
+    return (waitline(in));
+  }
+  return (cmd);
+}
 
 int		main(int ac, char **av, char **env)
 {
@@ -20,23 +46,16 @@ int		main(int ac, char **av, char **env)
   t_mysh	sh;
   t_exec_opts	opts;
 
-  (void) ac;
-  my_memset(&sh, 0, sizeof(sh));
-  my_init_env(&(sh.env), env);
-  my_name(LIBMY_INIT, av[0]);
-  in = my_fd_from_fd(0);
-  while (1)
+  in = init_main(ac, &sh, av, env);
+  while ((cmd = waitline(in)))
     {
-      my_printf("$> ");
-      cmd = my_getline(in);
-      if (!cmd)
-	return (sh.last_exit);
-      if (!(*cmd))
-	continue;
       tree = parse_cmd(cmd);
       my_memset(&opts, 0, sizeof(opts));
       if (tree)
 	execute_tree(&sh, tree, &opts);
       free_tree(tree);
     }
+    free_env(sh.env);
+    free(in);
+    return (sh.last_exit);
 }

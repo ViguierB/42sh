@@ -5,10 +5,14 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Thu May 11 11:15:04 2017 Alexandre Chamard-bois
-** Last update Thu May 11 11:25:20 2017 Alexandre Chamard-bois
+** Last update Thu May 11 12:59:51 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
+
+#define FLAG      1
+#define STRING    2
+#define INTEGER   4
 
 t_mysh bultin_crochet(char **tab, t_mysh sh)
 {

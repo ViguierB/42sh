@@ -1,11 +1,11 @@
 /*
 ** env.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr  4 21:45:00 2017 Benjamin Viguier
-** Last update Tue Apr 11 21:34:05 2017 Benjamin Viguier
+** Last update Thu May 11 13:26:48 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -64,6 +64,23 @@ int		my_setenv(t_env *env, char *key, char *value)
       elm = CLIST_NEXT(env, elm);
     }
   return (0);
+}
+
+void free_env(t_env *env)
+{
+  t_env *next;
+
+  if (env)
+    env->prev->next = NULL;
+  while (env)
+  {
+    next = env->next;
+    free(((t_env_elm *)env->ptr)->key);
+    free(((t_env_elm *)env->ptr)->value);
+    free(env->ptr);
+    free(env);
+    env = next;
+  }
 }
 
 void	free_tmp_env(char **env)
