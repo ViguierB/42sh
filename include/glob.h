@@ -5,9 +5,10 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 22:22:41 2017 Alexandre Chamard-bois
-** Last update Thu May 11 12:39:55 2017 Alexandre Chamard-bois
+** Last update Thu May 11 17:41:11 2017 Alexandre Chamard-bois
 */
 
+#include <mysh.h>
 #ifndef GLOB_H_
 #define GLOB_H_
 
@@ -20,7 +21,7 @@ typedef struct  s_glob
 }               t_glob;
 
 char **_cut_word(char *cmd);
-t_glob *_new_path(t_glob *, char *path);
-char **_remplace_cmd(char **cmd, int i, t_glob *add, char *cut);
+t_clist *_new_path(t_clist *, char *path);
+char **_remplace_cmd(char **cmd, int i, t_clist *add, char *cut);
 
 #endif

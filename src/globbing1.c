@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 15:21:25 2017 Alexandre Chamard-bois
-** Last update Thu May 11 15:46:15 2017 Alexandre Chamard-bois
+** Last update Thu May 11 18:06:25 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -66,14 +66,17 @@ static char *path_conca(char *path, char *name)
   if (*name == '.' && path[my_strlen(path) - 1] == '.')
     return (my_strdup(name));
   if (path[my_strlen(path) - 1] != '/')
-    path = my_strconca(path, "/");
-  tmp = path;
-  path = my_strconca(path, name);
-  free(tmp);
+  {
+    tmp = my_strconca(path, "/");
+    path = my_strconca(tmp, name);
+    free(tmp);
+  }
+  else
+    path = my_strconca(path, name);
   return (path);
 }
 
-t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
+t_clist *_find_path(char **cutted_word, int i, char *path, t_clist *add)
 {
   struct dirent *info;
   DIR *dirent;
@@ -81,7 +84,7 @@ t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
   while (!my_strcmp(cutted_word[i], "/"))
     i++;
   if (!cutted_word[i])
-    return (_new_path(add, path));
+    return (clist_push(add, path));
   if (!(dirent = opendir(path)))
     return (add);
   while ((info = readdir(dirent)))
@@ -103,7 +106,7 @@ int globbing(char ***cmd)
 {
   int   i;
   int   j;
-  t_glob *add;
+  t_clist *add;
   char **cutted_word;
 
   add = NULL;

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Thu May 11 14:32:32 2017 Alexandre Chamard-bois
+** Last update Thu May 11 16:12:35 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -74,7 +74,8 @@ void	free_tree(t_tree *node)
   {
     if (node->type == NODE_CMD)
 	  {
-      // free(node->value.token.value.proc);
+      free(*node->value.proc.args);
+      free(node->value.proc.args);
 	  }
     else if (node->value.token.value.info.sep)
 	   free(node->value.token.value.info.sep);
