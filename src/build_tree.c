@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Sat May  6 20:38:22 2017 Alexandre Chamard-bois
+** Last update Wed May 10 19:43:08 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -90,8 +90,6 @@ t_tree		*parse_cmd(char *cmd)
   t_tree	*tree;
   t_clist	*list;
 
-  if (!(cmd = globbing(cmd)))
-    return (NULL);
   if (!get_tokens(cmd, &list, g_ops_tab))
     {
       if (create_node(&tree, list, list) < 0)

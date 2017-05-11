@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:41:43 2017 Alexandre Chamard-bois
-** Last update Sat May  6 20:57:37 2017 Alexandre Chamard-bois
+** Last update Thu May 11 09:45:21 2017 Alexandre Chamard-bois
 */
 
 #ifndef MACRO_H_
@@ -34,6 +34,9 @@
 #endif
 #ifndef QUOTE
 # define QUOTE(c) ((c) != '\'' ? (c) != '\"' ? (c) != '`' ? 0 : 1 : 2 : 3)
+#endif
+#ifndef LEVEL
+# define LEVEL(c) (QUOTE(c) || (c) == '(' || (c) == ')' ? 1 : 0)
 #endif
 #ifndef SPACE
 # define SPACE(c) ((c) == ' ' || (c) == '\t' ? 1 : 0)

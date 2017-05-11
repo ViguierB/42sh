@@ -5,14 +5,13 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 22:22:41 2017 Alexandre Chamard-bois
-** Last update Sun May  7 11:56:13 2017 Alexandre Chamard-bois
+** Last update Sun May  7 17:12:38 2017 Alexandre Chamard-bois
 */
 
 #ifndef GLOB_H_
 #define GLOB_H_
 
-#define FIRST(str) (str[my_strlen(str) - 1] != '/' ? "/" : "")
-#define FFIRST(cut) (**cut == '/' ? "/" : ".")
+#define FIRST(cut) (**cut == '/' ? "/" : ".")
 
 typedef struct  s_glob
 {

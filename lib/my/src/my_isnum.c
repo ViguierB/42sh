@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Wed Feb 15 13:28:38 2017 Benjamin Viguier
-** Last update Sat May  6 14:40:12 2017 Alexandre Chamard-bois
+** Last update Sun May  7 18:19:01 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -50,6 +50,6 @@ int my_isfloat(char *str)
 			str++;
 	}
 	if (*str)
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }

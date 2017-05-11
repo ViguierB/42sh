@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 15:21:25 2017 Alexandre Chamard-bois
-** Last update Sun May  7 12:09:42 2017 Alexandre Chamard-bois
+** Last update Sun May  7 17:18:11 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -74,6 +74,8 @@ t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
   struct dirent *info;
   DIR *dirent;
 
+  while (!my_strcmp(cutted_word[i], "/"))
+    i++;
   if (!cutted_word[i])
     return (_new_path(add, path));
   if (!(dirent = opendir(path)))
@@ -110,7 +112,7 @@ int globbing(char ***cmd)
     {
       if (!(cutted_word = _cut_word((*cmd)[i])))
         return (1);
-      add = _find_path(cutted_word, 0, FFIRST(cutted_word), add);
+      add = _find_path(cutted_word, 0, FIRST(cutted_word), add);
       *cmd = _remplace_cmd(*cmd, i, add);
       add = NULL;
       j = 0;
@@ -130,38 +132,6 @@ int globbing(char ***cmd)
 //   globbing(&tab);
 //   int a = 0;
 //   while (tab[a])
-//     my_printf("%s\n", tab[a++]);
+//     my_printf("-%s-", tab[a++]);
 //   return (0);
-// }
-
-// i = -1;
-// while ((*cmd)[++i])
-// {
-//   j = -1;
-//   while ((*cmd)[i][++j])
-//   {
-//     if (GLOBING((*cmd)[i][j]))
-//     {
-//       if (!(cutted_word = _cut_word((*cmd)[i])))
-//         return (1);
-//       if (!(add = _find_path(cutted_word, 0, NULL, add)))
-//        return (1);
-//       break;
-//     }
-//   }
-// }
-
-// i = 0;
-// j = -1;
-// while ((*cmd)[i][++j] || (j = 0) || (*cmd)[++i])
-// {
-//   if (GLOBING((*cmd)[i][j]))
-//   {
-//     if (!(cutted_word = _cut_word((*cmd)[i])))
-//       return (1);
-//     if (!(add = _find_path(cutted_word, 0, NULL, add)))
-//      return (1);
-//     i++;
-//     j = 0;
-//   }
 // }
