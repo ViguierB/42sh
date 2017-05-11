@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Thu May 11 13:44:47 2017 Alexandre Chamard-bois
+** Last update Thu May 11 14:33:00 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -54,6 +54,7 @@ int		main(int ac, char **av, char **env)
       if (tree)
 	execute_tree(&sh, tree, &opts);
       free_tree(tree);
+      free(cmd);
     }
     free_env(sh.env);
     free(in);
