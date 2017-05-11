@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu May 11 14:58:28 2017 Alexandre Chamard-bois
+** Last update Thu May 11 18:20:40 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -73,6 +73,7 @@ t_clist	*clist_remove(t_clist *list, t_clist_elm *elm);
 t_clist	*clist_rem_fdata(t_clist *list, t_clist_elm *elm,
 			 void (*my_free)(void*));
 void	clist_sort(t_clist *list, t_elm_cmp cmp_fct);
+void	clist_qsort(t_clist *list, t_elm_cmp cmp_fct);
 t_clist_elm	*clist_at(t_clist *list, int at);
 
 /*
