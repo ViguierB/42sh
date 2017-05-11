@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 15:21:25 2017 Alexandre Chamard-bois
-** Last update Thu May 11 12:39:58 2017 Alexandre Chamard-bois
+** Last update Thu May 11 15:46:15 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -61,11 +61,15 @@ char **_cut_word(char *cmd)
 
 static char *path_conca(char *path, char *name)
 {
+  char *tmp;
+
   if (*name == '.' && path[my_strlen(path) - 1] == '.')
     return (my_strdup(name));
   if (path[my_strlen(path) - 1] != '/')
     path = my_strconca(path, "/");
+  tmp = path;
   path = my_strconca(path, name);
+  free(tmp);
   return (path);
 }
 
@@ -90,6 +94,7 @@ t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
               , add);
     }
   }
+  free(path);
   closedir(dirent);
   return (add);
 }
@@ -112,10 +117,11 @@ int globbing(char ***cmd)
     {
       if (!(cutted_word = _cut_word((*cmd)[i])))
         return (1);
-      add = _find_path(cutted_word, 0, FIRST(cutted_word), add);
+      add = _find_path(cutted_word, 0, my_strdup(FIRST(cutted_word)), add);
       if (add)
         *cmd = _remplace_cmd(*cmd, i, add, *cutted_word);
       add = NULL;
+      free_tab(cutted_word);
       j = 0;
     }
   }
