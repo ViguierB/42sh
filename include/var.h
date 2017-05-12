@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May  5 19:23:43 2017 Alexandre Chamard-bois
-** Last update Thu May 11 09:51:30 2017 Alexandre Chamard-bois
+** Last update Thu May 11 22:05:09 2017 Alexandre Chamard-bois
 */
 
 #ifndef VAR_H_
@@ -62,6 +62,11 @@ typedef struct  s_appel
     function with return (len($c), abs(-10), ...)
 */
 
+typedef struct  s_pars_crochet
+{
+  
+}               t_pars_crochet;
+
 typedef struct  s_pars_level
 {
   int           parent;
@@ -74,11 +79,6 @@ typedef struct  s_function
   t_var         *private_var;
   void          *ptr;
 }               t_function;
-
-typedef struct  s_egality
-{
-  t_value       (*ptr)(t_var *private_var);
-}               t_egality;
 
 int find_type(char *str);
 
