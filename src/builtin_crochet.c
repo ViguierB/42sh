@@ -5,14 +5,31 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Thu May 11 11:15:04 2017 Alexandre Chamard-bois
-** Last update Thu May 11 23:13:20 2017 Alexandre Chamard-bois
+** Last update Sat May 13 14:50:56 2017 Alexandre Chamard-bois
 */
 
+#include <stdio.h>
 #include "mysh.h"
+#include "crochet.h"
 
-#define FLAG      1
-#define STRING    2
-#define INTEGER   4
+const t_pars_crochet g_croc[] =
+{
+  {"-n", 0, _flag_n},
+  {"-z", 0, _flag_z},
+  {"=", 1, _flag_eg},
+  {"==", 1, _flag_eg},
+  {"!=", 1, _flag_dif},
+  {"-eq", 1, _flag_num},
+  {"-ge", 1, _flag_num},
+  {"-gt", 1, _flag_num},
+  {"-lt", 1, _flag_num},
+  {"-le", 1, _flag_num},
+  {"-ne", 1, _flag_num},
+  {"-d", 0, _flag_d},
+  {"-e", 0, _flag_e},
+  {"-f", 0, _flag_f},
+  {NULL, 0, NULL},
+};
 
 static int _pars(char **tab, char *to_pars[4], int i)
 {
@@ -34,48 +51,68 @@ static int _pars(char **tab, char *to_pars[4], int i)
   if (my_strcmp(tab[i + j], "-a") && my_strcmp(tab[i + j], "-o") &&
           my_strcmp(tab[i + j], "]"))
   {
-    my_putstr("too many arguments\n");
+    dprintf(2, "too many arguments\n");
     return (-1);
   }
   return (i + j);
+}
+
+int pars_croc(char *to_pars[4])
+{
+  int i;
+
+  i = 0;
+  while (g_croc[i].flag && my_strcmp(to_pars[g_croc[i].pos], g_croc[i].flag))
+    i++;
+  if (!g_croc[i].flag)
+  {
+    if (to_pars[1])
+      return (2);
+    if (!to_pars[0])
+      return ((to_pars[3] ? 0 : 1));
+    return ((to_pars[3] ? 1 : 0));
+  }
+  return (g_croc[i].func(to_pars));
+}
+
+int _verif_opt(char **tab, int before, int *res)
+{
+  static int last = 0;
+
+  if (!my_strcmp(tab[before], "-a") && (last || *res))
+  {
+    *res = 1;
+    return (1);
+  }
+  if (!my_strcmp(tab[before], "-o") && (!last || !*res))
+  {
+    *res = 0;
+    return (1);
+  }
+  last = *res;
+  return (0);
 }
 
 t_mysh builtin_crochet(char **tab, t_mysh sh)
 {
   int i;
   char *to_pars[4];
+  int before;
   int res;
 
   res = 1;
+  before = 0;
   i = 0;
   if (my_strcmp(tab[my_nbline(tab) - 1], "]"))
-    return (my_putstr("missing `]'\n"), (t_mysh){sh.env, sh.var, 2});
-  while (res != 2 && (i = _pars(tab, to_pars, i)) > 0)
+    return (dprintf(2, "missing `]'\n"), (t_mysh){sh.env, sh.var, 2});
+  while ((i = _pars(tab, to_pars, i)) > 0)
   {
-    int j = 0;
-    while (j < 4 && to_pars[j])
-      my_printf("%s\n", to_pars[j++]);
+    res = pars_croc(to_pars);
+    if (res == 2 || _verif_opt(tab, before, &res))
+      break;
+    before = i;
   }
   if (i == -1)
     return ((t_mysh){sh.env, sh.var, 2});
   return ((t_mysh){sh.env, sh.var, res});
-}
-
-int main()
-{
-  t_mysh sh;
-  char *buff;
-  t_my_fd	*in;
-
-  my_memset(&sh, 0, sizeof(t_mysh));
-  in = my_fd_from_fd(0);
-  while ((buff = my_getline(in)))
-  {
-    if (!my_strncmp(buff, "[", 1))
-      sh = builtin_crochet(my_split(buff, ' ', NULL), sh);
-    my_printf("%d\n", sh.last_exit);
-    free(buff);
-
-  }
-  return (0);
 }

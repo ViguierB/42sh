@@ -1,11 +1,11 @@
 /*
 ** op_and.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Fri Apr  7 11:43:08 2017 Benjamin Viguier
-** Last update Fri May  5 16:25:24 2017 Benjamin Viguier
+** Last update Sat May 13 14:51:47 2017 Alexandre Chamard-bois
 */
 
 #include "parser.h"
@@ -48,7 +48,6 @@ int		op_pipe(t_mysh *sh, t_tree *node, t_exec_opts *opts)
   if (execute_tree(sh, node->l, opts) < 0)
     return (-1);
   //  opts
-  
 }
 
 int	op_next(t_mysh *sh, t_tree *node, t_exec_opts *opts)

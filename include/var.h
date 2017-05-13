@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May  5 19:23:43 2017 Alexandre Chamard-bois
-** Last update Thu May 11 22:05:09 2017 Alexandre Chamard-bois
+** Last update Sat May 13 10:44:45 2017 Alexandre Chamard-bois
 */
 
 #ifndef VAR_H_
@@ -61,11 +61,6 @@ typedef struct  s_appel
     ternaire      (ex: ($a > 10 ? $a : 10), ...)
     function with return (len($c), abs(-10), ...)
 */
-
-typedef struct  s_pars_crochet
-{
-  
-}               t_pars_crochet;
 
 typedef struct  s_pars_level
 {
