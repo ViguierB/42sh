@@ -1,11 +1,11 @@
 /*
 ** build_tree.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Tue May  2 12:15:30 2017 Benjamin Viguier
+** Last update Fri May 12 15:13:00 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -71,18 +71,18 @@ int	create_node(t_tree **node, t_clist *begin, t_clist *end)
 void	free_tree(t_tree *node)
 {
   if (node)
-    {
-      if (node->type == NODE_CMD)
-	{
-	}
-      else if (node->value.token.value.info.sep)
-	free(node->value.token.value.info.sep);
-      if (node->r)
-	free_tree(node->r);
-      if (node->l)
-	free_tree(node->l);
-      free(node);
-    }
+  {
+    if (node->type == NODE_CMD)
+	  {
+      free(*node->value.proc.args);
+      free(node->value.proc.args);
+	  }
+    else if (node->value.token.value.info.sep)
+	   free(node->value.token.value.info.sep);
+   free_tree(node->r);
+   free_tree(node->l);
+   free(node);
+  }
 }
 
 t_tree		*parse_cmd(char *cmd)
@@ -90,8 +90,6 @@ t_tree		*parse_cmd(char *cmd)
   t_tree	*tree;
   t_clist	*list;
 
-  if (!cmd)
-    exit(0);
   if (!get_tokens(cmd, &list, g_ops_tab))
     {
       if (create_node(&tree, list, list) < 0)

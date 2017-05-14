@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 21:45:00 2017 Benjamin Viguier
-** Last update Sun May 14 17:28:12 2017 Arthur Devreker
+** Last update Sun May 14 17:30:11 2017 Arthur Devreker
 */
 
 #include "mysh.h"
@@ -64,6 +64,23 @@ int		my_setenv(t_env *env, char *key, char *value)
       elm = CLIST_NEXT(env, elm);
     }
   return (0);
+}
+
+void free_env(t_env *env)
+{
+  t_env *next;
+
+  if (env)
+    env->prev->next = NULL;
+  while (env)
+  {
+    next = env->next;
+    free(((t_env_elm *)env->ptr)->key);
+    free(((t_env_elm *)env->ptr)->value);
+    free(env->ptr);
+    free(env);
+    env = next;
+  }
 }
 
 void	free_tmp_env(char **env)

@@ -1,11 +1,11 @@
 ##
 ## Makefile<PSU_2016_my_printf_bootstrap> for Makefile_my_printf in /home/benji_epitech/C_Prog_Elem/PSU_2016_my_printf_bootstrap
-## 
+##
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.net>
-## 
+##
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Tue Apr  4 21:35:46 2017 Benjamin Viguier
+## Last update Thu May 11 18:21:16 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -16,6 +16,7 @@ SRC	=	my_strlen.c		\
 		my_strcpy.c		\
 		my_strncpy.c		\
 		my_strcmp.c		\
+		my_strstr.c		\
 		my_split.c		\
 		my_printf.c		\
 		my_printf_extend.c	\
@@ -44,6 +45,7 @@ SRC	=	my_strlen.c		\
 		my_clist.c		\
 		my_clist_rem.c		\
 		my_clist_sort.c		\
+		my_clist_qsort.c	\
 		my_showmem.c		\
 		my_putnbr_base.c	\
 		my_fd.c			\
@@ -61,7 +63,13 @@ SRC	=	my_strlen.c		\
 		my_strbuilder_ext.c	\
 		my_gethex.c		\
 		my_hash_table.c		\
-		my_hash_table_utils.c
+		my_hash_table_utils.c	\
+		clean_line.c		\
+		my_nbline.c		\
+		my_atof.c		\
+		match.c		\
+		nb_word.c		\
+		free_tab.c	\
 
 CFLAGS	+=	-I./include/
 
@@ -78,7 +86,7 @@ OBJ	=	$(patsubst %,$(ODIR)/%,$(_OBJ))
 
 NAME	=	libmy.a
 
-all		:	$(NAME)
+all		:	mkobj $(NAME)
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
 	$(CC) $(CFLAGS)	-c -o $@ $<
@@ -86,7 +94,7 @@ $(ODIR)/%.o	:	$(SDIR)/%.c
 mkobj		:
 	./tools/verif_objdir
 
-$(NAME)		:	mkobj $(OBJ)
+$(NAME)		: $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 	ranlib $(NAME)
 

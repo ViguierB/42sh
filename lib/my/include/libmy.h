@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Wed Apr  5 17:12:26 2017 Benjamin Viguier
+** Last update Thu May 11 18:20:40 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -13,6 +13,7 @@
 
 # include <stdlib.h>
 # include <sys/types.h>
+# include "macro.h"
 
 # define S_IN 0
 # define S_OUT 1
@@ -21,8 +22,6 @@
 # define LIBMY_GET 42
 # define MY_FD_BUFF_LEN 1024
 # define PSQ(x) ((x) * (x))
-# define MIN(a, b) (((a) < (b)) ? (a) : (b))
-# define MAX(a, b) (((a) > (b)) ? (a) : (b))
 # define CLIST_NEXT(l, e) ((((e)->next) == (l)) ? ((void*) 0) : ((e)->next))
 
 typedef struct	s_my_fd
@@ -74,6 +73,7 @@ t_clist	*clist_remove(t_clist *list, t_clist_elm *elm);
 t_clist	*clist_rem_fdata(t_clist *list, t_clist_elm *elm,
 			 void (*my_free)(void*));
 void	clist_sort(t_clist *list, t_elm_cmp cmp_fct);
+void	clist_qsort(t_clist *list, t_elm_cmp cmp_fct);
 t_clist_elm	*clist_at(t_clist *list, int at);
 
 /*
@@ -96,6 +96,8 @@ char	*my_strcpy(char *dest, char *from);
 char	*my_strncpy(char *dest, char *from, int n);
 int	my_strcmp(char *s1, char *s2);
 int	my_strncmp(char *s1, char *s2, int n);
+char    *my_strstr(char *haystack, char *needle);
+char	*my_strnstr(char *haystack, char *needle, int n);
 char	*my_strdup(char *str);
 char	*my_strndup(char *str, int n);
 char	**my_split(char *inp, char sep, int *nb_lines);
@@ -112,6 +114,16 @@ int	my_strtol(char *str, long *res);
 void	my_upper(char *str);
 void	my_lower(char *str);
 int	my_gethex(char *hex, int *res);
+int my_isfloat(char *str);
+char *clean_line(char *str);
+int my_nbline(char **tab);
+double my_atof(char *str);
+int	match(char *s1, char *s2);
+int	nmatch(char *s1, char *s2);
+char *str_conca(int n, ...);
+int	is_alph_num(char *str);
+int	nb_word(const char *str);
+void free_tab(char **tab);
 
 /*
 ** my_fd functions

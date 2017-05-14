@@ -1,11 +1,11 @@
 /*
 ** get_path.c for minishell in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Tue Apr 11 23:38:42 2017 Benjamin Viguier
+** Last update Thu May 11 15:04:41 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -24,7 +24,7 @@ const t_builtin	g_builtin_tab[] =
     {NULL}
   };
 
-char		**get_path_tab(t_clist *env)
+char		**get_path_tab(t_env *env)
 {
   t_clist_elm	*elm;
   t_env_elm	*cur;
@@ -66,7 +66,7 @@ char	*search_in_path(t_mysh *sh, char *name)
       if (str)
 	{
 	  if (fexists(str))
-	    return (str);
+	    return (my_sb_destroy(sb), str);
 	  free(str);
 	}
       i++;

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Wed Nov  9 16:23:22 2016 Benjamin Viguier
-** Last update Mon Apr  3 18:33:37 2017 Benjamin Viguier
+** Last update Sat May  6 21:56:54 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -33,13 +33,18 @@ char		*my_strdup(char *str)
 char	*my_strndup(char *str, int n)
 {
   char	*res;
+  int i;
 
   res = malloc(sizeof(char) * (n + 1));
   if (!res)
     return (0);
   res[n] = '\0';
-  while (*str && n--)
-    res[n] = str[n];
+  i = 0;
+  while (i < n)
+  {
+    res[i] = str[i];
+    i++;
+  }
   return (res);
 }
 

@@ -1,11 +1,11 @@
 /*
 ** parse_argv.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr 11 15:58:10 2017 Benjamin Viguier
-** Last update Tue May  2 12:13:17 2017 Benjamin Viguier
+** Last update Thu May 11 14:59:22 2017 Alexandre Chamard-bois
 */
 
 #include "parser.h"
@@ -82,6 +82,8 @@ int	parse_cmd_args(t_process *proc, char *cmd)
       cmd++;
     }
   argv[i] = my_sb_get_str(sb);
+  if (globbing(&argv))
+    return (-1);
   proc->name = argv[0];
   proc->args = argv;
   return (0);

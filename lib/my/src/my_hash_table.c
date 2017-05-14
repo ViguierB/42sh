@@ -1,9 +1,9 @@
 /*
 ** my_hash_table.c for libmy in /home/benji_epitech/workdir/perso/libmy/tmp/lib/my
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Fri Mar 24 19:49:07 2017 Benjamin Viguier
 ** Last update Sun Mar 26 22:53:34 2017 Benjamin Viguier
 */
@@ -86,7 +86,7 @@ t_ht	*init_ht(size_t len, t_hash_fct hash_fct)
 int		init_allowed_ht(t_ht *ht, size_t len, t_hash_fct hash_fct)
 {
   t_ht_elm	*buffer;
-  
+
   buffer = malloc(sizeof(t_ht_elm) * len);
   ht->len = len;
   if (!(buffer))

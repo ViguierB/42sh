@@ -1,17 +1,18 @@
 /*
 ** mysh.h for mysh in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Tue Apr 11 23:30:45 2017 Benjamin Viguier
+** Last update Wed May 10 21:36:10 2017 Alexandre Chamard-bois
 */
+
+#include "libmy.h"
+#include "var.h"
 
 #ifndef MYSH_H_
 # define MYSH_H_
-
-# include "libmy.h"
 
 # ifndef TRUE
 #  define TRUE 1
@@ -45,6 +46,7 @@ typedef struct	s_process
 typedef struct	s_mysh
 {
   t_clist	*env;
+  t_var   *var;
   int		last_exit;
 }		t_mysh;
 
