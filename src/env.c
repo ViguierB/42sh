@@ -1,11 +1,11 @@
 /*
 ** env.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr  4 21:45:00 2017 Benjamin Viguier
-** Last update Tue Apr 11 21:34:05 2017 Benjamin Viguier
+** Last update Sun May 14 17:28:12 2017 Arthur Devreker
 */
 
 #include "mysh.h"
