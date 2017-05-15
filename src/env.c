@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 21:45:00 2017 Benjamin Viguier
-** Last update Sun May 14 17:32:57 2017 Arthur Devreker
+** Last update Mon May 15 14:28:06 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -46,27 +46,22 @@ char		*my_getenv(t_env *env, char *key)
   return (NULL);
 }
 
-t_mysh		my_setenv(char **tab, t_mysh sh)
+int		my_setenv(t_env *env, char *key, char *value)
 {
   t_clist_elm	*elm;
   t_env_elm	*cur;
 
   elm = env;
-  if (error_setenv(tab) = -1)
-    {
-      sh.last_exit = -1;
-      return (sh);
-    }
   while (elm)
     {
       cur = elm->ptr;
-      if (!(my_strcmp(cur->key, tab[1])))
+      if (!(my_strcmp(cur->key, key)))
 	{
 	  if (cur->value)
 	    free(cur->value);
-	  cur->value = my_strdup(tab[2]);
+	  cur->value = my_strdup(value);
 	}
-      elm = CLIST_NEXT(sh.env, elm);
+      elm = CLIST_NEXT(env, elm);
     }
   return (0);
 }

@@ -5,20 +5,23 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Sun May 14 15:00:09 2017 augustin leconte
+** Last update Mon May 15 14:09:41 2017 Alexandre Chamard-bois
 */
 
+#include <unistd.h>
+#include "libmy.h"
 #include "mysh.h"
+#include "my_env.h"
 #include "parser.h"
 
-t_clist old_pwd(char *memo, t_clist env)
+t_env *old_pwd(char *memo, t_env *env)
 {
-  char ***ptrptr;
+  char **ptrptr;
   char *ptr;
 
-  if ((memo = my_strconcat("OLDPWD=", memo)) == NULL)
+  if ((memo = my_strconca("OLDPWD=", memo)) == NULL)
     return (env);
-  ptr = my_getenv("OLDPWD=");
+  ptr = my_getenv(env, "OLDPWD=");
   ptrptr = &ptr;
   *ptrptr = my_strdup(memo);
   return (env);
@@ -26,8 +29,6 @@ t_clist old_pwd(char *memo, t_clist env)
 
 void error_chdir(char *memo, char *cwd, char *tab, t_mysh *sh)
 {
-  struct stat buf;
-
   sh->last_exit = -1;
   if (access(cwd, F_OK) != 0)
   {
@@ -38,24 +39,24 @@ void error_chdir(char *memo, char *cwd, char *tab, t_mysh *sh)
   cwd = my_strdup(memo);
 }
 
-static t_mysh my_ret(t_mysh sh)
+static int my_ret(t_mysh *sh)
 {
-  sh.last_exit = -1;
-  return (sh);
+  sh->last_exit = -1;
+  return (0);
 }
 
-t_mysh end_cd(char *cwd, char *ptr, char **ptrptr, t_mysh sh)
+int end_cd(char *cwd, char *ptr, char **ptrptr, t_mysh *sh)
 {
   cwd = getcwd(cwd, 1024);
-  cwd = my_strconcat("PWD=", cwd);
-  ptr = my_getenv("PWD=");
+  cwd = my_strconca("PWD=", cwd);
+  ptr = my_getenv(sh->env, "PWD=");
   ptrptr = &ptr;
   *ptrptr = my_strdup(cwd);
-  sh.last_exit;
-  return (sh);
+  sh->last_exit = 0;
+  return (0);
 }
 
-t_mysh my_cd(char **tab, t_mysh sh)
+int my_cd(char **tab, t_mysh *sh)
 {
   char **ptrptr;
   char *cwd;
@@ -67,13 +68,17 @@ t_mysh my_cd(char **tab, t_mysh sh)
   cwd = getcwd(cwd, 1024);
   memo = my_strdup(cwd);
   if (tab[1] == NULL)
-    if ((cwd = my_getenv(sh.env, "HOME=/")) == NULL)
-    return (my_ret(sh));
+  {
+    if ((cwd = my_getenv(sh->env, "HOME=/")) == NULL)
+      return (my_ret(sh));
+  }
   else if (tab[1] != NULL)
     cwd = modify_pwd(cwd, tab[1]);
   else if ((str_cmp(tab[1], "-")) == 0)
+  {
     if ((cwd = my_getenv(sh.env, "OLDPWD=/")) == NULL)
       return (my_ret(sh));
+  }
   else if (tab[1][0] = '/')
     cwd = tab[1];
   if (chdir(cwd) == -1)

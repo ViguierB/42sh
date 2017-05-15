@@ -5,10 +5,10 @@
 ** Login   <arthur.devreker@epitech.eu>
 **
 ** Started on  Sun May 14 17:44:37 2017 Arthur Devreker
-** Last update Sun May 14 17:50:22 2017 Arthur Devreker
+** Last update Mon May 15 14:45:00 2017 Alexandre Chamard-bois
 */
 
-#include "my.h"
+#include "mysh.h"
 
 int		stock_args(int i, char **av)
 {
@@ -36,7 +36,7 @@ int		stock_args(int i, char **av)
   return (0);
 }
 
-t_mysh	my_echo(int ac, char **av, t_mysh sh)
+int	my_echo(int ac, char **av, t_mysh *sh)
 {
   int	i;
   int	j;
@@ -57,6 +57,6 @@ t_mysh	my_echo(int ac, char **av, t_mysh sh)
     }
   if (j != 1 && j != 3)
     my_printf("\n");
-  sh.last_exit = j;
-  return (sh);
+  sh->last_exit = j;
+  return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Thu May 11 15:04:41 2017 Alexandre Chamard-bois
+** Last update Mon May 15 14:50:53 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -17,11 +17,11 @@
 
 const t_builtin	g_builtin_tab[] =
   {
-    {"cd"},
-    {"setenv"},
-    {"unsetenv"},
-    {"exit"},
-    {NULL}
+    {"cd", NULL},
+    {"setenv", NULL},
+    {"unsetenv", NULL},
+    {"exit", NULL},
+    {NULL, NULL}
   };
 
 char		**get_path_tab(t_env *env)
@@ -86,7 +86,6 @@ char		*get_real_cmd(char *name, t_mysh *sh, t_process *proc)
       {
 	proc->builtin = TRUE;
 	str = my_strdup(name);
-	free(name);
 	return (str);
       }
   proc->builtin = FALSE;
