@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:34:15 2017 Benjamin Viguier
-** Last update Mon May 15 14:28:24 2017 Alexandre Chamard-bois
+** Last update Mon May 15 16:40:57 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -52,27 +52,30 @@ char		**my_env(t_env *env)
   return (result);
 }
 
-// int		my_unsetenv(char **tab, t_mysh *sh)
-// {
-//   t_clist_elm	*elm;
-//
-//   elm = sh.env;
-//   if (error_unsetenv(tab, sh) == -1)
-//     {
-//       sh.last_exit = -1;
-//       return (sh);
-//     }
-//   while (elm)
-//     {
-//       if (!my_strcmp(elm->name, tab[1]))
-// 	{
-// 	  sh.env.next->prev = sh.env;
-// 	  sh.env.prev->next = sh.env.next;
-// 	  sh.last_exit = 0;
-// 	  return (sh);
-// 	}
-//       elm = CLIST_NEXT(sh.env, elm);
-//     }
-//   sh.last_exit = -1;
-//   return (sh);
-// }
+int		my_unsetenv(char **tab, t_mysh *sh)
+{
+  t_env	*elm;
+  int i;
+
+  elm = sh->env;
+  i = 0;
+  if (!tab[1])
+    {
+      sh->last_exit = 1;
+      return (1);
+    }
+  while (tab[++i] && (elm = sh->env))
+    while (elm)
+    {
+      if (!my_strcmp(((t_env_elm*)elm->ptr)->key, tab[i]))
+      {
+        elm->next->prev = elm->prev;
+        elm->prev->next = elm->next;
+        elm = sh->env;
+        break;
+      }
+      elm = CLIST_NEXT(sh->env, elm);
+    }
+  sh->last_exit = 0;
+  return (0);
+}
