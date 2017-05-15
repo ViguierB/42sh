@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May  5 19:23:43 2017 Alexandre Chamard-bois
-** Last update Sat May 13 10:44:45 2017 Alexandre Chamard-bois
+** Last update Sun May 14 15:13:50 2017 Alexandre Chamard-bois
 */
 
 #ifndef VAR_H_
@@ -38,29 +38,6 @@ typedef struct  s_var_elm
 }               t_var_elm;
 
 typedef t_clist t_var;
-
-# define A_BRUT  (1 << 0)
-# define A_CALC  (1 << 1)
-# define A_VAR   (1 << 2)
-# define A_ASS   (1 << 3)
-# define A_TER   (1 << 4)
-# define A_FUNC  (1 << 5)
-# define A_ERR  (-1)
-
-typedef struct  s_appel
-{
-  int           type;
-  void          *ptr;
-}               t_appel;
-
-/*  renvoie une valeur
-    valeur brute  (ex: 10, 'bonjour', ...)
-    calcul        (ex: 10 + $1, ...)
-    variable      (ex: $a $1, ...)
-    assignation   (ex: ($a = 1), ($b = $a + 10), ($c = 'bonjour + $b'), ...)
-    ternaire      (ex: ($a > 10 ? $a : 10), ...)
-    function with return (len($c), abs(-10), ...)
-*/
 
 typedef struct  s_pars_level
 {

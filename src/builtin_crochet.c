@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Thu May 11 11:15:04 2017 Alexandre Chamard-bois
-** Last update Sat May 13 14:50:56 2017 Alexandre Chamard-bois
+** Last update Sat May 13 15:07:14 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -75,16 +75,16 @@ int pars_croc(char *to_pars[4])
   return (g_croc[i].func(to_pars));
 }
 
-int _verif_opt(char **tab, int before, int *res)
+int _verif_opt(char *str, int *res)
 {
   static int last = 0;
 
-  if (!my_strcmp(tab[before], "-a") && (last || *res))
+  if (!my_strcmp(str, "-a") && (last || *res))
   {
     *res = 1;
     return (1);
   }
-  if (!my_strcmp(tab[before], "-o") && (!last || !*res))
+  if (!my_strcmp(str, "-o") && (!last || !*res))
   {
     *res = 0;
     return (1);
@@ -108,7 +108,7 @@ t_mysh builtin_crochet(char **tab, t_mysh sh)
   while ((i = _pars(tab, to_pars, i)) > 0)
   {
     res = pars_croc(to_pars);
-    if (res == 2 || _verif_opt(tab, before, &res))
+    if (res == 2 || _verif_opt(tab[before], &res))
       break;
     before = i;
   }
