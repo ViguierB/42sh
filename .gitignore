@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Temporary files
 *~
 #*
@@ -11,15 +10,6 @@
 mysh
 
 //Tests Directory
-tests/
 
 bonus
-=======
-*~
-*#
-
-*.o
-*.a
-
 42sh
->>>>>>> 4f4352ea8dd153f40184ce83b2c4812fa5d43d72

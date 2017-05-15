@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Fri May 12 20:17:07 2017 Guilhem Fulcrand
+** Last update Mon May 15 15:39:44 2017 Guilhem Fulcrand
 */
 
 #ifndef LIBMY_H_
@@ -73,6 +73,7 @@ t_clist	*clist_remove(t_clist *list, t_clist_elm *elm);
 t_clist	*clist_rem_fdata(t_clist *list, t_clist_elm *elm,
 			 void (*my_free)(void*));
 void	clist_sort(t_clist *list, t_elm_cmp cmp_fct);
+void	clist_qsort(t_clist *list, t_elm_cmp cmp_fct);
 t_clist_elm	*clist_at(t_clist *list, int at);
 
 /*
@@ -122,6 +123,7 @@ int	nmatch(char *s1, char *s2);
 char *str_conca(int n, ...);
 int	is_alph_num(char *str);
 int	nb_word(const char *str);
+void free_tab(char **tab);
 
 /*
 ** my_fd functions

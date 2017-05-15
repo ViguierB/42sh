@@ -5,34 +5,76 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 22:12:44 2017 Alexandre Chamard-bois
-** Last update Thu May 11 12:42:20 2017 Alexandre Chamard-bois
+** Last update Fri May 12 08:45:29 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
 #include "glob.h"
 
-static int _size(char **cmd, t_glob *add)
+static int _size(char **cmd, t_clist *add)
 {
+  t_clist *list;
   int i;
 
   i = 0;
   while (cmd[i])
     i++;
-  while (add)
+  list = add;
+  while (list)
   {
-    add = add->next;
+    list = CLIST_NEXT(add, list);
     i++;
   }
   return (i);
 }
 
-char **_remplace_cmd(char **cmd, int unused, t_glob *add, char *cut)
+int _add_list(t_clist *add, char **new_cmd, char *cut)
+{
+  t_clist *list;
+  int i;
+
+  i = 0;
+  list = add;
+  while (list)
+  {
+    new_cmd[i] = list->ptr + (*(char*)add->ptr == '.' && *cut != '.' ? 2 : 0);
+    list = CLIST_NEXT(add, list);
+    i++;
+  }
+  return (i);
+}
+
+int cmp_add(void *s1, void *s2)
+{
+  char c1;
+  char c2;
+
+  c1 = *(char*)s1;
+  c2 = *(char*)s2;
+  while (*(char*)s1 || *(char*)s2)
+  {
+    c1 = *(char*)s1;
+    if (c1 >= 'A' && c1 <= 'Z')
+      c1 += 32;
+    c2 = *(char*)s2;
+    if (c2 >= 'A' && c2 <= 'Z')
+      c2 += 32;
+    if (c1 != c2)
+      break;
+    s1++;
+    s2++;
+  }
+  return (c1 - c2);
+}
+
+char **_remplace_cmd(char **cmd, int unused, t_clist *add, char *cut)
 {
   char **new_cmd;
   int i;
   int j;
   int len;
 
+  clist_qsort(add, cmp_add);
   len = _size(cmd, add) - 1;
   if (!(new_cmd = malloc(sizeof(char *) * (len + 1))))
     return (NULL);
@@ -43,24 +85,17 @@ char **_remplace_cmd(char **cmd, int unused, t_glob *add, char *cut)
     if (i != unused)
       new_cmd[j++] = cmd[i];
     else
-      while (add)
-      {
-        new_cmd[j++] = add->str + (*add->str == '.' && *cut != '.' ? 2 : 0);
-        add = add->next;
-      }
+      j += _add_list(add, new_cmd + j, cut);
     i++;
   }
   new_cmd[len] = NULL;
+  free(cmd[unused]);
+  free(cmd);
   return (new_cmd);
 }
 
-t_glob *_new_path(t_glob *list, char *path)
+t_clist *_new_path(t_clist *list, char *path)
 {
-  t_glob *new;
-
-  if (!(new = malloc(sizeof(t_glob))))
-    return (list);
-  new->str = path;
-  new->next = list;
-  return (new);
+  list = clist_push(list, path);
+  return (list);
 }

@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 15:21:25 2017 Alexandre Chamard-bois
-** Last update Thu May 11 12:39:58 2017 Alexandre Chamard-bois
+** Last update Thu May 11 18:06:25 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -61,15 +61,22 @@ char **_cut_word(char *cmd)
 
 static char *path_conca(char *path, char *name)
 {
+  char *tmp;
+
   if (*name == '.' && path[my_strlen(path) - 1] == '.')
     return (my_strdup(name));
   if (path[my_strlen(path) - 1] != '/')
-    path = my_strconca(path, "/");
-  path = my_strconca(path, name);
+  {
+    tmp = my_strconca(path, "/");
+    path = my_strconca(tmp, name);
+    free(tmp);
+  }
+  else
+    path = my_strconca(path, name);
   return (path);
 }
 
-t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
+t_clist *_find_path(char **cutted_word, int i, char *path, t_clist *add)
 {
   struct dirent *info;
   DIR *dirent;
@@ -77,7 +84,7 @@ t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
   while (!my_strcmp(cutted_word[i], "/"))
     i++;
   if (!cutted_word[i])
-    return (_new_path(add, path));
+    return (clist_push(add, path));
   if (!(dirent = opendir(path)))
     return (add);
   while ((info = readdir(dirent)))
@@ -90,6 +97,7 @@ t_glob *_find_path(char **cutted_word, int i, char *path, t_glob *add)
               , add);
     }
   }
+  free(path);
   closedir(dirent);
   return (add);
 }
@@ -98,7 +106,7 @@ int globbing(char ***cmd)
 {
   int   i;
   int   j;
-  t_glob *add;
+  t_clist *add;
   char **cutted_word;
 
   add = NULL;
@@ -112,10 +120,11 @@ int globbing(char ***cmd)
     {
       if (!(cutted_word = _cut_word((*cmd)[i])))
         return (1);
-      add = _find_path(cutted_word, 0, FIRST(cutted_word), add);
+      add = _find_path(cutted_word, 0, my_strdup(FIRST(cutted_word)), add);
       if (add)
         *cmd = _remplace_cmd(*cmd, i, add, *cutted_word);
       add = NULL;
+      free_tab(cutted_word);
       j = 0;
     }
   }

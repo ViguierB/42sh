@@ -1,11 +1,11 @@
 /*
 ** env_ext.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr 11 21:34:15 2017 Benjamin Viguier
-** Last update Tue Apr 11 21:34:31 2017 Benjamin Viguier
+** Last update Mon May 15 14:28:24 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -51,3 +51,28 @@ char		**my_env(t_env *env)
   *cur = NULL;
   return (result);
 }
+
+// int		my_unsetenv(char **tab, t_mysh *sh)
+// {
+//   t_clist_elm	*elm;
+//
+//   elm = sh.env;
+//   if (error_unsetenv(tab, sh) == -1)
+//     {
+//       sh.last_exit = -1;
+//       return (sh);
+//     }
+//   while (elm)
+//     {
+//       if (!my_strcmp(elm->name, tab[1]))
+// 	{
+// 	  sh.env.next->prev = sh.env;
+// 	  sh.env.prev->next = sh.env.next;
+// 	  sh.last_exit = 0;
+// 	  return (sh);
+// 	}
+//       elm = CLIST_NEXT(sh.env, elm);
+//     }
+//   sh.last_exit = -1;
+//   return (sh);
+// }

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Wed May 10 21:36:10 2017 Alexandre Chamard-bois
+** Last update Mon May 15 14:53:54 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -53,11 +53,16 @@ typedef struct	s_mysh
 typedef struct	s_builtin
 {
   char		*name;
+  t_mysh (*func)(char **tab, t_mysh mysh);
 }		t_builtin;
 
 int	is_local_cmd(char *name);
 int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);
+int	my_echo(int ac, char **av, t_mysh *sh);
+int my_cd(char **tab, t_mysh *sh);
+int	my_unsetenv(char **tab, t_mysh *sh);
+int	my_ssetenv(char **tab, t_mysh *sh);
 
 /*
 ** ERROR functions

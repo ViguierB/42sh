@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May  5 19:23:43 2017 Alexandre Chamard-bois
-** Last update Thu May 11 09:51:30 2017 Alexandre Chamard-bois
+** Last update Sun May 14 15:13:50 2017 Alexandre Chamard-bois
 */
 
 #ifndef VAR_H_
@@ -39,29 +39,6 @@ typedef struct  s_var_elm
 
 typedef t_clist t_var;
 
-# define A_BRUT  (1 << 0)
-# define A_CALC  (1 << 1)
-# define A_VAR   (1 << 2)
-# define A_ASS   (1 << 3)
-# define A_TER   (1 << 4)
-# define A_FUNC  (1 << 5)
-# define A_ERR  (-1)
-
-typedef struct  s_appel
-{
-  int           type;
-  void          *ptr;
-}               t_appel;
-
-/*  renvoie une valeur
-    valeur brute  (ex: 10, 'bonjour', ...)
-    calcul        (ex: 10 + $1, ...)
-    variable      (ex: $a $1, ...)
-    assignation   (ex: ($a = 1), ($b = $a + 10), ($c = 'bonjour + $b'), ...)
-    ternaire      (ex: ($a > 10 ? $a : 10), ...)
-    function with return (len($c), abs(-10), ...)
-*/
-
 typedef struct  s_pars_level
 {
   int           parent;
@@ -74,11 +51,6 @@ typedef struct  s_function
   t_var         *private_var;
   void          *ptr;
 }               t_function;
-
-typedef struct  s_egality
-{
-  t_value       (*ptr)(t_var *private_var);
-}               t_egality;
 
 int find_type(char *str);
 

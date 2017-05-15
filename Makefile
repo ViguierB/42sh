@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Sat May  6 23:44:28 2017 Alexandre Chamard-bois
+## Last update Thu May 11 13:46:02 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -37,7 +37,7 @@ OBJ	=	$(patsubst %,$(ODIR)/%,$(_OBJ))
 
 NAME	=	42sh
 
-all		:	$(NAME)
+all		:	mkobj mlib $(NAME)
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
 	$(CC) $(CFLAGS)	-c -o $@ $<
@@ -45,7 +45,7 @@ $(ODIR)/%.o	:	$(SDIR)/%.c
 mkobj		:
 	./tools/verif_objdir
 
-$(NAME)		:	mkobj mlib $(OBJ)
+$(NAME)		:	$(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 
 clean		:

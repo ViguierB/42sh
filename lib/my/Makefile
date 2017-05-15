@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ##
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Thu May 11 10:11:03 2017 Alexandre Chamard-bois
+## Last update Thu May 11 18:21:16 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -45,6 +45,7 @@ SRC	=	my_strlen.c		\
 		my_clist.c		\
 		my_clist_rem.c		\
 		my_clist_sort.c		\
+		my_clist_qsort.c	\
 		my_showmem.c		\
 		my_putnbr_base.c	\
 		my_fd.c			\
@@ -68,6 +69,7 @@ SRC	=	my_strlen.c		\
 		my_atof.c		\
 		match.c		\
 		nb_word.c		\
+		free_tab.c	\
 
 CFLAGS	+=	-I./include/
 
@@ -84,7 +86,7 @@ OBJ	=	$(patsubst %,$(ODIR)/%,$(_OBJ))
 
 NAME	=	libmy.a
 
-all		:	$(NAME)
+all		:	mkobj $(NAME)
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
 	$(CC) $(CFLAGS)	-c -o $@ $<
@@ -92,7 +94,7 @@ $(ODIR)/%.o	:	$(SDIR)/%.c
 mkobj		:
 	./tools/verif_objdir
 
-$(NAME)		:	mkobj $(OBJ)
+$(NAME)		: $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 	ranlib $(NAME)
 

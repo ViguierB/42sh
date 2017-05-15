@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Wed May 10 19:43:08 2017 Alexandre Chamard-bois
+** Last update Fri May 12 15:13:00 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -71,18 +71,18 @@ int	create_node(t_tree **node, t_clist *begin, t_clist *end)
 void	free_tree(t_tree *node)
 {
   if (node)
-    {
-      if (node->type == NODE_CMD)
-	{
-	}
-      else if (node->value.token.value.info.sep)
-	free(node->value.token.value.info.sep);
-      if (node->r)
-	free_tree(node->r);
-      if (node->l)
-	free_tree(node->l);
-      free(node);
-    }
+  {
+    if (node->type == NODE_CMD)
+	  {
+      free(*node->value.proc.args);
+      free(node->value.proc.args);
+	  }
+    else if (node->value.token.value.info.sep)
+	   free(node->value.token.value.info.sep);
+   free_tree(node->r);
+   free_tree(node->l);
+   free(node);
+  }
 }
 
 t_tree		*parse_cmd(char *cmd)

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Feb 27 15:02:58 2017 Benjamin Viguier
-** Last update Sat May  6 13:11:18 2017 Alexandre Chamard-bois
+** Last update Thu May 11 13:03:24 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -18,7 +18,6 @@ t_clist		*clist_remove(t_clist *list, t_clist_elm *elm)
   next = elm->next;
   prev = elm->prev;
 
-  my_printf("test1\n");
   if (next == elm || prev == elm)
     {
       free(elm);
