@@ -5,17 +5,7 @@
 ** Login   <arthur.devreker@epitech.eu>
 **
 ** Started on  Sun May 14 17:44:37 2017 Arthur Devreker
-** Last update Tue May 16 10:48:44 2017 Alexandre Chamard-bois
-*/
-
-/*
-** my_echo.c for 42sh in /home/arthur/Modules/PSU/PSU_2016_42sh/src/
-**
-** Made by Arthur Devreker
-** Login   <arthur.devreker@epitech.eu>
-**
-** Started on  Sun May 14 17:44:37 2017 Arthur Devreker
-** Last update Tue May 16 10:39:22 2017 Arthur Devreker
+** Last update Tue May 16 11:30:39 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -62,21 +52,22 @@ int	my_echo(char **av, t_mysh *sh)
   i = 1;
   j = 0;
   ac = my_nbline(av);
+  (void)sh;
   if (ac > 1)
     {
-      while (av[i][0] == '-' && (av[i][1] == 'e' || av[i][1] == 'n'))
+      while ((av[i]) && (!my_strcmp(av[i], "-n")))
 	{
 	  j = stock_args(i, av);
 	  i++;
 	}
-      while (i < ac)
+      if (av[i] != NULL)
 	{
-	  my_disp_echo(av, ac, i);
-	  i++;
+	  i--;
+	  while (i++ < ac)
+	    my_disp_echo(av, ac, i);
 	}
     }
   if (j != 1 && j != 3)
     my_printf("\n");
-  sh->last_exit = j;
   return (0);
 }

@@ -5,13 +5,15 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 21:23:56 2017 Benjamin Viguier
-** Last update Mon May 15 14:53:30 2017 Alexandre Chamard-bois
+** Last update Tue May 16 11:25:37 2017 Alexandre Chamard-bois
 */
 
 #ifndef MY_ENV_H_
 # define MY_ENV_H_
 
 # include "libmy.h"
+
+# define GET_KEY(env) (((t_env_elm*) (env->ptr))->key)
 
 typedef struct	s_env_elm
 {
