@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Sat May  6 16:02:01 2017 Benjamin Viguier
+** Last update Mon May 15 17:23:50 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -54,8 +54,9 @@ void	wait_child(t_mysh *sh, t_process *proc)
       else if (WTERMSIG(status) == SIGBUS)
 	my_printf("Bus error");
 #ifdef WCOREDUMP
-      my_printf("%s", ((WCOREDUMP(status)) ? " (core dumped)\n" : "\n"));
+      my_printf("%s", ((WCOREDUMP(status)) ? " (core dumped)" : ""));
 #endif
+  my_printf("\n");
     }
   sh->last_exit = WIFCONTINUED(&status);
 }

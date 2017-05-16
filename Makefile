@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Thu May 11 13:46:02 2017 Alexandre Chamard-bois
+## Last update Tue May 16 09:19:36 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -23,7 +23,11 @@ SRC	= 	main.c		\
 		utils.c		\
 		globbing1.c		\
 		globbing2.c		\
-		get_path.c
+		get_path.c	\
+		builtins.c	\
+		builtin_crochet.c	\
+		crochet_flags1.c	\
+		crochet_flags2.c	\
 
 MKLIB	=	make -C ./lib/my/
 

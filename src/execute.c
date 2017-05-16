@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Thu May 11 16:04:17 2017 Alexandre Chamard-bois
+** Last update Tue May 16 09:05:11 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -58,6 +58,10 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
 	wait_child(sh, proc);
   free(proc->name);
     }
+  else
+  {
+    exec_builtin(sh, proc, opts);
+  }
   return (0);
 }
 
