@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Fri May 12 19:19:07 2017 Guilhem Fulcrand
-** Last update Fri May 12 20:03:58 2017 Guilhem Fulcrand
+** Last update Mon May 15 18:05:15 2017 Guilhem Fulcrand
 */
 
 #include "libmy.h"
@@ -29,9 +29,15 @@ typedef struct          s_alias
     char                *val;
 }                       t_alias;
 
-/* ALIAS */
+typedef struct          s_all
+{
+    t_clist             *list;
+    char                **rc;
+}                       t_all;
+
+/* TOOLS */
 
 void    print_alias(t_clist *list);
-void    free_alias(t_alias *alias);
+void    free_alias(void *alias);
 
 #endif
