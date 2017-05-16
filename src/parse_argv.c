@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 15:58:10 2017 Benjamin Viguier
-** Last update Thu May 11 14:59:22 2017 Alexandre Chamard-bois
+** Last update Tue May 16 11:14:28 2017 Benjamin Viguier
 */
 
 #include "parser.h"
@@ -69,9 +69,9 @@ int	parse_cmd_args(t_process *proc, char *cmd)
     {
       if (*cmd == '\'' || *cmd == '"')
 	cmd = get_block(cmd, sb);
-      else if (*cmd == ' ')
+      else if (BLANK(*cmd))
 	{
-	  while (*cmd == ' ')
+	  while (BLANK(*cmd))
 	    cmd++;
 	  argv[i++] = my_sb_flush(sb);
 	  cmd--;
