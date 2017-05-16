@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Fri May 12 19:19:07 2017 Guilhem Fulcrand
-** Last update Tue May 16 16:20:53 2017 Guilhem Fulcrand
+** Last update Tue May 16 16:31:48 2017 Guilhem Fulcrand
 */
 
 #include "libmy.h"
@@ -42,5 +42,6 @@ t_clist *my_source(t_clist *);
 void    print_alias(t_clist *list);
 void    free_alias(void *alias);
 int     check_in_list(t_all *, char *var, char *val);
+char    *find_alias(t_clist *, char *);
 
 #endif

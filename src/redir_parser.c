@@ -1,11 +1,11 @@
 /*
 ** redir_parser.c for minishell2 in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Fri Apr  7 10:57:58 2017 Benjamin Viguier
-** Last update Tue May 16 13:44:31 2017 Benjamin Viguier
+** Last update Tue May 16 16:47:46 2017 Guilhem Fulcrand
 */
 
 #include <sys/stat.h>
@@ -61,7 +61,7 @@ t_clist_elm	*parse_redir(t_clist *list, t_clist_elm *elm,
   return (elm->next);
 }
 
-int		parse_simple_cmd(t_process *proc, t_token *token)
+int		parse_simple_cmd(t_mysh *mysh, t_process *proc, t_token *token)
 {
   t_clist	*list;
   t_clist_elm	*elm;
@@ -81,7 +81,7 @@ int		parse_simple_cmd(t_process *proc, t_token *token)
       if (cur->type != CMD)
         elm = parse_redir(list, elm, cur, proc);
       else
-	parse_cmd_args(proc, cur->value.cmd);
+	parse_cmd_args(mysh, proc, cur->value.cmd);
       if (elm)
 	elm = CLIST_NEXT(list, elm);
       else

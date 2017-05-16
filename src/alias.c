@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:09:47 2017 Guilhem Fulcrand
-** Last update Tue May 16 16:10:02 2017 Guilhem Fulcrand
+** Last update Tue May 16 16:34:06 2017 Guilhem Fulcrand
 */
 
 #include "42shrc.h"
@@ -44,7 +44,7 @@ char        *find_alias(t_clist *list, char *cmd)
     while (tmp)
     {
         if (my_strcmp(((t_alias *)tmp->ptr)->var, cmd) == EXIT_S)
-            return (((t_alias *)tmp->ptr)->val);
+            return (my_strdup(((t_alias *)tmp->ptr)->val));
         tmp = CLIST_NEXT(list, tmp);
     }
     return (NULL);
