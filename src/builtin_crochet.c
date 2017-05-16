@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Thu May 11 11:15:04 2017 Alexandre Chamard-bois
-** Last update Tue May 16 09:09:37 2017 Alexandre Chamard-bois
+** Last update Tue May 16 16:12:50 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -100,6 +100,7 @@ int builtin_crochet(char **tab, t_mysh *sh)
   int before;
   int res;
 
+  (void) sh;
   res = 1;
   before = 0;
   i = 0;
@@ -115,8 +116,7 @@ int builtin_crochet(char **tab, t_mysh *sh)
       break;
     before = i;
   }
-  sh->last_exit = res;
   if (i == -1)
-    sh->last_exit = 1;
-  return (0);
+    return (1);
+  return (res);
 }
