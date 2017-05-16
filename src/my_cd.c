@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Tue May 16 09:34:07 2017 augustin leconte
+** Last update Tue May 16 09:37:31 2017 augustin leconte
 */
 
 #include <unistd.h>
@@ -65,8 +65,11 @@ static int my_ret(t_mysh *sh)
   return (1);
 }
 
-int end_cd(char *cwd, char *ptr, char **ptrptr, t_mysh *sh)
+int end_cd(char *cwd, t_mysh *sh)
 {
+  char **ptrptr;
+  char *ptr;
+
   cwd = getcwd(cwd, 1024);
   cwd = my_strconca("PWD=", cwd);
   ptr = my_getenv(sh->env, "PWD=");
@@ -78,10 +81,8 @@ int end_cd(char *cwd, char *ptr, char **ptrptr, t_mysh *sh)
 
 int my_cd(char **tab, t_mysh *sh)
 {
-  char **ptrptr;
   char *cwd;
   char *memo;
-  char *ptr;
 
   if ((cwd = malloc(sizeof(char) * 1024)) == NULL)
     return (my_ret(sh));
@@ -105,5 +106,5 @@ int my_cd(char **tab, t_mysh *sh)
     error_chdir(memo, cwd, tab[1], &sh);
   if ((sh->env = old_pwd(memo, sh->env)) == NULL)
     return (my_ret(sh));
-  return (end_cd(cwd, ptr, ptrptr, sh));
+  return (end_cd(cwd, sh));
 }
