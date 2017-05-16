@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May 14 15:10:27 2017 Alexandre Chamard-bois
-** Last update Tue May 16 13:46:18 2017 Alexandre Chamard-bois
+** Last update Tue May 16 14:07:55 2017 Alexandre Chamard-bois
 */
 
 #include "parser.h"
@@ -48,6 +48,9 @@ int exec_builtin(t_mysh *mysh, t_process *proc, t_exec_opts *opts)
     i++;
   if (!g_builtins[i].name)
     return (1);
-  mysh->last_exit = g_builtins[i].func(proc->args, mysh);
+  if (g_builtins[i].func)
+    mysh->last_exit = g_builtins[i].func(proc->args, mysh);
+  else
+    mysh->last_exit = 1;
   return (0);
 }

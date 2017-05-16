@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Tue May 16 13:46:58 2017 Alexandre Chamard-bois
+** Last update Tue May 16 14:06:54 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -69,7 +69,7 @@ int my_set(char **tab, t_mysh *sh);
 int	my_unsetenv(char **tab, t_mysh *sh);
 int	my_ssetenv(char **tab, t_mysh *sh);
 int builtin_crochet(char **tab, t_mysh *sh);
-int	my_exit(char **av, t_mysh sh);
+int	my_exit(char **av, t_mysh *sh);
 
 /*
 ** ERROR functions

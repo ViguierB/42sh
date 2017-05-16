@@ -5,13 +5,13 @@
 ** Login   <arthur.devreker@epitech.eu>
 **
 ** Started on  Tue May 16 11:35:13 2017 Arthur Devreker
-** Last update Tue May 16 13:53:21 2017 Alexandre Chamard-bois
+** Last update Tue May 16 14:07:07 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
 #include "libmy.h"
 
-int	my_exit(char **av, t_mysh sh)
+int	my_exit(char **av, t_mysh *sh)
 {
   int	ac;
 
