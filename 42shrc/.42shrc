@@ -1,2 +1,8 @@
 alias salut='ls'
+alis ok='ok'
 alias oui='make'
+salut
+=
+='
+alias gg='gg
+alias salut='non'
