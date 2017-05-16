@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:08:05 2017 Guilhem Fulcrand
-** Last update Tue May 16 16:09:29 2017 Guilhem Fulcrand
+** Last update Tue May 16 16:20:23 2017 Guilhem Fulcrand
 */
 
 #include <sys/types.h>
@@ -109,12 +109,14 @@ int     parse(t_all *all)
     return (EXIT_S);
 }
 
-t_clist     *my_source()
+t_clist     *my_source(t_clist *previous_alias)
 {
     t_all   all;
     t_my_fd *fd;
     char    *buff;
 
+    if (previous_alias != NULL)
+        clist_free_data(previous_alias, free_alias);
     if (!(fd = my_fopen(".42shrc", O_RDONLY)))
         return (NULL);
     all.rc = NULL;

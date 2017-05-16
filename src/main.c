@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Tue May 16 16:14:35 2017 Guilhem Fulcrand
+** Last update Tue May 16 16:26:11 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -19,7 +19,7 @@ t_my_fd *init_main(int ac, t_mysh *sh, char **av, char **env)
   (void) ac;
   my_memset(sh, 0, sizeof(sh));
   my_init_env(&sh->env, env);
-  sh->alias = my_source();
+  sh->alias = my_source(NULL);
   my_name(LIBMY_INIT, av[0]);
   return (my_fd_from_fd(0));
 }
@@ -63,6 +63,7 @@ int		main(int ac, char **av, char **env)
       free(cmd);
     }
     free_env(sh.env);
+    clist_free_data(sh.alias, free_alias);
     free(in);
     return (sh.last_exit);
 }
