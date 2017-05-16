@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 13 15:09:25 2017 Alexandre Chamard-bois
-** Last update Tue May 16 19:54:03 2017 Guilhem Fulcrand
+** Last update Tue May 16 18:02:27 2017 Alexandre Chamard-bois
 */
 
 #include "42shrc.h"
@@ -92,6 +92,8 @@ int     preparsing_env(t_mysh *mysh, char ***cmd)
             if (!(*cmd = _replace_in_tab(*cmd, i, NULL)))
                 return (1);
         }
+        if (!(*cmd)[i])
+          break;
         i++;
     }
       return (0);
@@ -107,7 +109,5 @@ int preparsing(t_mysh *mysh, char ***cmd)
       return (1);
     free(alias);
   }
-  if (preparsing_env(mysh, cmd))
-    return (1);
-  return (0);
+  return (preparsing_env(mysh, cmd));
 }

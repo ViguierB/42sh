@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May 14 15:10:27 2017 Alexandre Chamard-bois
-** Last update Tue May 16 14:07:55 2017 Alexandre Chamard-bois
+** Last update Tue May 16 18:06:36 2017 Alexandre Chamard-bois
 */
 
 #include "parser.h"
@@ -20,7 +20,7 @@ const t_builtin g_builtins[] =
   {"exit", my_exit},
   {"echo", my_echo},
   {"[", builtin_crochet},
-  {"set", NULL},
+  {"set", my_set},
   {"if", NULL},
   {NULL, NULL},
 };
