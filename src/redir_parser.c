@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Apr  7 10:57:58 2017 Benjamin Viguier
-** Last update Tue May  2 12:21:05 2017 Benjamin Viguier
+** Last update Tue May 16 13:44:31 2017 Benjamin Viguier
 */
 
 #include <sys/stat.h>
@@ -69,6 +69,8 @@ int		parse_simple_cmd(t_process *proc, t_token *token)
 
   list = NULL;
   my_memset(proc, 0, sizeof(t_process));
+  if (!(token->value.cmd))
+    return (0);
   get_tokens(token->value.cmd, &list, g_redir_tab);
   if (!list)
     return (-1);

@@ -5,7 +5,11 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
+<<<<<<< HEAD
 ## Last update Tue May 16 16:11:01 2017 Guilhem Fulcrand
+=======
+## Last update Tue May 16 13:47:08 2017 Alexandre Chamard-bois
+>>>>>>> 8cf660bff9ce7d947ab5d456c793d433a99a7fc6
 ##
 
 include ./include/depend.mk
@@ -32,6 +36,7 @@ SRC	= 	main.c		\
 		crochet_flags2.c	\
 		my_echo.c	\
 		my_cd.c	\
+		my_exit.c	\
 
 MKLIB	=	make -C ./lib/my/
 

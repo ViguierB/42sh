@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sun Mar 19 20:00:50 2017 Benjamin Viguier
-** Last update Tue Apr 11 21:37:43 2017 Benjamin Viguier
+** Last update Tue May 16 13:50:34 2017 Benjamin Viguier
 */
 
 #include "mysh.h"
@@ -66,12 +66,17 @@ t_token		*create_token(int is_sep, void *value)
 
   res = malloc(sizeof(t_token));
   if (!res)
-    my_perror("parser");
+    my_perror("Malloc()");
   res->type = CMD;
   if (is_sep)
     {
       my_memcpy(&(res->value.info), value, sizeof(t_sepinfo));
       res->type = res->value.info.type;
+    }
+  else if (!(*((char*) value)))
+    {
+      res->value.cmd = NULL;
+      free(value);
     }
   else
     res->value.cmd = value;
@@ -116,10 +121,16 @@ int		get_tokens(char *cmd, t_clist **list, const t_op_flags *flags)
   cur = cmd;
   sb = my_sb_init();
   while (*cur)
-    cur = blk_sep_checker(cur, sb, list, &is_block, flags);
+    {
+      cur = blk_sep_checker(cur, sb, list, &is_block, flags);
+    }
   cur = my_sb_get_str(sb);
   if (*cur)
-    *list = clist_push(*list, create_token(0, my_ftrim(cur)));
+    {
+      cur = my_ftrim(cur);
+      if (*cur != '|' && *cur != '&')
+	*list = clist_push(*list, create_token(0, cur));
+    }
   if (is_block)
     my_pcustomwarning("Block unclosed (open with %c)\n", is_block);
   return (0);

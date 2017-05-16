@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Fri Apr  7 11:43:08 2017 Benjamin Viguier
-** Last update Sat May 13 14:51:47 2017 Alexandre Chamard-bois
+** Last update Tue May 16 13:45:46 2017 Benjamin Viguier
 */
 
 #include "parser.h"
@@ -53,10 +53,10 @@ int		op_pipe(t_mysh *sh, t_tree *node, t_exec_opts *opts)
 int	op_next(t_mysh *sh, t_tree *node, t_exec_opts *opts)
 {
   my_memset(opts, 0, sizeof(*opts));
-  if (execute_tree(sh, node->l, opts) < 0)
+  if (node->l && node->l->value.token.value.cmd && execute_tree(sh, node->l, opts) < 0)
     return (-1);
   my_memset(opts, 0, sizeof(*opts));
-  if (execute_tree(sh, node->r, opts) < 0)
+  if (node->r && node->r->value.token.value.cmd && execute_tree(sh, node->r, opts) < 0)
     return (-1);
   return (0);
 }
