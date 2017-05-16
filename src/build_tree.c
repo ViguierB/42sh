@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Tue May 16 14:11:10 2017 Benjamin Viguier
+** Last update Tue May 16 15:54:37 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -50,7 +50,7 @@ t_clist_elm	*get_best_sep(t_clist *begin, t_clist *end)
        *((t_token*) res->next->ptr)->value.cmd == '\0' ||
        res == begin || res == end->prev))
     return (NULL);
-  
+
   return (res);
 }
 
@@ -59,7 +59,7 @@ int	create_node(t_tree **node, t_clist *begin, t_clist *end)
   t_clist_elm	*cur;
 
   if (!(begin->ptr))
-    return(0);
+    return (0);
   cur = get_best_sep(begin, end);
   if (!cur)
     return (my_pcustomwarning("Invalid null command."));
@@ -88,10 +88,7 @@ void	free_tree(t_tree *node)
   if (node)
   {
     if (node->type == NODE_CMD && node->value.proc.args)
-	  {
-	    free(*node->value.proc.args);
 	    free(node->value.proc.args);
-	  }
     else if (node->value.token.value.info.sep)
 	   free(node->value.token.value.info.sep);
     if (node->r)
