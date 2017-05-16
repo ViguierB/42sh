@@ -5,7 +5,7 @@
 ** Login   <arthur.devreker@epitech.eu>
 **
 ** Started on  Sun May 14 17:44:37 2017 Arthur Devreker
-** Last update Tue May 16 09:27:25 2017 Alexandre Chamard-bois
+** Last update Tue May 16 10:09:58 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -42,7 +42,7 @@ int	my_echo(char **av, t_mysh *sh)
   int	j;
   int ac;
 
-  i = 0;
+  i = 1;
   j = 0;
   ac = my_nbline(av);
   while (av[i][0] == '-' && (av[i][1] == 'e' || av[i][1] == 'n'))
