@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Tue May 16 15:08:56 2017 Alexandre Chamard-bois
+** Last update Tue May 16 15:53:44 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -82,7 +82,6 @@ char		*get_real_cmd(t_mysh *sh, t_process *proc)
       if (!fexists(*proc->args))
 	return (NULL);
       str = my_strdup(*proc->args);
-      free(*proc->args);
       return (str);
     }
   return (search_in_path(sh, *proc->args));
