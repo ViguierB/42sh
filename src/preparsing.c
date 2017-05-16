@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 13 15:09:25 2017 Alexandre Chamard-bois
-** Last update Tue May 16 18:02:27 2017 Alexandre Chamard-bois
+** Last update Tue May 16 18:37:53 2017 Alexandre Chamard-bois
 */
 
 #include "42shrc.h"
@@ -103,7 +103,7 @@ int preparsing(t_mysh *mysh, char ***cmd)
 {
   char  *alias;
 
-  while ((alias = find_alias(mysh->alias, *cmd[0])))
+  if ((alias = find_alias(mysh->alias, (*cmd)[0])))
   {
     if (!(*cmd = _replace_in_tab(*cmd, 0, my_split(alias, ' ', NULL))))
       return (1);
