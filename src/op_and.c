@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Fri Apr  7 11:43:08 2017 Benjamin Viguier
-** Last update Tue May 16 15:56:13 2017 Alexandre Chamard-bois
+** Last update Tue May 16 16:11:58 2017 Benjamin Viguier
 */
 
 #include "parser.h"
@@ -16,7 +16,7 @@ int	op_or(t_mysh *sh, t_tree *node, t_exec_opts *opts)
   my_memset(opts, 0, sizeof(*opts));
   if (execute_tree(sh, node->l, opts) < 0)
     return (-1);
-  if (opts->exit_code)
+  if (sh->last_exit)
     {
       my_memset(opts, 0, sizeof(*opts));
       if (execute_tree(sh, node->r, opts) < 0)
@@ -30,7 +30,7 @@ int	op_and(t_mysh *sh, t_tree *node, t_exec_opts *opts)
   my_memset(opts, 0, sizeof(*opts));
   if (execute_tree(sh, node->l, opts) < 0)
     return (-1);
-  if (!opts->exit_code)
+  if (!sh->last_exit)
     {
       my_memset(opts, 0, sizeof(*opts));
       if (execute_tree(sh, node->r, opts) < 0)

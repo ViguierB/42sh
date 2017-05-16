@@ -5,13 +5,14 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Tue May 16 16:04:54 2017 Benjamin Viguier
+** Last update Tue May 16 16:12:50 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <stdio.h>
 #include "mysh.h"
 
 int		fexists(char *name)
