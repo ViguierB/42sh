@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Fri May 12 18:36:59 2017 Guilhem Fulcrand
-** Last update Mon May 15 18:55:00 2017 Guilhem Fulcrand
+** Last update Tue May 16 14:53:18 2017 Guilhem Fulcrand
 */
 
 #include <sys/types.h>
@@ -36,31 +36,54 @@ int     check_exp(char *line)
     return (EXIT_S);
 }
 
+int         check_in_list(t_all *all, char *var, char *val)
+{
+    t_clist *tmp;
+    t_alias *new;
+
+    tmp = all->list;
+    while (tmp)
+    {
+        if (my_strcmp(((t_alias *)tmp->ptr)->var, var) == EXIT_S)
+        {
+            free(((t_alias *)tmp->ptr)->val);
+            ((t_alias *)tmp->ptr)->val = my_strdup(val);
+            free(var);
+            free(val);
+            return (EXIT_S);
+        }
+        tmp = CLIST_NEXT(all->list, tmp);
+    }
+    if (!(new = malloc(sizeof(t_alias))))
+        return (EXIT_F);
+    new->var = my_strdup(var);
+    new->val = my_strdup(val);
+    free(var);
+    free(val);
+    all->list = clist_push(all->list, new);
+    return (EXIT_S);
+}
+
 int         add_to_aliases(t_all *all, char *line)
 {
     int     i;
     int     len;
-    t_alias *new;
+    char    *var;
+    char    *val;
 
     i = 4;
     len = 0;
-    new = NULL;
-    if (!(new = malloc(sizeof(t_alias))))
-        return (EXIT_F);
-    new->var = NULL;
-    new->val = NULL;
     while (line[++i] && BLANK(line[i]) == 1);
     i--;
     while (line[++i] && line[i] != '=')
         len++;
-    new->var = my_strndup(line + i - len, len);
+    var = my_strndup(line + i - len, len);
     i++;
     len = 0;
     while (line[++i] && line[i] != '\'')
         len++;
-    new->val = my_strndup(line + i - len, len);
-    all->list = clist_push(all->list, new);
-    return (EXIT_S);
+    val = my_strndup(line + i - len, len);
+    return (check_in_list(all, var, val));
 }
 
 int     parse(t_all *all)
