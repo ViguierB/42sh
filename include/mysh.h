@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Tue May 16 10:27:27 2017 Alexandre Chamard-bois
+** Last update Tue May 16 16:12:13 2017 Guilhem Fulcrand
 */
 
 #include "libmy.h"
@@ -46,6 +46,7 @@ typedef struct	s_process
 typedef struct	s_mysh
 {
   t_clist	*env;
+  t_clist   *alias;
   t_var   *var;
   int		last_exit;
 }		t_mysh;

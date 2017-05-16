@@ -5,19 +5,21 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Tue May 16 10:29:08 2017 Alexandre Chamard-bois
+** Last update Tue May 16 16:14:35 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
 #include "mysh.h"
 #include "my_env.h"
 #include "parser.h"
+#include "42shrc.h"
 
 t_my_fd *init_main(int ac, t_mysh *sh, char **av, char **env)
 {
   (void) ac;
   my_memset(sh, 0, sizeof(sh));
   my_init_env(&sh->env, env);
+  sh->alias = my_source();
   my_name(LIBMY_INIT, av[0]);
   return (my_fd_from_fd(0));
 }

@@ -5,9 +5,10 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 13 15:09:25 2017 Alexandre Chamard-bois
-** Last update Sat May 13 17:23:45 2017 Alexandre Chamard-bois
+** Last update Tue May 16 15:55:07 2017 Guilhem Fulcrand
 */
 
+#include "42shrc.h"
 #include "mysh.h"
 
 static int _size(char **cmd, char **var)
