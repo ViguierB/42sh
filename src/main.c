@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Tue May 16 10:29:08 2017 Alexandre Chamard-bois
+** Last update Tue May 16 14:43:06 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -16,7 +16,7 @@
 t_my_fd *init_main(int ac, t_mysh *sh, char **av, char **env)
 {
   (void) ac;
-  my_memset(sh, 0, sizeof(sh));
+  my_memset(sh, 0, sizeof(*sh));
   my_init_env(&sh->env, env);
   my_name(LIBMY_INIT, av[0]);
   return (my_fd_from_fd(0));
@@ -59,8 +59,10 @@ int		main(int ac, char **av, char **env)
 	execute_tree(&sh, tree, &opts);
       free_tree(tree);
       free(cmd);
+      if (sh.exit)
+	break;
     }
-    free_env(sh.env);
-    free(in);
-    return (sh.last_exit);
+  free_env(sh.env);
+  free(in);
+  return (sh.last_exit);
 }

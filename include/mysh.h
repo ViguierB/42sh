@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Tue May 16 14:06:54 2017 Alexandre Chamard-bois
+** Last update Tue May 16 14:20:14 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -48,6 +48,7 @@ typedef struct	s_mysh
   t_clist	*env;
   t_var   *var;
   int		last_exit;
+  int		exit;
 }		t_mysh;
 
 typedef struct	s_builtin
