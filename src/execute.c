@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Tue May 16 15:50:40 2017 Alexandre Chamard-bois
+** Last update Tue May 16 16:37:35 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -41,7 +41,7 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
   if (opts->need_redir - 1 == 2 && proc->err.filename)
     return (my_warning(proc->name, "Ambiguous error output redirect"));
   if (!(proc->name = get_real_cmd(sh, proc)))
-    return (my_pwarning(proc->args[0]));
+    return (my_pcustomwarning("%s: Command not found.\n", proc->args[0]));
   if (!proc->builtin)
     {
       if ((proc->pid = fork()) < 0)

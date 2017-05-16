@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Apr  4 11:37:45 2017 Benjamin Viguier
-** Last update Tue May 16 14:00:12 2017 Benjamin Viguier
+** Last update Tue May 16 16:26:35 2017 Benjamin Viguier
 */
 
 #include <errno.h>
@@ -52,8 +52,12 @@ int	my_pwarning(char *str)
   return (-1);
 }
 
-int	my_pcustomwarning(char *str, ...)
+int		my_pcustomwarning(char *str, ...)
 {
-  fprintf(stderr, "%s\n", str);
+  va_list	va;
+
+  va_start(va, str);
+  vfprintf(stderr, str, va);
+  va_end(va);
   return (-1);
 }

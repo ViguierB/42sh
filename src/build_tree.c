@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Tue May 16 15:54:37 2017 Alexandre Chamard-bois
+** Last update Tue May 16 16:15:42 2017 Benjamin Viguier
 */
 
 #include "mysh.h"
@@ -50,7 +50,6 @@ t_clist_elm	*get_best_sep(t_clist *begin, t_clist *end)
        *((t_token*) res->next->ptr)->value.cmd == '\0' ||
        res == begin || res == end->prev))
     return (NULL);
-
   return (res);
 }
 

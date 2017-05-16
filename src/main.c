@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Tue May 16 14:45:14 2017 Benjamin Viguier
+** Last update Tue May 16 16:16:20 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -56,6 +56,11 @@ int		main(int ac, char **av, char **env)
   while ((cmd = waitline(in)))
     {
       tree = parse_cmd(cmd);
+      if (!tree)
+	{
+	  sh.last_exit = 1;
+	  continue;
+	}
       my_memset(&opts, 0, sizeof(opts));
       if (tree)
 	execute_tree(&sh, tree, &opts);
