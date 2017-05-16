@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Mon May 15 14:09:41 2017 Alexandre Chamard-bois
+** Last update Tue May 16 09:24:29 2017 augustin leconte
 */
 
 #include <unistd.h>
@@ -13,6 +13,26 @@
 #include "mysh.h"
 #include "my_env.h"
 #include "parser.h"
+
+char *modify_pwd(char *to_modify, char *arg)
+{
+  char *new_str;
+  int i;
+  int j;
+
+  i = my_strlen(to_modify) + 3 + my_strlen(arg);
+  if ((new_str = malloc(sizeof(char) * i)) == NULL)
+    return (to_modify);
+  j = -1;
+  while (++j < my_strlen(to_modify))
+    new_str[j] = to_modify[j];
+  new_str[j] = '/';
+  i = -1;
+  while (++i < my_strlen(arg) + 1)
+    new_str[++j] = arg[i];
+  new_str[j] = '\0';
+  return (new_str);
+}
 
 t_env *old_pwd(char *memo, t_env *env)
 {
