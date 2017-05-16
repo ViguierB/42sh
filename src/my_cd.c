@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Tue May 16 10:51:32 2017 augustin leconte
+** Last update Tue May 16 10:53:16 2017 augustin leconte
 */
 
 #include <unistd.h>
@@ -39,9 +39,9 @@ t_env *old_pwd(char *memo, t_env *env)
   char **ptrptr;
   char *ptr;
 
-  if ((memo = my_strconca("OLDPWD=", memo)) == NULL)
+  if ((memo = my_strconca("OLDPWD", memo)) == NULL)
     return (env);
-  ptr = my_getenv(env, "OLDPWD=");
+  ptr = my_getenv(env, "OLDPWD");
   ptrptr = &ptr;
   *ptrptr = my_strdup(memo);
   return (env);
@@ -60,8 +60,8 @@ int error_chdir(char *memo, char *cwd, char *tab, t_mysh *sh)
     return (1);
   cwd = my_strdup(memo);
   cwd = getcwd(cwd, 1024);
-  cwd = my_strconca("PWD=", cwd);
-  ptr = my_getenv(sh->env, "PWD=");
+  cwd = my_strconca("PWD", cwd);
+  ptr = my_getenv(sh->env, "PWD");
   ptrptr = &ptr;
   *ptrptr = my_strdup(cwd);
   return (1);
