@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Tue May 16 09:37:31 2017 augustin leconte
+** Last update Tue May 16 09:37:59 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -103,7 +103,7 @@ int my_cd(char **tab, t_mysh *sh)
   else if (tab[1][0] == '/')
     cwd = tab[1];
   if (chdir(cwd) == -1)
-    error_chdir(memo, cwd, tab[1], &sh);
+    error_chdir(memo, cwd, tab[1], sh);
   if ((sh->env = old_pwd(memo, sh->env)) == NULL)
     return (my_ret(sh));
   return (end_cd(cwd, sh));

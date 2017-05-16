@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Mon May 15 14:50:53 2017 Alexandre Chamard-bois
+** Last update Tue May 16 09:49:36 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -14,15 +14,6 @@
 #include "mysh.h"
 #include "parser.h"
 #include "my_env.h"
-
-const t_builtin	g_builtin_tab[] =
-  {
-    {"cd", NULL},
-    {"setenv", NULL},
-    {"unsetenv", NULL},
-    {"exit", NULL},
-    {NULL, NULL}
-  };
 
 char		**get_path_tab(t_env *env)
 {
@@ -77,12 +68,9 @@ char	*search_in_path(t_mysh *sh, char *name)
 
 char		*get_real_cmd(char *name, t_mysh *sh, t_process *proc)
 {
-  t_builtin	*cur;
   char		*str;
 
-  cur = (void*) g_builtin_tab;
-  while (cur->name)
-    if (!my_strcmp((cur++)->name, name))
+  if (!is_builtin(name))
       {
 	proc->builtin = TRUE;
 	str = my_strdup(name);

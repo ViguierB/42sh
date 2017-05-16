@@ -5,7 +5,7 @@
 ** Login   <arthur.devreker@epitech.eu>
 **
 ** Started on  Sun May 14 17:44:37 2017 Arthur Devreker
-** Last update Mon May 15 14:45:00 2017 Alexandre Chamard-bois
+** Last update Tue May 16 09:27:25 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -36,13 +36,15 @@ int		stock_args(int i, char **av)
   return (0);
 }
 
-int	my_echo(int ac, char **av, t_mysh *sh)
+int	my_echo(char **av, t_mysh *sh)
 {
   int	i;
   int	j;
+  int ac;
 
   i = 0;
   j = 0;
+  ac = my_nbline(av);
   while (av[i][0] == '-' && (av[i][1] == 'e' || av[i][1] == 'n'))
     {
       j = stock_args(i, av);

@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May 14 15:10:27 2017 Alexandre Chamard-bois
-** Last update Tue May 16 09:08:03 2017 Alexandre Chamard-bois
+** Last update Tue May 16 09:59:57 2017 Alexandre Chamard-bois
 */
 
 #include "parser.h"
@@ -17,12 +17,25 @@ const t_builtin g_builtins[] =
   {"setenv", NULL},
   {"unsetenv", NULL},
   {"cd", NULL},
-  {"echo", NULL},
-  {"[", NULL},
+  {"exit", NULL},
+  {"echo", my_echo},
+  {"[", builtin_crochet},
   {"set", NULL},
   {"if", NULL},
   {NULL, NULL},
 };
+
+int is_builtin(char *name)
+{
+  int i;
+
+  i = 0;
+  while (g_builtins[i].name && my_strcmp(name, g_builtins[i].name))
+    i++;
+  if (!g_builtins[i].name)
+    return (1);
+  return (0);
+}
 
 int exec_builtin(t_mysh *mysh, t_process *proc, t_exec_opts *opts)
 {
@@ -35,6 +48,6 @@ int exec_builtin(t_mysh *mysh, t_process *proc, t_exec_opts *opts)
     i++;
   if (!g_builtins[i].name)
     return (1);
-  g_builtins[i].func(proc->args, mysh);
+  mysh->last_exit = g_builtins[i].func(proc->args, mysh);
   return (0);
 }
