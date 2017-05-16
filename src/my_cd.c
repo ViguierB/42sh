@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Tue May 16 09:24:29 2017 augustin leconte
+** Last update Tue May 16 09:25:17 2017 augustin leconte
 */
 
 #include <unistd.h>
@@ -94,16 +94,16 @@ int my_cd(char **tab, t_mysh *sh)
   }
   else if (tab[1] != NULL)
     cwd = modify_pwd(cwd, tab[1]);
-  else if ((str_cmp(tab[1], "-")) == 0)
+  else if ((my_strcmp(tab[1], "-")) == 0)
   {
-    if ((cwd = my_getenv(sh.env, "OLDPWD=/")) == NULL)
+    if ((cwd = my_getenv(sh->env, "OLDPWD=/")) == NULL)
       return (my_ret(sh));
   }
-  else if (tab[1][0] = '/')
+  else if (tab[1][0] == '/')
     cwd = tab[1];
   if (chdir(cwd) == -1)
     error_chdir(memo, cwd, tab[1], &sh);
-  if ((sh.env = old_pwd(memo, sh.env)) == NULL)
+  if ((sh->env = old_pwd(memo, sh->env)) == NULL)
     return (my_ret(sh));
   return (end_cd(cwd, ptr, ptrptr, sh));
 }

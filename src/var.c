@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:01:10 2017 Alexandre Chamard-bois
-** Last update Wed May 10 21:48:42 2017 Alexandre Chamard-bois
+** Last update Tue May 16 09:14:54 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -36,29 +36,36 @@ int find_type(char *str)
   return (T_STR);
 }
 
-t_mysh built_set(char **tab, t_mysh sh)
+int error_set(char *str, t_mysh *sh)
+{
+  my_putstr(str);
+  sh->last_exit = 1;
+  return (1);
+}
+
+int built_set(char **tab, t_mysh *sh)
 {
   t_var *elm;
   t_var_elm *new_var;
 
-  elm = sh.var;
+  elm = sh->var;
   if (my_nbline(tab) != 3)
-    return (my_putstr("invalid nb arg\n"), (t_mysh){sh.env, sh.var, 1});
+    return (error_set("invalid nb arg\n", sh));
   if (is_alph_num(tab[1]))
-    return (my_putstr("invalid name\n"), (t_mysh){sh.env, sh.var, 1});
+    return (error_set("invalid name\n", sh));
   while (elm && my_strcmp(NAME(elm), tab[1]))
-    elm = CLIST_NEXT(sh.var, elm);
+    elm = CLIST_NEXT(sh->var, elm);
   if (!elm)
   {
     if (!(new_var = malloc(sizeof(t_var_elm))))
-      return (my_putstr("error malloc\n"), (t_mysh){sh.env, sh.var, 1});
+      return (error_set("error malloc\n", sh));
     my_memset(new_var, 0, sizeof(t_var_elm));
-    sh.last_exit = recup_info(new_var, tab, find_type(tab[2]));
-    sh.var = clist_push(sh.var, new_var);
+    sh->last_exit = recup_info(new_var, tab, find_type(tab[2]));
+    sh->var = clist_push(sh->var, new_var);
   }
   else
-    sh.last_exit = recup_info(elm->ptr, tab, find_type(tab[2]));
-  return ((t_mysh){sh.env, sh.var, 0});
+    sh->last_exit = recup_info(elm->ptr, tab, find_type(tab[2]));
+  return (0);
 }
 
 void echo_var(t_mysh sh, char **tab)
@@ -84,24 +91,4 @@ void echo_var(t_mysh sh, char **tab)
     if (STR(elm))
       printf("%s=%s\n", NAME(elm), (char*)VALUE(sh.var));
   }
-}
-
-int main()
-{
-  t_mysh sh;
-  char *buff;
-  t_my_fd	*in;
-
-  my_memset(&sh, 0, sizeof(t_mysh));
-  in = my_fd_from_fd(0);
-  while ((buff = my_getline(in)))
-  {
-    if (!my_strncmp(buff, "set", 3))
-      built_set(my_split(buff, ' ', NULL), sh);
-    if (!my_strncmp(buff, "echo", 4))
-      echo_var(sh, my_split(buff, ' ', NULL));
-    free(buff);
-
-  }
-  return (0);
 }

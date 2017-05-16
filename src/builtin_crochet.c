@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Thu May 11 11:15:04 2017 Alexandre Chamard-bois
-** Last update Sat May 13 15:07:14 2017 Alexandre Chamard-bois
+** Last update Tue May 16 09:09:37 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -93,7 +93,7 @@ int _verif_opt(char *str, int *res)
   return (0);
 }
 
-t_mysh builtin_crochet(char **tab, t_mysh sh)
+int builtin_crochet(char **tab, t_mysh *sh)
 {
   int i;
   char *to_pars[4];
@@ -104,7 +104,10 @@ t_mysh builtin_crochet(char **tab, t_mysh sh)
   before = 0;
   i = 0;
   if (my_strcmp(tab[my_nbline(tab) - 1], "]"))
-    return (dprintf(2, "missing `]'\n"), (t_mysh){sh.env, sh.var, 2});
+  {
+    dprintf(2, "missing `]'\n");
+    return (1);
+  }
   while ((i = _pars(tab, to_pars, i)) > 0)
   {
     res = pars_croc(to_pars);
@@ -112,7 +115,8 @@ t_mysh builtin_crochet(char **tab, t_mysh sh)
       break;
     before = i;
   }
+  sh->last_exit = res;
   if (i == -1)
-    return ((t_mysh){sh.env, sh.var, 2});
-  return ((t_mysh){sh.env, sh.var, res});
+    sh->last_exit = 1;
+  return (0);
 }
