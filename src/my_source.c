@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:08:05 2017 Guilhem Fulcrand
-** Last update Tue May 16 16:20:23 2017 Guilhem Fulcrand
+** Last update Tue May 16 15:37:57 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -122,7 +122,10 @@ t_clist     *my_source(t_clist *previous_alias)
     all.rc = NULL;
     all.list = NULL;
     if (my_fread_to_end(fd, &buff) == -1)
-        return (NULL);
+    {
+      my_fclose(fd);
+      return (NULL);
+    }
     my_fclose(fd);
     all.rc = my_split(buff, '\n', NULL);
     free(buff);

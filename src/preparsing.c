@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 13 15:09:25 2017 Alexandre Chamard-bois
-** Last update Tue May 16 16:43:23 2017 Guilhem Fulcrand
+** Last update Tue May 16 15:12:39 2017 Alexandre Chamard-bois
 */
 
 #include "42shrc.h"
@@ -25,7 +25,7 @@ static int _size(char **cmd, char **var)
   return (i + j);
 }
 
-int _add_list(char **add, char **new_cmd)
+int _add_tab(char **add, char **new_cmd)
 {
   int i;
 
@@ -55,7 +55,7 @@ char **_replace_in_tab(char **cmd, int unused, char **add)
     if (i != unused)
       new_cmd[j++] = cmd[i];
     else
-      j += _add_list(add, new_cmd + j);
+      j += _add_tab(add, new_cmd + j);
     i++;
   }
   new_cmd[len] = NULL;
@@ -72,8 +72,11 @@ int preparsing(t_mysh *mysh, char ***cmd)
   int i;
 
   if ((alias = find_alias(mysh->alias, *cmd[0])))
+  {
     if (!(*cmd = _replace_in_tab(*cmd, 0, my_split(alias, ' ', NULL))))
-        return (1);
+      return (1);
+    free(alias);
+  }
   i = 0;
   while ((*cmd)[i])
   {

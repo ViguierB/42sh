@@ -1,11 +1,11 @@
 /*
 ** my_fd.c for libmy in /home/benji_epitech/C_Graph_Prog/wolf3d/lib/my
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Thu Dec 22 16:23:15 2016 Benjamin Viguier
-** Last update Fri Mar  3 10:12:22 2017 Benjamin Viguier
+** Last update Tue May 16 15:28:13 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -27,7 +27,10 @@ t_my_fd		*my_fopen(char *path, int flags)
   res->rest = 0;
   res->fd = open(path, flags);
   if (res->fd < 0)
+  {
+    free(res);
     return (NULL);
+  }
   i = 0;
   while (i < MY_FD_BUFF_LEN)
     {

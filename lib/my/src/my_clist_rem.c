@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Feb 27 15:02:58 2017 Benjamin Viguier
-** Last update Thu May 11 13:03:24 2017 Alexandre Chamard-bois
+** Last update Tue May 16 15:22:05 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -51,6 +51,8 @@ void		clist_free_data(t_clist *l, void (*myfree)(void*))
 
   elm = l;
   cont = 1;
+  if (!l)
+    return;
   l->prev->next = l->prev;
   while (elm && l && cont)
     {

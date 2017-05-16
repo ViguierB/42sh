@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Tue May 16 16:21:36 2017 Guilhem Fulcrand
+## Last update Tue May 16 15:00:16 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -33,6 +33,7 @@ SRC	= 	main.c		\
 		my_echo.c	\
 		my_cd.c	\
 		my_exit.c	\
+		preparsing.c	\
 
 MKLIB	=	make -C ./lib/my/
 

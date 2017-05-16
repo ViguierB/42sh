@@ -5,11 +5,9 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Tue May 16 09:49:36 2017 Alexandre Chamard-bois
+** Last update Tue May 16 15:08:56 2017 Alexandre Chamard-bois
 */
 
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <unistd.h>
 #include "mysh.h"
 #include "parser.h"
@@ -66,24 +64,26 @@ char	*search_in_path(t_mysh *sh, char *name)
   return (NULL);
 }
 
-char		*get_real_cmd(char *name, t_mysh *sh, t_process *proc)
+char		*get_real_cmd(t_mysh *sh, t_process *proc)
 {
   char		*str;
 
-  if (!is_builtin(name))
+  if (preparsing(sh, &proc->args) || globbing(&proc->args))
+    return (NULL);
+  if (!is_builtin(*proc->args))
       {
 	proc->builtin = TRUE;
-	str = my_strdup(name);
+	str = my_strdup(*proc->args);
 	return (str);
       }
   proc->builtin = FALSE;
-  if (is_local_cmd(name))
+  if (is_local_cmd(*proc->args))
     {
-      if (!fexists(name))
+      if (!fexists(*proc->args))
 	return (NULL);
-      str = my_strdup(name);
-      free(name);
+      str = my_strdup(*proc->args);
+      free(*proc->args);
       return (str);
     }
-  return (search_in_path(sh, name));
+  return (search_in_path(sh, *proc->args));
 }

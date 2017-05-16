@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Tue May 16 10:00:04 2017 Alexandre Chamard-bois
+** Last update Tue May 16 15:08:26 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -40,7 +40,7 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
     return (my_warning(proc->name, "Ambiguous output redirect"));
   if (opts->need_redir - 1 == 2 && proc->err.filename)
     return (my_warning(proc->name, "Ambiguous error output redirect"));
-  if (!(proc->name = get_real_cmd(proc->name, sh, proc)))
+  if (!(proc->name = get_real_cmd(sh, proc)))
     return (my_pwarning(proc->args[0]));
   if (!proc->builtin)
     {
