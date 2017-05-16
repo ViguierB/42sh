@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Tue May 16 09:31:03 2017 Alexandre Chamard-bois
+** Last update Tue May 16 10:27:27 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -59,8 +59,13 @@ typedef struct	s_builtin
 int	is_local_cmd(char *name);
 int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);
+
+/*
+** ERROR functions
+*/
 int	my_echo(char **av, t_mysh *sh);
 int my_cd(char **tab, t_mysh *sh);
+int my_set(char **tab, t_mysh *sh);
 int	my_unsetenv(char **tab, t_mysh *sh);
 int	my_ssetenv(char **tab, t_mysh *sh);
 int builtin_crochet(char **tab, t_mysh *sh);

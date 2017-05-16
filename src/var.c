@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:01:10 2017 Alexandre Chamard-bois
-** Last update Tue May 16 09:14:54 2017 Alexandre Chamard-bois
+** Last update Tue May 16 10:26:58 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -43,7 +43,7 @@ int error_set(char *str, t_mysh *sh)
   return (1);
 }
 
-int built_set(char **tab, t_mysh *sh)
+int my_set(char **tab, t_mysh *sh)
 {
   t_var *elm;
   t_var_elm *new_var;
