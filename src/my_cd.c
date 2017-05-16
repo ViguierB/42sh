@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Tue May 16 09:25:17 2017 augustin leconte
+** Last update Tue May 16 09:34:07 2017 augustin leconte
 */
 
 #include <unistd.h>
@@ -62,7 +62,7 @@ void error_chdir(char *memo, char *cwd, char *tab, t_mysh *sh)
 static int my_ret(t_mysh *sh)
 {
   sh->last_exit = -1;
-  return (0);
+  return (1);
 }
 
 int end_cd(char *cwd, char *ptr, char **ptrptr, t_mysh *sh)
@@ -92,7 +92,7 @@ int my_cd(char **tab, t_mysh *sh)
     if ((cwd = my_getenv(sh->env, "HOME=/")) == NULL)
       return (my_ret(sh));
   }
-  else if (tab[1] != NULL)
+  else if (tab[1] != NULL && tab[1][0] != '/')
     cwd = modify_pwd(cwd, tab[1]);
   else if ((my_strcmp(tab[1], "-")) == 0)
   {
