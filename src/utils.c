@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Mon May 15 17:23:50 2017 Alexandre Chamard-bois
+** Last update Tue May 16 16:04:54 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -48,15 +48,17 @@ void	wait_child(t_mysh *sh, t_process *proc)
   if (WIFSIGNALED(status))
     {
       if (WTERMSIG(status) == SIGFPE)
-	my_printf("Floating exception");
+	printf("Floating exception");
       else if (WTERMSIG(status) == SIGSEGV)
-	my_printf("Segmentation fault");
+	printf("Segmentation fault");
       else if (WTERMSIG(status) == SIGBUS)
-	my_printf("Bus error");
+	printf("Bus error");
 #ifdef WCOREDUMP
-      my_printf("%s", ((WCOREDUMP(status)) ? " (core dumped)" : ""));
+      printf("%s", ((WCOREDUMP(status)) ? " (core dumped)" : ""));
 #endif
-  my_printf("\n");
+      printf("\n");
+      sh->last_exit = (unsigned char) WTERMSIG(status) + 128;
     }
-  sh->last_exit = WIFCONTINUED(&status);
+  else
+    sh->last_exit = (unsigned char) WEXITSTATUS(status);
 }
