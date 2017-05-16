@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Thu May 11 14:33:00 2017 Alexandre Chamard-bois
+** Last update Tue May 16 10:16:31 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -40,6 +40,7 @@ char *waitline(t_my_fd *in)
 
 int		main(int ac, char **av, char **env)
 {
+  char buff[255];
   t_my_fd	*in;
   char		*cmd;
   t_tree	*tree;
@@ -49,6 +50,8 @@ int		main(int ac, char **av, char **env)
   in = init_main(ac, &sh, av, env);
   while ((cmd = waitline(in)))
     {
+      getcwd(buff, 255);
+      my_printf("%s\n", buff);
       tree = parse_cmd(cmd);
       my_memset(&opts, 0, sizeof(opts));
       if (tree)
