@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 13 15:09:25 2017 Alexandre Chamard-bois
-** Last update Tue May 16 15:12:39 2017 Alexandre Chamard-bois
+** Last update Tue May 16 19:54:03 2017 Guilhem Fulcrand
 */
 
 #include "42shrc.h"
@@ -20,8 +20,11 @@ static int _size(char **cmd, char **var)
   while (cmd[i])
     i++;
   j = 0;
-  while (var[j])
-    j++;
+  if (var)
+  {
+      while (var[j])
+        j++;
+  }
   return (i + j);
 }
 
@@ -29,6 +32,8 @@ int _add_tab(char **add, char **new_cmd)
 {
   int i;
 
+  if (!add)
+    return (0);
   i = 0;
   while (add[i])
   {
@@ -61,38 +66,48 @@ char **_replace_in_tab(char **cmd, int unused, char **add)
   new_cmd[len] = NULL;
   free(cmd[unused]);
   free(cmd);
-  free(add);
+  if (add)
+    free(add);
   return (new_cmd);
+}
+
+int     preparsing_env(t_mysh *mysh, char ***cmd)
+{
+    char  *var_env;
+    int   i;
+
+    i = 0;
+    while ((*cmd)[i])
+    {
+        while ((*cmd)[i] && (*cmd)[i][0] == '$')
+        {
+            if ((var_env = find_var(mysh->var, mysh->env, (*cmd)[i] + 1)))
+            {
+                if (!(*cmd =
+                    _replace_in_tab(*cmd, i, my_split(var_env, ' ', NULL))))
+                    return (1);
+                free(var_env);
+            }
+            else
+            if (!(*cmd = _replace_in_tab(*cmd, i, NULL)))
+                return (1);
+        }
+        i++;
+    }
+      return (0);
 }
 
 int preparsing(t_mysh *mysh, char ***cmd)
 {
-  t_var *var;
   char  *alias;
-  int i;
 
-  if ((alias = find_alias(mysh->alias, *cmd[0])))
+  while ((alias = find_alias(mysh->alias, *cmd[0])))
   {
     if (!(*cmd = _replace_in_tab(*cmd, 0, my_split(alias, ' ', NULL))))
       return (1);
     free(alias);
   }
-  i = 0;
-  while ((*cmd)[i])
-  {
-    if ((*cmd)[i][0] == '$')
-    {
-      var = mysh->var;
-      while (var)
-      {
-        if (!my_strcmp((*cmd)[i] + 1, NAME(var)))
-          if (!(*cmd =
-              _replace_in_tab(*cmd, i, my_split(VALUE(var), ' ', NULL))))
-            return (1);
-        var = CLIST_NEXT(mysh->var, var);
-      }
-    }
-    i++;
-  }
+  if (preparsing_env(mysh, cmd))
+    return (1);
   return (0);
 }

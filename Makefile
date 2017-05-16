@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Tue May 16 15:00:16 2017 Alexandre Chamard-bois
+## Last update Tue May 16 19:15:30 2017 Guilhem Fulcrand
 ##
 
 include ./include/depend.mk
@@ -13,6 +13,7 @@ include ./include/depend.mk
 SRC	= 	main.c		\
 		build_tree.c	\
 		parser.c	\
+		check_var.c	\
 		alias.c		\
 		my_source.c	\
 		error.c		\

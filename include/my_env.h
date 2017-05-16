@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 21:23:56 2017 Benjamin Viguier
-** Last update Tue May 16 11:25:37 2017 Alexandre Chamard-bois
+** Last update Tue May 16 19:21:01 2017 Guilhem Fulcrand
 */
 
 #ifndef MY_ENV_H_
@@ -14,6 +14,7 @@
 # include "libmy.h"
 
 # define GET_KEY(env) (((t_env_elm*) (env->ptr))->key)
+# define GET_VALUE(env) (((t_env_elm *) (env->ptr))->value)
 
 typedef struct	s_env_elm
 {
