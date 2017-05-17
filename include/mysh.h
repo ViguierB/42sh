@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Wed May 17 14:07:44 2017 Alexandre Chamard-bois
+** Last update Wed May 17 18:43:36 2017 Guilhem Fulcrand
 */
 
 #include "libmy.h"
@@ -58,6 +58,7 @@ typedef struct	s_builtin
   int     (*func)(char **tab, t_mysh *mysh);
 }		t_builtin;
 
+int is_permited(char *path);
 int	is_local_cmd(char *name);
 int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);
