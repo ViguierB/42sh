@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Tue May 16 11:00:13 2017 Alexandre Chamard-bois
-** Last update Wed May 17 15:26:51 2017 Alexandre Chamard-bois
+** Last update Wed May 17 15:30:52 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -16,7 +16,7 @@ int	error_setenv(char **tab)
 {
   int	i;
 
-  i = 2;
+  i = 1;
   if (!ALPHA(tab[1][0]))
     {
       my_printf("setenv: Variable name must begin with a letter.\n");
