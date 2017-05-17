@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Tue May 16 16:16:20 2017 Benjamin Viguier
+** Last update Wed May 17 11:35:26 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -21,6 +21,7 @@ t_my_fd *init_main(int ac, t_mysh *sh, char **av, char **env)
   my_init_env(&sh->env, env);
   sh->alias = my_source(NULL);
   my_name(LIBMY_INIT, av[0]);
+  var_last_ret(sh);
   return (my_fd_from_fd(0));
 }
 

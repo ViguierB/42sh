@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Tue May 16 16:37:35 2017 Benjamin Viguier
+** Last update Wed May 17 11:33:02 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -75,7 +75,8 @@ int	execute_tree(t_mysh *sh, t_tree *tree, t_exec_opts *opts)
   else if (tree->type == NODE_CMD)
     {
       if (execute_cmd(sh, &(tree->value.proc), opts) < 0)
-	return (-1);
+	     return (-1);
+      var_last_ret(sh);
     }
   return (0);
 }
