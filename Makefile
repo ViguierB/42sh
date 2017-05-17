@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Wed May 17 18:41:54 2017 Guilhem Fulcrand
+## Last update Wed May 17 20:06:29 2017 Guilhem Fulcrand
 ##
 
 include ./include/depend.mk
@@ -17,6 +17,7 @@ SRC	= 	main.c		\
 		alias.c		\
 		true_preparsing.c	\
 		permissions.c		\
+		which.c			\
 		my_source.c	\
 		error.c		\
 		env.c		\

@@ -80,6 +80,7 @@ int	my_ssetenv(char **tab, t_mysh *sh);
 int	my_unsetenv(char **tab, t_mysh *sh);
 int builtin_crochet(char **tab, t_mysh *sh);
 int	my_exit(char **av, t_mysh *sh);
+int my_which(char **av, t_mysh *sh);
 
 /*
 ** ERROR functions
