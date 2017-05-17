@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Mon May 15 15:39:44 2017 Guilhem Fulcrand
+** Last update Wed May 17 17:52:29 2017 Guilhem Fulcrand
 */
 
 #ifndef LIBMY_H_
@@ -101,6 +101,7 @@ char	*my_strnstr(char *haystack, char *needle, int n);
 char	*my_strdup(char *str);
 char	*my_strndup(char *str, int n);
 char	**my_split(char *inp, char sep, int *nb_lines);
+char    *substr(char *str, char *substr, int start, int len);
 int	my_showmem(char *str, int size);
 void	*my_memcpy(void *dptr, void *fptr, size_t size);
 void	my_memset(void *ptr, int c, size_t size);

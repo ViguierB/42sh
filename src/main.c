@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Tue May 16 16:16:20 2017 Benjamin Viguier
+** Last update Tue May 16 23:09:48 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -71,6 +71,7 @@ int		main(int ac, char **av, char **env)
     }
   free_env(sh.env);
   clist_free_data(sh.alias, free_alias);
+  sh.alias = NULL;
   free(in);
   return (sh.last_exit);
 }
