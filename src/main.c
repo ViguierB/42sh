@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Wed May 17 18:57:40 2017 Guilhem Fulcrand
+** Last update Wed May 17 19:04:53 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -39,6 +39,7 @@ char *waitline(t_mysh *sh, t_my_fd *in)
                     home, my_strlen(my_getenv(sh->env, "HOME"))) == 0)
         home = substr(home, "~", 0, my_strlen(my_getenv(sh->env, "HOME")));
     my_printf("%s$> ", home);
+    free(home);
   }
   if (!(cmd = my_getline(in)))
     return (NULL);
