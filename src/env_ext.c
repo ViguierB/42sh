@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:34:15 2017 Benjamin Viguier
-** Last update Wed May 17 14:33:34 2017 Alexandre Chamard-bois
+** Last update Wed May 17 14:41:52 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -70,6 +70,9 @@ int		my_unsetenv(char **tab, t_mysh *sh)
       {
         elm->next->prev = elm->prev;
         elm->prev->next = elm->next;
+        if (elm == sh->env)
+          sh->env = elm->next;
+        free(elm);
         break;
       }
       elm = CLIST_NEXT(sh->env, elm);

@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Tue May 16 18:17:41 2017 Guilhem Fulcrand
+** Last update Wed May 17 15:05:00 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -53,7 +53,7 @@ int error_chdir(char *memo, char *cwd, char *tab, t_mysh *sh)
   char *ptr;
 
   if (access(cwd, F_OK) != 0)
-    my_printf("%d: No such file or directory\n", tab);
+    my_printf("%s: No such file or directory.\n", tab);
   else
     my_printf("%s: Not a directory.\n", tab);
   if ((sh->env = old_pwd(memo, sh->env)) == NULL)

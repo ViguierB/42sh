@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Wed May 17 11:35:26 2017 Alexandre Chamard-bois
+** Last update Wed May 17 14:53:37 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -37,6 +37,7 @@ char *waitline(t_my_fd *in)
   }
   if (!(cmd = my_getline(in)))
     return (NULL);
+  cmd = my_ftrim(cmd);
   if (!(*cmd))
   {
     free(cmd);

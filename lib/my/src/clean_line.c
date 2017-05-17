@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:42:56 2017 Alexandre Chamard-bois
-** Last update Sat May  6 13:43:03 2017 Alexandre Chamard-bois
+** Last update Wed May 17 14:49:35 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -15,6 +15,8 @@ char *clean_line(char *str)
   int i;
 
   i = 0;
+  if (!str)
+    return (NULL);
   while (SPACE(str[i]))
     i++;
   if (i)
