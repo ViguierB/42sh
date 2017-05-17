@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 17:57:58 2017 Guilhem Fulcrand
-** Last update Wed May 17 18:14:21 2017 Guilhem Fulcrand
+** Last update Wed May 17 18:16:07 2017 Guilhem Fulcrand
 */
 
 #include "my_env.h"
@@ -27,6 +27,5 @@ char        *true_preparsing(t_mysh *mysh, char *cmd)
                 cmd = substr(cmd, "/", i, 1);
         }
     }
-    my_printf("%s\n", cmd);
     return (cmd);
 }
