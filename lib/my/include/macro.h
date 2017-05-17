@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:41:43 2017 Alexandre Chamard-bois
-** Last update Thu May 11 09:45:21 2017 Alexandre Chamard-bois
+** Last update Wed May 17 15:26:42 2017 Alexandre Chamard-bois
 */
 
 #ifndef MACRO_H_
@@ -28,6 +28,12 @@
 #endif
 #ifndef LOWER
 # define LOWER(c) ((c) >= 'a' && (c) <= 'z' ? 1 : 0)
+#endif
+#ifndef ALPHA
+# define ALPHA(c) (UPPER(c) || LOWER(c) || (c) == '_' ? 1 : 0)
+#endif
+#ifndef ALPHNUM
+# define ALPHNUM(c) (ALPHA(c) || NUM(c) ? 1 : 0)
 #endif
 #ifndef PRINTABLE
 # define PRINTABLE(c) ((c) >= 32 && (c) <= 126 ? 1 : 0)

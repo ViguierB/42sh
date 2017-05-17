@@ -5,12 +5,35 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Tue May 16 11:00:13 2017 Alexandre Chamard-bois
-** Last update Wed May 17 15:20:28 2017 Alexandre Chamard-bois
+** Last update Wed May 17 15:26:51 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
 #include "my_env.h"
 #include "mysh.h"
+
+int	error_setenv(char **tab)
+{
+  int	i;
+
+  i = 2;
+  if (!ALPHA(tab[1][0]))
+    {
+      my_printf("setenv: Variable name must begin with a letter.\n");
+      return (1);
+    }
+  while (tab[1][i])
+    {
+      if (!ALPHNUM(tab[1][i]))
+	{
+	  my_printf("setenv: Variable name must contain alphanumeric "
+              "characters.\n");
+	  return (1);
+	}
+      i++;
+    }
+  return (0);
+}
 
 int my_ssetenv(char **tab, t_mysh *sh)
 {
@@ -22,6 +45,8 @@ int my_ssetenv(char **tab, t_mysh *sh)
     my_printf("setenv: Too many arguments.\n");
     return (1);
   }
+  if (error_setenv(tab))
+    return (1);
   if (len == 1)
     return (my_print_env(tab, sh));
   if (my_setenv(sh->env, tab[1], tab[2]))
