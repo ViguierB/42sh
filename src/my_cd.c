@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Wed May 17 17:17:33 2017 Alexandre Chamard-bois
+** Last update Wed May 17 21:19:07 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -61,7 +61,6 @@ int end_cd(char cwd[1024], t_mysh *sh)
   var_set_env(sh, "OLDPWD", cwd);
   getcwd(cwd, 1024);
   var_set_env(sh, "PWD", cwd);
-  sh->last_exit = 0;
   return (0);
 }
 
