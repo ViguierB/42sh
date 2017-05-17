@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Wed May 17 15:05:00 2017 Alexandre Chamard-bois
+** Last update Wed May 17 17:17:33 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -47,66 +47,45 @@ t_env *old_pwd(char *memo, t_env *env)
   return (env);
 }
 
-int error_chdir(char *memo, char *cwd, char *tab, t_mysh *sh)
+int error_chdir(char *cwd, char *tab)
 {
-  char **ptrptr;
-  char *ptr;
-
   if (access(cwd, F_OK) != 0)
     my_printf("%s: No such file or directory.\n", tab);
   else
     my_printf("%s: Not a directory.\n", tab);
-  if ((sh->env = old_pwd(memo, sh->env)) == NULL)
-    return (1);
-  cwd = my_strdup(memo);
-  cwd = getcwd(cwd, 1024);
-  cwd = my_strconca("PWD", cwd);
-  ptr = my_getenv(sh->env, "PWD");
-  ptrptr = &ptr;
-  *ptrptr = my_strdup(cwd);
   return (1);
 }
 
-int end_cd(char *cwd, t_mysh *sh)
+int end_cd(char cwd[1024], t_mysh *sh)
 {
-  char **ptrptr;
-  char *ptr;
-
-  cwd = getcwd(cwd, 1024);
-  cwd = my_strconca("PWD=", cwd);
-  ptr = my_getenv(sh->env, "PWD=");
-  ptrptr = &ptr;
-  *ptrptr = my_strdup(cwd);
+  var_set_env(sh, "OLDPWD", cwd);
+  getcwd(cwd, 1024);
+  var_set_env(sh, "PWD", cwd);
   sh->last_exit = 0;
   return (0);
 }
 
 int my_cd(char **tab, t_mysh *sh)
 {
-  char *cwd;
-  char *memo;
+  char old_cwd[1024];
+  char *new_cwd;
 
-  if ((cwd = malloc(sizeof(char) * 1024)) == NULL)
-    return (1);
-  cwd = getcwd(cwd, 1024);
-  memo = my_strdup(cwd);
-  if (tab[1] == NULL)
+  getcwd(old_cwd, 1024);
+  if (!tab[1])
   {
-    if ((cwd = my_getenv(sh->env, "HOME")) == NULL)
+    if (!(new_cwd = my_getenv(sh->env, "HOME")))
       return (1);
   }
-  else if (tab[1] != NULL && tab[1][0] != '/' && my_strcmp(tab[1], "-") != 0)
-    cwd = modify_pwd(cwd, tab[1]);
   else if ((my_strcmp(tab[1], "-")) == 0)
   {
-    if ((cwd = my_getenv(sh->env, "OLDPWD")) == NULL)
-      return (1);
-  }
-  else if (tab[1][0] == '/')
-    cwd = tab[1];
-  if (chdir(cwd) == -1)
-    error_chdir(memo, cwd, tab[1], sh);
-  if ((sh->env = old_pwd(memo, sh->env)) == NULL)
+    if (!(new_cwd = my_getenv(sh->env, "OLDPWD")))
     return (1);
-  return (end_cd(cwd, sh));
+  }
+  else if (*tab[1] == '/')
+    new_cwd = tab[1];
+  else if (my_strcmp(tab[1], "-") != 0)
+    new_cwd = modify_pwd(old_cwd, tab[1]);
+  if (chdir(new_cwd) == -1)
+    error_chdir(old_cwd, tab[1]);
+  return (end_cd(old_cwd, sh));
 }
