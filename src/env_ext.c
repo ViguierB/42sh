@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:34:15 2017 Benjamin Viguier
-** Last update Mon May 15 16:40:57 2017 Alexandre Chamard-bois
+** Last update Wed May 17 14:33:34 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -57,13 +57,12 @@ int		my_unsetenv(char **tab, t_mysh *sh)
   t_env	*elm;
   int i;
 
-  elm = sh->env;
-  i = 0;
   if (!tab[1])
-    {
-      sh->last_exit = 1;
-      return (1);
-    }
+  {
+    my_printf("unsetenv: Too few arguments.\n");
+    return (1);
+  }
+  i = 0;
   while (tab[++i] && (elm = sh->env))
     while (elm)
     {
@@ -71,11 +70,9 @@ int		my_unsetenv(char **tab, t_mysh *sh)
       {
         elm->next->prev = elm->prev;
         elm->prev->next = elm->next;
-        elm = sh->env;
         break;
       }
       elm = CLIST_NEXT(sh->env, elm);
     }
-  sh->last_exit = 0;
   return (0);
 }

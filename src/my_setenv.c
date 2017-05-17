@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Tue May 16 11:00:13 2017 Alexandre Chamard-bois
-** Last update Tue May 16 11:35:52 2017 Alexandre Chamard-bois
+** Last update Wed May 17 14:24:01 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -15,17 +15,14 @@
 int my_ssetenv(char **tab, t_mysh *sh)
 {
   int len;
-  t_env *env;
 
   if ((len = my_nbline(tab)) > 3)
-    return (1);
-  env = sh->env;
-  while (env)
   {
-    if (!my_strcmp(tab[1], GET_KEY(env)))
-      break;
-    env = CLIST_NEXT(sh->env, env);
+    my_printf("setenv: Too many arguments.\n");
+    return (1);
   }
-  if (env)
+  if (len == 1)
+    return (my_print_env(tab, sh));
+  my_setenv(sh->env, tab[1], tab[2]);
   return (0);
 }

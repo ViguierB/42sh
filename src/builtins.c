@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May 14 15:10:27 2017 Alexandre Chamard-bois
-** Last update Wed May 17 14:09:13 2017 Alexandre Chamard-bois
+** Last update Wed May 17 14:28:20 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -15,8 +15,8 @@
 const t_builtin g_builtins[] =
 {
   {"env", my_print_env},
-  {"setenv", NULL},
-  {"unsetenv", NULL},
+  {"setenv", my_ssetenv},
+  {"unsetenv", my_unsetenv},
   {"cd", my_cd},
   {"exit", my_exit},
   {"echo", my_echo},
