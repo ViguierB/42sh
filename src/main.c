@@ -5,11 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-<<<<<<< HEAD
-** Last update Tue May 16 23:09:48 2017 Guilhem Fulcrand
-=======
-** Last update Wed May 17 14:53:37 2017 Alexandre Chamard-bois
->>>>>>> e4cdc4acae2fd077356f288a98f8b31c6c725b68
+** Last update Wed May 17 17:53:37 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>

@@ -5,11 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:08:05 2017 Guilhem Fulcrand
-<<<<<<< HEAD
-** Last update Tue May 16 23:05:33 2017 Guilhem Fulcrand
-=======
-** Last update Wed May 17 11:40:19 2017 Alexandre Chamard-bois
->>>>>>> e4cdc4acae2fd077356f288a98f8b31c6c725b68
+** Last update Wed May 17 17:53:28 2017 Guilhem Fulcrand
 */
 
 #include <sys/types.h>
