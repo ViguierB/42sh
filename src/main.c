@@ -5,7 +5,11 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
+<<<<<<< HEAD
 ** Last update Tue May 16 23:09:48 2017 Guilhem Fulcrand
+=======
+** Last update Wed May 17 14:53:37 2017 Alexandre Chamard-bois
+>>>>>>> e4cdc4acae2fd077356f288a98f8b31c6c725b68
 */
 
 #include <unistd.h>
@@ -21,6 +25,7 @@ t_my_fd *init_main(int ac, t_mysh *sh, char **av, char **env)
   my_init_env(&sh->env, env);
   sh->alias = my_source(NULL);
   my_name(LIBMY_INIT, av[0]);
+  var_last_ret(sh);
   return (my_fd_from_fd(0));
 }
 
@@ -36,6 +41,7 @@ char *waitline(t_my_fd *in)
   }
   if (!(cmd = my_getline(in)))
     return (NULL);
+  cmd = my_ftrim(cmd);
   if (!(*cmd))
   {
     free(cmd);

@@ -5,27 +5,57 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Tue May 16 11:00:13 2017 Alexandre Chamard-bois
-** Last update Tue May 16 11:35:52 2017 Alexandre Chamard-bois
+** Last update Wed May 17 15:26:51 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
 #include "my_env.h"
 #include "mysh.h"
 
+int	error_setenv(char **tab)
+{
+  int	i;
+
+  i = 2;
+  if (!ALPHA(tab[1][0]))
+    {
+      my_printf("setenv: Variable name must begin with a letter.\n");
+      return (1);
+    }
+  while (tab[1][i])
+    {
+      if (!ALPHNUM(tab[1][i]))
+	{
+	  my_printf("setenv: Variable name must contain alphanumeric "
+              "characters.\n");
+	  return (1);
+	}
+      i++;
+    }
+  return (0);
+}
+
 int my_ssetenv(char **tab, t_mysh *sh)
 {
+  t_env_elm *node;
   int len;
-  t_env *env;
 
   if ((len = my_nbline(tab)) > 3)
-    return (1);
-  env = sh->env;
-  while (env)
   {
-    if (!my_strcmp(tab[1], GET_KEY(env)))
-      break;
-    env = CLIST_NEXT(sh->env, env);
+    my_printf("setenv: Too many arguments.\n");
+    return (1);
   }
-  if (env)
+  if (error_setenv(tab))
+    return (1);
+  if (len == 1)
+    return (my_print_env(tab, sh));
+  if (my_setenv(sh->env, tab[1], tab[2]))
+  {
+    if (!(node = malloc(sizeof(t_env_elm))))
+      return (1);
+    node->key = my_strdup(tab[1]);
+    node->value = my_strdup(tab[2]);
+    clist_push(sh->env, node);
+  }
   return (0);
 }

@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Tue May 16 18:06:52 2017 Alexandre Chamard-bois
+## Last update Wed May 17 14:18:18 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -36,6 +36,9 @@ SRC	= 	main.c		\
 		my_exit.c	\
 		preparsing.c	\
 		var.c	\
+		var_last_ret.c	\
+		print_env.c	\
+		my_setenv.c	\
 
 MKLIB	=	make -C ./lib/my/
 

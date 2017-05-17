@@ -5,17 +5,18 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May 14 15:10:27 2017 Alexandre Chamard-bois
-** Last update Tue May 16 18:06:36 2017 Alexandre Chamard-bois
+** Last update Wed May 17 14:28:20 2017 Alexandre Chamard-bois
 */
 
+#include <unistd.h>
 #include "parser.h"
 #include "mysh.h"
 
 const t_builtin g_builtins[] =
 {
-  {"env", NULL},
-  {"setenv", NULL},
-  {"unsetenv", NULL},
+  {"env", my_print_env},
+  {"setenv", my_ssetenv},
+  {"unsetenv", my_unsetenv},
   {"cd", my_cd},
   {"exit", my_exit},
   {"echo", my_echo},
@@ -52,5 +53,7 @@ int exec_builtin(t_mysh *mysh, t_process *proc, t_exec_opts *opts)
     mysh->last_exit = g_builtins[i].func(proc->args, mysh);
   else
     mysh->last_exit = 1;
+  if (!isatty(0) && mysh->last_exit)
+    mysh->exit = 1;
   return (0);
 }
