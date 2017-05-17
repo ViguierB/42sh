@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Wed May 17 19:04:53 2017 Guilhem Fulcrand
+** Last update Wed May 17 17:26:03 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -27,17 +27,17 @@ t_my_fd *init_main(int ac, t_mysh *sh, char **av, char **env)
 
 char *waitline(t_mysh *sh, t_my_fd *in)
 {
+  char bla[255];
   char *home;
   char *cmd;
 
-  if (!(home = malloc(sizeof(char) * 256)))
-    return (NULL);
   if (isatty(0))
   {
-    getcwd(home, 255);
+    home = NULL;
+    getcwd(bla, 255);
     if (my_strncmp(my_getenv(sh->env, "HOME"),
-                    home, my_strlen(my_getenv(sh->env, "HOME"))) == 0)
-        home = substr(home, "~", 0, my_strlen(my_getenv(sh->env, "HOME")));
+                    bla, my_strlen(my_getenv(sh->env, "HOME"))) == 0)
+        home = substr(bla, "~", 0, my_strlen(my_getenv(sh->env, "HOME")));
     my_printf("%s$> ", home);
     free(home);
   }
@@ -49,7 +49,15 @@ char *waitline(t_mysh *sh, t_my_fd *in)
     free(cmd);
     return (waitline(sh, in));
   }
-  return (cmd);
+  return (true_preparsing(sh, cmd));
+}
+
+int end_main(t_mysh *sh, t_my_fd *in)
+{
+  free_env(sh->env);
+  clist_free_data(sh->alias, free_alias);
+  free(in);
+  return (sh->last_exit);
 }
 
 int		main(int ac, char **av, char **env)
@@ -63,7 +71,6 @@ int		main(int ac, char **av, char **env)
   in = init_main(ac, &sh, av, env);
   while ((cmd = waitline(&sh, in)))
     {
-        cmd = true_preparsing(&sh, cmd);
       tree = parse_cmd(cmd);
       if (!tree)
 	{
@@ -78,8 +85,5 @@ int		main(int ac, char **av, char **env)
       if (sh.exit)
 	break;
     }
-  free_env(sh.env);
-  clist_free_data(sh.alias, free_alias);
-  free(in);
-  return (sh.last_exit);
+  return (end_main(&sh, in));
 }

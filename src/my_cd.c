@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Wed May 17 16:41:43 2017 Alexandre Chamard-bois
+** Last update Wed May 17 17:17:33 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -76,13 +76,15 @@ int my_cd(char **tab, t_mysh *sh)
     if (!(new_cwd = my_getenv(sh->env, "HOME")))
       return (1);
   }
-  else if (tab[1] != NULL && tab[1][0] != '/' && my_strcmp(tab[1], "-") != 0)
-    new_cwd = modify_pwd(old_cwd, tab[1]);
   else if ((my_strcmp(tab[1], "-")) == 0)
   {
     if (!(new_cwd = my_getenv(sh->env, "OLDPWD")))
-      return (1);
+    return (1);
   }
+  else if (*tab[1] == '/')
+    new_cwd = tab[1];
+  else if (my_strcmp(tab[1], "-") != 0)
+    new_cwd = modify_pwd(old_cwd, tab[1]);
   if (chdir(new_cwd) == -1)
     error_chdir(old_cwd, tab[1]);
   return (end_cd(old_cwd, sh));
