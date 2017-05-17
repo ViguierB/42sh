@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Wed May 17 11:31:53 2017 Alexandre Chamard-bois
+** Last update Wed May 17 14:07:44 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -69,8 +69,9 @@ void var_last_ret(t_mysh *mysh);
 int	my_echo(char **av, t_mysh *sh);
 int my_cd(char **tab, t_mysh *sh);
 int my_set(char **tab, t_mysh *sh);
-int	my_unsetenv(char **tab, t_mysh *sh);
+int my_print_env(char **tab, t_mysh *mysh);
 int	my_ssetenv(char **tab, t_mysh *sh);
+int	my_unsetenv(char **tab, t_mysh *sh);
 int builtin_crochet(char **tab, t_mysh *sh);
 int	my_exit(char **av, t_mysh *sh);
 
