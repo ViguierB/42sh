@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Wed May 17 17:26:03 2017 Alexandre Chamard-bois
+** Last update Thu May 18 15:07:39 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -44,12 +44,12 @@ char *waitline(t_mysh *sh, t_my_fd *in)
   if (!(cmd = my_getline(in)))
     return (NULL);
   cmd = my_ftrim(cmd);
-  if (!(*cmd))
+  if (!*(cmd = true_preparsing(sh, cmd)))
   {
     free(cmd);
     return (waitline(sh, in));
   }
-  return (true_preparsing(sh, cmd));
+  return (cmd);
 }
 
 int end_main(t_mysh *sh, t_my_fd *in)
