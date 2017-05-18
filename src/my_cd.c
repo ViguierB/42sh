@@ -5,9 +5,11 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Thu May 18 11:41:50 2017 Alexandre Chamard-bois
+** Last update Thu May 18 15:36:23 2017 Alexandre Chamard-bois
 */
 
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include "libmy.h"
 #include "mysh.h"
@@ -49,7 +51,12 @@ t_env *old_pwd(char *memo, t_env *env)
 
 int error_chdir(char *tab)
 {
-  my_printf("%s: No such file or directory.\n", tab);
+  struct stat stats;
+
+  if (stat(tab, &stats))
+    my_printf("%s: No such file or directory.\n", tab);
+  else if (!S_ISDIR(stats.st_mode))
+    my_printf("%s: Not a directory.\n", tab);
   return (1);
 }
 
