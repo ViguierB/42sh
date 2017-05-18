@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Thu May 18 07:27:36 2017 Alexandre Chamard-bois
+** Last update Thu May 18 11:41:50 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -47,12 +47,9 @@ t_env *old_pwd(char *memo, t_env *env)
   return (env);
 }
 
-int error_chdir(char *cwd, char *tab)
+int error_chdir(char *tab)
 {
-  if (access(cwd, F_OK) != 0)
-    my_printf("%s: No such file or directory.\n", tab);
-  else
-    my_printf("%s: Not a directory.\n", tab);
+  my_printf("%s: No such file or directory.\n", tab);
   return (1);
 }
 
@@ -85,6 +82,6 @@ int my_cd(char **tab, t_mysh *sh)
   else if (my_strcmp(tab[1], "-") != 0)
     new_cwd = modify_pwd(old_cwd, tab[1]);
   if (chdir(new_cwd) == -1)
-    return (error_chdir(old_cwd, tab[1]));
+    return (error_chdir(tab[1]));
   return (end_cd(old_cwd, sh));
 }

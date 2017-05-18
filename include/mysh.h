@@ -5,11 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-<<<<<<< HEAD
-** Last update Wed May 17 16:22:15 2017 Alexandre Chamard-bois
-=======
-** Last update Wed May 17 18:43:36 2017 Guilhem Fulcrand
->>>>>>> d553a5e58da56e36698be4ff435121e3be0fb8dd
+** Last update Thu May 18 11:42:19 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
