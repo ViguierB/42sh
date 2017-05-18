@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:01:10 2017 Alexandre Chamard-bois
-** Last update Thu May 18 11:47:41 2017 Alexandre Chamard-bois
+** Last update Thu May 18 13:50:34 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -17,7 +17,7 @@ static inline int recup_info(t_var_elm *var, char **tab, int type)
   char *name;
   char *str;
 
-  if (!(str = my_strdup(tab[2])) || !(name = my_strdup(tab[1])))
+  if (!(str = my_strdup(tab[3])) || !(name = my_strdup(tab[1])))
     return (my_putstr("error malloc\n"), 1);
   if (var->value.ptr)
     free(var->value.ptr);
