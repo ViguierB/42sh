@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Thu May 18 10:02:40 2017 Alexandre Chamard-bois
+** Last update Thu May 18 10:16:55 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -55,6 +55,7 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
 	      redir_ff(&(proc->err), opts->pipe_err) < 0)
 	    return (-1);
 	  execve(proc->name, proc->args, my_env(sh->env));
+    exit(1);
 	}
       else if (!opts->ascyn)
 	wait_child(sh, proc);
