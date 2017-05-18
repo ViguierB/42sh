@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 19:44:28 2017 Guilhem Fulcrand
-** Last update Thu May 18 16:09:43 2017 Guilhem Fulcrand
+** Last update Thu May 18 16:16:26 2017 Guilhem Fulcrand
 */
 
 #include <stdio.h>
@@ -69,11 +69,11 @@ int         my_where(char **av, t_mysh *sh)
         else if (is_local_cmd(av[i]) && fexists(av[i]))
             printf("%s\n", av[i]);
         if ((path = search_in_all_paths(sh, av[i])))
-            {
-                printf("%s", path);
-                free(path);
-                continue;
-            }
+        {
+            printf("%s", path);
+            free(path);
+            continue;
+        }
     }
     return (0);
 }
