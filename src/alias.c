@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:09:47 2017 Guilhem Fulcrand
-** Last update Thu May 18 18:32:35 2017 Guilhem Fulcrand
+** Last update Thu May 18 18:34:01 2017 Guilhem Fulcrand
 */
 
 #include "42shrc.h"
@@ -69,6 +69,6 @@ int     my_alias(char **av, t_mysh *sh)
         val = my_strconca(val, av[i]);
         val = my_strconca(val, " ");
     }
-    val[my_strlen(val)] = 0;
+    val[my_strlen(val) - 1] = 0;
     return (check_in_list(&all, av[1], val));
 }
