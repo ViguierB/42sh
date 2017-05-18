@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 19:44:28 2017 Guilhem Fulcrand
-** Last update Thu May 18 15:15:14 2017 Alexandre Chamard-bois
+** Last update Thu May 18 17:33:39 2017 Guilhem Fulcrand
 */
 
 #include <stdio.h>
@@ -58,19 +58,16 @@ int         my_where(char **av, t_mysh *sh)
 {
     int     i;
     char    *path;
+    int     ret;
 
     if (!av[1])
         return (-(my_pcustomwarning("%s: Too few arguments.\n", av[0])));
     i = 0;
+    ret = 0;
     while (av[++i])
     {
         if (!is_builtin(av[i]))
             printf("%s is a shell built-in\n", av[i]);
-        if ((path = search_in_path(sh, av[i])))
-            {
-                printf("%s\n", path);
-                free(path);
-            }
         else if (is_local_cmd(av[i]) && fexists(av[i]))
             printf("%s\n", av[i]);
         if ((path = search_in_all_paths(sh, av[i])))
@@ -79,6 +76,7 @@ int         my_where(char **av, t_mysh *sh)
             free(path);
             continue;
         }
+        ret = 1;
     }
-    return (0);
+    return (ret);
 }
