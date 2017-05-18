@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 19:44:28 2017 Guilhem Fulcrand
-** Last update Thu May 18 17:33:39 2017 Guilhem Fulcrand
+** Last update Thu May 18 17:56:14 2017 Guilhem Fulcrand
 */
 
 #include <stdio.h>
@@ -67,9 +67,10 @@ int         my_where(char **av, t_mysh *sh)
     while (av[++i])
     {
         if (!is_builtin(av[i]))
+        {
             printf("%s is a shell built-in\n", av[i]);
-        else if (is_local_cmd(av[i]) && fexists(av[i]))
-            printf("%s\n", av[i]);
+            continue;
+        }
         if ((path = search_in_all_paths(sh, av[i])))
         {
             printf("%s", path);
