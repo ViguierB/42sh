@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Thu May 18 09:57:19 2017 Alexandre Chamard-bois
+** Last update Thu May 18 10:02:40 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -44,8 +44,8 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
     return (my_pcustomwarning("%s: Command not found.\n", proc->args[0]));
   if (!proc->builtin)
     {
-      if (is_file(proc->name))
-        return (my_pcustomwarning("%s: Permission denied.\n", proc->args[0]));
+      // if (is_file(proc->name))
+      //   return (my_pcustomwarning("%s: Permission denied.\n", proc->args[0]));
       if ((proc->pid = fork()) < 0)
 	return (my_perror("fork()"));
       if (proc->pid == 0)

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Thu May 18 09:52:36 2017 Alexandre Chamard-bois
+** Last update Thu May 18 10:02:06 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -33,7 +33,7 @@ int is_file(char *name)
 
   if (!stat(name, &stats))
     return (1);
-  if (!S_ISREG(stats.st_mode))
+  if (!S_ISDIR(stats.st_mode))
     return (1);
   return (0);
 }
