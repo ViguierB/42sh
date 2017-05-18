@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Thu May 18 15:45:36 2017 Guilhem Fulcrand
+** Last update Thu May 18 16:48:31 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -89,6 +89,8 @@ char	        *search_in_all_paths(t_mysh *sh, char *name)
         }
         free(tmp);
     }
+    free(path[0]);
+    free(path);
     return (str);
 }
 
