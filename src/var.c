@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:01:10 2017 Alexandre Chamard-bois
-** Last update Wed May 17 21:14:02 2017 Alexandre Chamard-bois
+** Last update Thu May 18 11:47:41 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -49,7 +49,7 @@ int my_set(char **tab, t_mysh *sh)
   t_var_elm *new_var;
 
   elm = sh->var;
-  if (my_nbline(tab) != 3)
+  if (my_nbline(tab) != 4)
     return (error_set("invalid nb arg\n"));
   if (!is_alph_num(tab[1]))
     return (error_set("invalid name\n"));
@@ -60,10 +60,10 @@ int my_set(char **tab, t_mysh *sh)
     if (!(new_var = malloc(sizeof(t_var_elm))))
       return (error_set("error malloc\n"));
     my_memset(new_var, 0, sizeof(t_var_elm));
-    ret = recup_info(new_var, tab, find_type(tab[2]));
+    ret = recup_info(new_var, tab, find_type(tab[3]));
     sh->var = clist_push(sh->var, new_var);
   }
   else
-    ret = recup_info(elm->ptr, tab, find_type(tab[2]));
+    ret = recup_info(elm->ptr, tab, find_type(tab[3]));
   return (ret);
 }
