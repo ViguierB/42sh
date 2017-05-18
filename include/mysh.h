@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Thu May 18 11:42:19 2017 Alexandre Chamard-bois
+** Last update Thu May 18 17:58:46 2017 Guilhem Fulcrand
 */
 
 #include "libmy.h"
@@ -79,6 +79,7 @@ int builtin_crochet(char **tab, t_mysh *sh);
 int	my_exit(char **av, t_mysh *sh);
 int my_which(char **av, t_mysh *sh);
 int my_where(char **av, t_mysh *sh);
+int my_alias(char **av, t_mysh *sh);
 
 /*
 ** ERROR functions
