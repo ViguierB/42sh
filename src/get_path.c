@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Tue May 16 16:37:38 2017 Benjamin Viguier
+** Last update Thu May 18 16:48:31 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -62,6 +62,36 @@ char	*search_in_path(t_mysh *sh, char *name)
     }
   my_sb_destroy(sb);
   return (NULL);
+}
+
+char	        *search_in_all_paths(t_mysh *sh, char *name)
+{
+  char		    **path;
+  char		    *str;
+  char          *tmp;
+  int		     i;
+
+    if (!(str = malloc(sizeof(char) * 256)))
+        return (NULL);
+    if (!(tmp = malloc(sizeof(char) * 256)))
+        return (NULL);
+    my_memset(str, 0, 256);
+  i = -1;
+  path = get_path_tab(sh->env);
+  while (path[++i])
+    {
+        tmp = my_strconca(path[i], "/");
+        tmp = my_strconca(tmp, name);
+        if (fexists(tmp))
+        {
+            str = substr(str, tmp, my_strlen(str), 0);
+            str = my_strconca(str, "\n");
+        }
+        free(tmp);
+    }
+    free(path[0]);
+    free(path);
+    return (str);
 }
 
 char		*get_real_cmd(t_mysh *sh, t_process *proc)

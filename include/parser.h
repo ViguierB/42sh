@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 18:05:31 2017 Benjamin Viguier
-** Last update Thu May 18 11:42:34 2017 Alexandre Chamard-bois
+** Last update Thu May 18 16:15:07 2017 Guilhem Fulcrand
 */
 
 #ifndef PARSER_H_
@@ -138,6 +138,7 @@ int globbing(char ***args);
 int preparsing(t_mysh *mysh, char ***);
 char *true_preparsing(t_mysh *mysh, char *cmd);
 char *search_in_path(t_mysh *, char *);
+char *search_in_all_paths(t_mysh *sh, char *name);
 
 int	op_or(t_mysh *sh, t_tree *node, t_exec_opts *opts);
 int	op_and(t_mysh *sh, t_tree *node, t_exec_opts *opts);

@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 19:44:28 2017 Guilhem Fulcrand
-** Last update Thu May 18 15:10:13 2017 Alexandre Chamard-bois
+** Last update Thu May 18 15:15:14 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -38,7 +38,7 @@ int         my_which(char **av, t_mysh *sh)
     {
         if (!is_builtin(av[i]))
             printf("%s: shell built-in command.\n", av[i]);
-        else if (is_local_cmd(av[i]) && file_exists(av[i]))
+        else if (is_local_cmd(av[i]) && fexists(av[i]))
             printf("%s\n", av[i]);
         else if ((path = search_in_path(sh, av[i])))
         {
@@ -46,7 +46,10 @@ int         my_which(char **av, t_mysh *sh)
             free(path);
         }
         else
+        {
             printf("%s: Command not found.\n", av[i]);
+            return (1);
+        }
     }
     return (0);
 }
@@ -68,10 +71,14 @@ int         my_where(char **av, t_mysh *sh)
                 printf("%s\n", path);
                 free(path);
             }
-        else if (is_local_cmd(av[i]) && file_exists(av[i]))
+        else if (is_local_cmd(av[i]) && fexists(av[i]))
             printf("%s\n", av[i]);
-        else if (is_builtin(av[i]))
-            printf("%s: Command not found.\n", av[i]);
+        if ((path = search_in_all_paths(sh, av[i])))
+        {
+            printf("%s", path);
+            free(path);
+            continue;
+        }
     }
     return (0);
 }
