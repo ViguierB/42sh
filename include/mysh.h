@@ -63,6 +63,7 @@ typedef struct	s_builtin
 }		t_builtin;
 
 int is_permited(char *path);
+int is_file(char *name);
 int	is_local_cmd(char *name);
 int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);

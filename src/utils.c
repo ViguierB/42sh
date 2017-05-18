@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Wed May 17 18:44:09 2017 Guilhem Fulcrand
+** Last update Thu May 18 09:52:36 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -25,6 +25,17 @@ int		fexists(char *name)
     }
   else
     return (1);
+}
+
+int is_file(char *name)
+{
+  struct stat stats;
+
+  if (!stat(name, &stats))
+    return (1);
+  if (!S_ISREG(stats.st_mode))
+    return (1);
+  return (0);
 }
 
 int	is_local_cmd(char *name)

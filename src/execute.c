@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Wed May 17 21:20:27 2017 Alexandre Chamard-bois
+** Last update Thu May 18 09:57:19 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -44,8 +44,10 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
     return (my_pcustomwarning("%s: Command not found.\n", proc->args[0]));
   if (!proc->builtin)
     {
+      if (is_file(proc->name))
+        return (my_pcustomwarning("%s: Permission denied.\n", proc->args[0]));
       if ((proc->pid = fork()) < 0)
-	my_perror("fork()");
+	return (my_perror("fork()"));
       if (proc->pid == 0)
 	{
 	  if (redir_ff(&(proc->in), opts->pipe_in) < 0 ||
@@ -74,8 +76,12 @@ int	execute_tree(t_mysh *sh, t_tree *tree, t_exec_opts *opts)
     }
   else if (tree->type == NODE_CMD)
     {
-      if (execute_cmd(sh, &(tree->value.proc), opts) < 0)
-	     return (-1);
+      if (execute_cmd(sh, &(tree->value.proc), opts))
+      {
+        sh->last_exit = 1;
+        var_last_ret(sh);
+        return (-1);
+      }
       var_last_ret(sh);
     }
   return (0);
