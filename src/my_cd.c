@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Wed May 17 21:19:07 2017 Alexandre Chamard-bois
+** Last update Thu May 18 07:27:36 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -85,6 +85,6 @@ int my_cd(char **tab, t_mysh *sh)
   else if (my_strcmp(tab[1], "-") != 0)
     new_cwd = modify_pwd(old_cwd, tab[1]);
   if (chdir(new_cwd) == -1)
-    error_chdir(old_cwd, tab[1]);
+    return (error_chdir(old_cwd, tab[1]));
   return (end_cd(old_cwd, sh));
 }

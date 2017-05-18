@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Tue May 16 11:00:13 2017 Alexandre Chamard-bois
-** Last update Wed May 17 21:16:52 2017 Alexandre Chamard-bois
+** Last update Thu May 18 07:25:24 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -53,8 +53,10 @@ int my_ssetenv(char **tab, t_mysh *sh)
   {
     if (!(node = malloc(sizeof(t_env_elm))))
       return (1);
+    my_memset(node, 0, sizeof(t_env_elm));
     node->key = my_strdup(tab[1]);
-    node->value = my_strdup(tab[2]);
+    if (tab[2])
+      node->value = my_strdup(tab[2]);
     clist_push(sh->env, node);
   }
   return (0);
