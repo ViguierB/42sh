@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Mon May 15 13:43:04 2017 augustin leconte
-** Last update Fri May 19 12:01:57 2017 Pierre Narcisi
+** Last update Fri May 19 18:27:55 2017 Pierre Narcisi
 */
 
 #include "termcaps.h"
@@ -42,7 +42,7 @@ char     *termcaps()
       i++;
     if (g_key[i].param1 == 27)
       {
-        while (g_key[i].param2 != -1 && g_key[i].param2 != buffer[0])
+        while (g_key[i].param2 != -1 && g_key[i].param2 != buffer[2])
           i++;
       }
     if (g_key[i].param1 != -1)
