@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Fri May 19 19:14:16 2017 Guilhem Fulcrand
+** Last update Fri May 19 19:34:06 2017 Guilhem Fulcrand
 */
 
 #include "libmy.h"
@@ -70,6 +70,8 @@ void print_var(t_mysh *mysh);
 t_clist *my_history();
 void write_hist(t_clist *hist);
 void print_hist(t_clist *hist);
+t_clist *push_in_hist(t_clist *hist, char *cmd);
+
 
 
 

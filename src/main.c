@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Fri May 19 19:30:08 2017 Guilhem Fulcrand
+** Last update Fri May 19 19:33:34 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -84,7 +84,7 @@ int		main(int ac, char **av, char **env)
       if (tree)
 	execute_tree(&sh, tree, &opts);
       free_tree(tree);
-      sh.hist = clist_push(sh.hist, cmd);
+      sh.hist = push_in_hist(sh.hist, cmd);
       if (sh.exit)
 	break;
     }
