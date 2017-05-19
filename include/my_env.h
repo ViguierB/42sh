@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 21:23:56 2017 Benjamin Viguier
-** Last update Tue May 16 19:21:01 2017 Guilhem Fulcrand
+** Last update Wed May 17 17:52:56 2017 Benjamin Viguier
 */
 
 #ifndef MY_ENV_H_

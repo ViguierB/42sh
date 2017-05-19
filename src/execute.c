@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Wed May 17 11:33:02 2017 Alexandre Chamard-bois
+** Last update Wed May 17 17:32:03 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -20,7 +20,6 @@ int	redir_ff(t_mysh_fd *fd, int mpp[2])
 {
   int	file_fd;
 
-  (void) mpp;
   if (fd->filename)
     {
       file_fd = open(fd->filename, fd->flags, fd->right);
@@ -28,6 +27,10 @@ int	redir_ff(t_mysh_fd *fd, int mpp[2])
 	return (my_pwarning(fd->filename));
       dup2(file_fd, fd->fd);
       fd->fd = file_fd;
+    }
+  else
+    {
+      
     }
   return (0);
 }
@@ -41,7 +44,7 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
   if (opts->need_redir - 1 == 2 && proc->err.filename)
     return (my_warning(proc->name, "Ambiguous error output redirect"));
   if (!(proc->name = get_real_cmd(sh, proc)))
-    return (my_pcustomwarning("%s: Command not found.\n", proc->args[0]));
+    return (my_pcustomwarning("%s: Command not found.", proc->args[0]));
   if (!proc->builtin)
     {
       if ((proc->pid = fork()) < 0)
