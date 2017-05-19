@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Fri May 19 19:34:06 2017 Guilhem Fulcrand
+** Last update Fri May 19 21:39:39 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -64,6 +64,7 @@ int is_file(char *name);
 int	is_local_cmd(char *name);
 int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);
+char *wordtab_to_str(char **tab);
 void var_last_ret(t_mysh *mysh);
 void var_set_env(t_mysh *mysh, char *key, char *value);
 void print_var(t_mysh *mysh);
@@ -71,13 +72,12 @@ t_clist *my_history();
 void write_hist(t_clist *hist);
 void print_hist(t_clist *hist);
 t_clist *push_in_hist(t_clist *hist, char *cmd);
-
-
-
+int do_cmd(t_mysh *sh, char *cmd);
 
 /*
 ** ERROR functions
 */
+
 int	my_echo(char **av, t_mysh *sh);
 int my_cd(char **tab, t_mysh *sh);
 int my_set(char **tab, t_mysh *sh);
@@ -89,6 +89,7 @@ int	my_exit(char **av, t_mysh *sh);
 int my_which(char **av, t_mysh *sh);
 int my_where(char **av, t_mysh *sh);
 int my_alias(char **av, t_mysh *sh);
+int my_if(char **tab, t_mysh *sh);
 
 /*
 ** ERROR functions

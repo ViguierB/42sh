@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Fri May 19 11:43:35 2017 Benjamin Viguier
+** Last update Fri May 19 20:24:15 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -37,6 +37,17 @@ int	redir_ff(t_mysh_fd *fd, int mpp[2], int redir)
   return (0);
 }
 
+int my_exec(t_mysh *sh, t_process *proc, t_exec_opts *opts)
+{
+  if (redir_ff(&(proc->in), opts->pipe_in, 0) < 0 ||
+      redir_ff(&(proc->out), opts->pipe_out, 1) < 0 ||
+      redir_ff(&(proc->err), opts->pipe_err, 1) < 0)
+    return (-1);
+  execve(proc->name, proc->args, my_env(sh->env));
+  exit(1);
+
+}
+
 int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
 {
   if (opts->need_redir - 1 == 0 && proc->in.filename)
@@ -53,12 +64,7 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
 	return (my_perror("fork()"));
       if (proc->pid == 0)
 	{
-	  if (redir_ff(&(proc->in), opts->pipe_in, 0) < 0 ||
-	      redir_ff(&(proc->out), opts->pipe_out, 1) < 0 ||
-	      redir_ff(&(proc->err), opts->pipe_err, 1) < 0)
-	    return (-1);
-	  execve(proc->name, proc->args, my_env(sh->env));
-    exit(1);
+    my_exec(sh, proc, opts);
 	}
       else if (!opts->ascyn)
 	wait_child(sh, proc);
