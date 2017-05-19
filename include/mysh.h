@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Thu May 18 17:58:46 2017 Guilhem Fulcrand
+** Last update Fri May 19 09:02:52 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -65,6 +65,7 @@ int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);
 void var_last_ret(t_mysh *mysh);
 void var_set_env(t_mysh *mysh, char *key, char *value);
+void print_var(t_mysh *mysh);
 
 /*
 ** ERROR functions

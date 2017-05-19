@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Wed May 17 11:28:08 2017 Alexandre Chamard-bois
-** Last update Thu May 18 13:49:54 2017 Alexandre Chamard-bois
+** Last update Fri May 19 09:02:19 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -31,6 +31,18 @@ char *cpy_ret(int ret)
     i++;
   }
   return (nb);
+}
+
+void print_var(t_mysh *mysh)
+{
+  t_var *elm;
+
+  elm = mysh->var;
+  while (elm)
+  {
+    my_printf("%s\t%s\n", NAME(elm), VALUE(elm));
+    elm = CLIST_NEXT(mysh->var, elm);
+  }
 }
 
 void var_last_ret(t_mysh *mysh)
