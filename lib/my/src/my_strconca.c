@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Nov 24 15:24:14 2016 Benjamin Viguier
-** Last update Sat May  6 23:34:25 2017 Alexandre Chamard-bois
+** Last update Fri May 19 19:13:26 2017 Alexandre Chamard-bois
 */
 
 #include "my.h"
@@ -42,18 +42,21 @@ char		*str_conca(int n, ...)
 {
   va_list ap;
 	char *s1;
-	char *s2;
+  char *s2;
+	char *stmp;
 	int i;
 
 	if (!n)
 		return (NULL);
 	va_start(ap, n);
 	i = 1;
-	s1 = va_arg(ap, char *);
+	s1 = my_strdup(va_arg(ap, char *));
 	while (i < n)
 	{
 		s2 = va_arg(ap, char *);
-		s1 = my_strconca(s1, s2);
+		stmp = my_strconca(s1, s2);
+    free(s1);
+    s1 = stmp;
 		i++;
 	}
 	va_end(ap);

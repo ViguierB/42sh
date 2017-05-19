@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 11:30:21 2017 Alexandre Chamard-bois
-** Last update Sun May 14 15:12:45 2017 Alexandre Chamard-bois
+** Last update Fri May 19 18:19:20 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -44,6 +44,7 @@ typedef struct  s_if
 */
 
 t_value do_egality(t_mysh *sh, t_var *var, char **tab);
+char **recup_parentheses(char **tab, int *pos);
 
 t_cond *build_cond(char *str);
 

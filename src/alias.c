@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:09:47 2017 Guilhem Fulcrand
-** Last update Thu May 18 18:34:01 2017 Guilhem Fulcrand
+** Last update Fri May 19 18:43:45 2017 Guilhem Fulcrand
 */
 
 #include "42shrc.h"
@@ -37,6 +37,8 @@ void    print_alias(t_clist *list)
     }
 }
 
+#include <stdio.h>
+
 char        *find_alias(t_clist *list, char *cmd)
 {
     t_clist *tmp;
@@ -59,8 +61,6 @@ int     my_alias(char **av, t_mysh *sh)
 
     all.list = sh->alias;
     if (!av[1] || !av[2])
-        return (0);
-    if (!av[2])
         return (0);
     val = NULL;
     i = 1;

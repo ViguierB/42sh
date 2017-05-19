@@ -5,11 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Fri May 19 18:24:12 2017 Guilhem Fulcrand
+** Last update Fri May 19 19:34:06 2017 Guilhem Fulcrand
 */
 
 #include "libmy.h"
-#include "history.h"
 #include "var.h"
 
 #ifndef MYSH_H_
@@ -47,7 +46,7 @@ typedef struct	s_process
 typedef struct	s_mysh
 {
   t_clist	*env;
-  t_hist    *hist;
+  t_clist   *hist;
   t_clist	*alias;
   t_var		*var;
   int		last_exit;
@@ -68,6 +67,13 @@ void	wait_child(t_mysh *sh, t_process *proc);
 void var_last_ret(t_mysh *mysh);
 void var_set_env(t_mysh *mysh, char *key, char *value);
 void print_var(t_mysh *mysh);
+t_clist *my_history();
+void write_hist(t_clist *hist);
+void print_hist(t_clist *hist);
+t_clist *push_in_hist(t_clist *hist, char *cmd);
+
+
+
 
 /*
 ** ERROR functions

@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 19:44:28 2017 Guilhem Fulcrand
-** Last update Thu May 18 16:54:56 2017 Alexandre Chamard-bois
+** Last update Fri May 19 19:45:19 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -32,7 +32,7 @@ int         my_which(char **av, t_mysh *sh)
     char    *path;
 
     if (!av[1])
-        return (-(my_pcustomwarning("%s: Too few arguments.\n", av[0])));
+        return (-(my_pcustomwarning("%s: Too few arguments.", av[0])));
     i = 0;
     while (av[++i])
     {
@@ -62,7 +62,7 @@ int         my_where(char **av, t_mysh *sh)
     int exist;
 
     if (!av[1])
-        return (-(my_pcustomwarning("%s: Too few arguments.\n", av[0])));
+        return (-(my_pcustomwarning("%s: Too few arguments.", av[0])));
     i = 0;
     ret = 0;
     while (av[++i])
