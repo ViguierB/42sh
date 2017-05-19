@@ -5,10 +5,11 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Fri May 19 09:02:52 2017 Alexandre Chamard-bois
+** Last update Fri May 19 18:24:12 2017 Guilhem Fulcrand
 */
 
 #include "libmy.h"
+#include "history.h"
 #include "var.h"
 
 #ifndef MYSH_H_
@@ -46,6 +47,7 @@ typedef struct	s_process
 typedef struct	s_mysh
 {
   t_clist	*env;
+  t_hist    *hist;
   t_clist	*alias;
   t_var		*var;
   int		last_exit;
