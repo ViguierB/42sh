@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Thu May 18 15:07:39 2017 Alexandre Chamard-bois
+** Last update Fri May 19 18:21:11 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -13,12 +13,14 @@
 #include "my_env.h"
 #include "parser.h"
 #include "42shrc.h"
+#include "history.h"
 
 t_my_fd *init_main(int ac, t_mysh *sh, char **av, char **env)
 {
   (void) ac;
   my_memset(sh, 0, sizeof(*sh));
   my_init_env(&sh->env, env);
+  sh->hist = my_history(&sh->hist);
   sh->alias = my_source(NULL);
   my_name(LIBMY_INIT, av[0]);
   var_last_ret(sh);

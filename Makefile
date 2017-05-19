@@ -5,12 +5,13 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Wed May 17 20:06:29 2017 Guilhem Fulcrand
+## Last update Fri May 19 18:17:24 2017 Guilhem Fulcrand
 ##
 
 include ./include/depend.mk
 
 SRC	= 	main.c		\
+		history.c		\
 		build_tree.c	\
 		parser.c	\
 		check_var.c	\

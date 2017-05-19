@@ -5,8 +5,10 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Fri May  5 18:33:28 2017 Guilhem Fulcrand
-** Last update Fri May  5 19:07:48 2017 Guilhem Fulcrand
+** Last update Fri May 19 18:22:02 2017 Guilhem Fulcrand
 */
+
+#include "libmy.h"
 
 #ifndef HISTORY_H
 # define HISTORY_H
@@ -20,5 +22,14 @@
 # ifndef EXIT_F
 #  define EXIT_F        84
 # endif
+
+typedef struct          s_hist
+{
+    t_clist             *list;
+    t_clist             *start;
+    int                 nb;
+}                       t_hist;
+
+t_hist  *my_history();
 
 #endif
