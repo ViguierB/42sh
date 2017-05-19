@@ -5,9 +5,11 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Wed May 17 17:17:33 2017 Alexandre Chamard-bois
+** Last update Thu May 18 15:36:23 2017 Alexandre Chamard-bois
 */
 
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include "libmy.h"
 #include "mysh.h"
@@ -47,11 +49,13 @@ t_env *old_pwd(char *memo, t_env *env)
   return (env);
 }
 
-int error_chdir(char *cwd, char *tab)
+int error_chdir(char *tab)
 {
-  if (access(cwd, F_OK) != 0)
+  struct stat stats;
+
+  if (stat(tab, &stats))
     my_printf("%s: No such file or directory.\n", tab);
-  else
+  else if (!S_ISDIR(stats.st_mode))
     my_printf("%s: Not a directory.\n", tab);
   return (1);
 }
@@ -61,7 +65,6 @@ int end_cd(char cwd[1024], t_mysh *sh)
   var_set_env(sh, "OLDPWD", cwd);
   getcwd(cwd, 1024);
   var_set_env(sh, "PWD", cwd);
-  sh->last_exit = 0;
   return (0);
 }
 
@@ -86,6 +89,6 @@ int my_cd(char **tab, t_mysh *sh)
   else if (my_strcmp(tab[1], "-") != 0)
     new_cwd = modify_pwd(old_cwd, tab[1]);
   if (chdir(new_cwd) == -1)
-    error_chdir(old_cwd, tab[1]);
+    return (error_chdir(tab[1]));
   return (end_cd(old_cwd, sh));
 }

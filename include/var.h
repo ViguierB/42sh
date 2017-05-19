@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May  5 19:23:43 2017 Alexandre Chamard-bois
-** Last update Tue May 16 19:21:26 2017 Guilhem Fulcrand
+** Last update Fri May 19 09:02:44 2017 Alexandre Chamard-bois
 */
 
 #ifndef VAR_H_
@@ -20,15 +20,10 @@
 # define PTR(var)   ((t_var_elm*)var->ptr)
 # define NAME(var)  (PTR(var)->name)
 # define VALUE(var) (PTR(var)->value.ptr)
-# define TYPE(var)  (PTR(var)->value.type)
-# define STR(var)   (TYPE(var) == T_STR ? 1 : 0)
-# define INT(var)   (TYPE(var) == T_INT ? 1 : 0)
-# define FLOAT(var) (TYPE(var) == T_FLOAT ? 1 : 0)
 
 typedef struct   s_value
 {
-  int           type;
-  void          *ptr;
+  char          *ptr;
 }               t_value;
 
 typedef struct  s_var_elm
@@ -52,7 +47,6 @@ typedef struct  s_function
   void          *ptr;
 }               t_function;
 
-int find_type(char *str);
 char *find_var(t_clist *, t_clist *, char *);
 
 #endif

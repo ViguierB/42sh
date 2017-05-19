@@ -5,10 +5,11 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:09:47 2017 Guilhem Fulcrand
-** Last update Tue May 16 16:34:06 2017 Guilhem Fulcrand
+** Last update Thu May 18 18:34:01 2017 Guilhem Fulcrand
 */
 
 #include "42shrc.h"
+#include "mysh.h"
 
 void    free_alias(void *alias)
 {
@@ -48,4 +49,26 @@ char        *find_alias(t_clist *list, char *cmd)
         tmp = CLIST_NEXT(list, tmp);
     }
     return (NULL);
+}
+
+int     my_alias(char **av, t_mysh *sh)
+{
+    int     i;
+    t_all   all;
+    char    *val;
+
+    all.list = sh->alias;
+    if (!av[1] || !av[2])
+        return (0);
+    if (!av[2])
+        return (0);
+    val = NULL;
+    i = 1;
+    while (av[++i])
+    {
+        val = my_strconca(val, av[i]);
+        val = my_strconca(val, " ");
+    }
+    val[my_strlen(val) - 1] = 0;
+    return (check_in_list(&all, av[1], val));
 }

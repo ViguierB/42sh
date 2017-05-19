@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 17:57:58 2017 Guilhem Fulcrand
-** Last update Wed May 17 18:16:07 2017 Guilhem Fulcrand
+** Last update Thu May 18 17:52:55 2017 Alexandre Chamard-bois
 */
 
 #include "my_env.h"
@@ -19,6 +19,8 @@ char        *true_preparsing(t_mysh *mysh, char *cmd)
     i = -1;
     while (cmd[++i])
     {
+      if (cmd[i] == '\t')
+        cmd[i] = ' ';
         if (cmd[i] == '~')
         {
             if ((home = my_getenv(mysh->env, "HOME")))
@@ -27,5 +29,5 @@ char        *true_preparsing(t_mysh *mysh, char *cmd)
                 cmd = substr(cmd, "/", i, 1);
         }
     }
-    return (cmd);
+    return (clean_line(cmd));
 }

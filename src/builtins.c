@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May 14 15:10:27 2017 Alexandre Chamard-bois
-** Last update Wed May 17 14:28:20 2017 Alexandre Chamard-bois
+** Last update Thu May 18 17:59:00 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -22,6 +22,9 @@ const t_builtin g_builtins[] =
   {"echo", my_echo},
   {"[", builtin_crochet},
   {"set", my_set},
+  {"which", my_which},
+  {"where", my_where},
+  {"alias", my_alias},
   {"if", NULL},
   {NULL, NULL},
 };

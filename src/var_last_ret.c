@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Wed May 17 11:28:08 2017 Alexandre Chamard-bois
-** Last update Wed May 17 16:22:25 2017 Alexandre Chamard-bois
+** Last update Fri May 19 09:02:19 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -33,18 +33,31 @@ char *cpy_ret(int ret)
   return (nb);
 }
 
+void print_var(t_mysh *mysh)
+{
+  t_var *elm;
+
+  elm = mysh->var;
+  while (elm)
+  {
+    my_printf("%s\t%s\n", NAME(elm), VALUE(elm));
+    elm = CLIST_NEXT(mysh->var, elm);
+  }
+}
+
 void var_last_ret(t_mysh *mysh)
 {
-  char *tab[4];
+  char *tab[5];
 
   tab[0] = "set";
   tab[1] = "?";
-  tab[2] = cpy_ret(mysh->last_exit);
-  tab[3] = NULL;
-  if (tab[2])
+  tab[2] = "=";
+  tab[3] = cpy_ret(mysh->last_exit);
+  tab[4] = NULL;
+  if (tab[3])
   {
     my_set(tab, mysh);
-    free(tab[2]);
+    free(tab[3]);
   }
 }
 

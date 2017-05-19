@@ -1,11 +1,11 @@
 /*
 ** error.c for minishell.c in /home/benji_epitech/System_Unix/PSU_2016_minishell2
-** 
+**
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
-** 
+**
 ** Started on  Tue Apr  4 11:37:45 2017 Benjamin Viguier
-** Last update Wed May 17 15:03:51 2017 Benjamin Viguier
+** Last update Fri May 19 11:28:32 2017 Benjamin Viguier
 */
 
 #include <errno.h>

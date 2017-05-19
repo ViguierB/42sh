@@ -5,11 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-<<<<<<< HEAD
-** Last update Wed May 17 16:22:15 2017 Alexandre Chamard-bois
-=======
-** Last update Wed May 17 18:43:36 2017 Guilhem Fulcrand
->>>>>>> d553a5e58da56e36698be4ff435121e3be0fb8dd
+** Last update Fri May 19 09:02:52 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -63,11 +59,13 @@ typedef struct	s_builtin
 }		t_builtin;
 
 int is_permited(char *path);
+int is_file(char *name);
 int	is_local_cmd(char *name);
 int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);
 void var_last_ret(t_mysh *mysh);
 void var_set_env(t_mysh *mysh, char *key, char *value);
+void print_var(t_mysh *mysh);
 
 /*
 ** ERROR functions
@@ -80,6 +78,9 @@ int	my_ssetenv(char **tab, t_mysh *sh);
 int	my_unsetenv(char **tab, t_mysh *sh);
 int builtin_crochet(char **tab, t_mysh *sh);
 int	my_exit(char **av, t_mysh *sh);
+int my_which(char **av, t_mysh *sh);
+int my_where(char **av, t_mysh *sh);
+int my_alias(char **av, t_mysh *sh);
 
 /*
 ** ERROR functions
