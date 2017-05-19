@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Thu May 18 15:31:03 2017 Pierre Narcisi
-** Last update Thu May 18 19:22:30 2017 Pierre Narcisi
+** Last update Fri May 19 11:59:03 2017 Pierre Narcisi
 */
 
 #include <string.h>
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <term.h>
 
-char	*rm_ch(char *str, int *cursor)
+char	*rm_ch(char *str, int cursor)
 {
   char	*new;
   int	len;
@@ -54,7 +54,7 @@ char	*add_ch(char *str, char c, int *cursor)
   if ((new = malloc(sizeof(char) * len + 2)) == NULL)
     return (NULL);
   i = 0;
-  while (str[i] != '\0' && i < cursor)
+  while (str[i] != '\0' && i < *cursor)
     {
       new[i] = str[i];
       i++;
@@ -73,8 +73,8 @@ char *back_space(char *str, char c, int *cursor)
 {
   if (*cursor > 0)
     {
-      *cursor--;
-      str = rm_ch(str, cursor);
+      *cursor -= 1;
+      str = rm_ch(str, *cursor);
     }
   return (str);
 }
@@ -83,15 +83,16 @@ char *right_arrow(char *str, char c, int *cursor)
 {
   if (*cursor <= strlen (str))
   {
-    *cursor++;
+    *cursor += 1;
   }
-  return (NULL);
+  return (str);
 }
 
 char *left_arrow(char *str, char c, int *cursor)
 {
-  if (cursor >= 0)
+  if (*cursor >= 0)
     {
-      cursor -= 1;
+      *cursor -= 1;
     }
+  return (str);
 }

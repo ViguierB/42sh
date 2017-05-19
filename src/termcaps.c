@@ -5,9 +5,10 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Mon May 15 13:43:04 2017 augustin leconte
-** Last update Thu May 18 20:38:14 2017 Pierre Narcisi
+** Last update Fri May 19 12:01:57 2017 Pierre Narcisi
 */
 
+#include "termcaps.h"
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
@@ -15,7 +16,7 @@
 #include <stdlib.h>
 #include <term.h>
 
-t_term_tab tab[] = {
+t_term_tab g_key[4] = {
   {127, 0, back_space},
   {27, 68, left_arrow},
   {27, 67, right_arrow},
@@ -26,8 +27,8 @@ char     *termcaps()
 {
   char     buffer[3];
   char     *str;
-  int cursor;
-  int i;
+  int      cursor;
+  int      i;
 
   cursor = 0;
   if ((str = malloc(sizeof(char))) == NULL)
@@ -37,22 +38,22 @@ char     *termcaps()
   {
     read(0, buffer, 3);
     i = 0;
-    while (tab[i]->param1 != -1 && tab[i]->param1 != buffer[0])
+    while (g_key[i].param1 != -1 && g_key[i].param1 != buffer[0])
       i++;
-    if (tab[i]->param1 == 27)
+    if (g_key[i].param1 == 27)
       {
-        i = 0;
-        while (tab[i]->param2 != -1 && tab[i]->param2 != buffer[0])
+        while (g_key[i].param2 != -1 && g_key[i].param2 != buffer[0])
           i++;
       }
-    if (tab[i]->param1 != -1)
-      str = tab[i]->term(str, buffer[0], &cursor);
+    if (g_key[i].param1 != -1)
+      str = g_key[i].term(str, buffer[0], &cursor);
     else
       {
         cursor++;
-        str = add_ch(str, buffer[0], cursor);
+        str = add_ch(str, buffer[0], &cursor);
       }
       write(1, str, strlen(str));
+      printf("\n%d\n", cursor);
   }
   return (str);
 }
