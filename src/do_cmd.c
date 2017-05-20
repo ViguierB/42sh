@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May 19 20:24:08 2017 Alexandre Chamard-bois
-** Last update Fri May 19 20:24:33 2017 Alexandre Chamard-bois
+** Last update Sat May 20 15:45:26 2017 Alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -16,6 +16,11 @@ int do_cmd(t_mysh *sh, char *cmd)
   t_tree *tree;
   t_exec_opts opts;
 
+  if (!cmd || !*cmd)
+  {
+  sh->last_exit = 1;
+  return (0);
+  }
   tree = parse_cmd(cmd);
   if (!tree)
 {

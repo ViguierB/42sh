@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 11:41:16 2017 Alexandre Chamard-bois
-** Last update Sat May 20 12:11:57 2017 Alexandre Chamard-bois
+** Last update Sat May 20 12:18:35 2017 Alexandre Chamard-bois
 */
 
 #include <fcntl.h>
@@ -54,7 +54,8 @@ int main_script(int ac, char **av, t_mysh *sh)
     exit(end_script_main(sh));
   while (!sh->exit && (cmd = my_getline(sh->in)))
   {
-    if (*cmd != COMMENT_CHAR)
+    cmd = clean_line(cmd);
+    if (*cmd && *cmd != COMMENT_CHAR)
       do_cmd(sh, cmd);
     free(cmd);
   }

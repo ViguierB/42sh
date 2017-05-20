@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 11:11:48 2017 Alexandre Chamard-bois
-** Last update Sat May 20 11:30:29 2017 Alexandre Chamard-bois
+** Last update Sat May 20 12:21:12 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -13,9 +13,9 @@
 #include "mysh.h"
 #include "script.h"
 
-int print_foreach()
+int print_foreach(t_mysh *sh)
 {
-  if (isatty(0))
+  if (isatty(0) && !sh->in->fd)
     my_printf("foreach? ");
   return (1);
 }
@@ -28,7 +28,7 @@ t_clist *recup_foreach(t_mysh *sh)
 
   then = 0;
   list = NULL;
-  while (!then && print_foreach() && (str = my_getline(sh->in)))
+  while (!then && print_foreach(sh) && (str = my_getline(sh->in)))
   {
     if (my_strcmp(str, "end"))
       list = clist_push(list, str);

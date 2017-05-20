@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May  7 20:17:55 2017 Alexandre Chamard-bois
-** Last update Sat May 20 11:04:10 2017 Alexandre Chamard-bois
+** Last update Sat May 20 12:20:36 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -13,9 +13,9 @@
 #include "mysh.h"
 #include "script.h"
 
-int print_if()
+int print_if(t_mysh *sh)
 {
-  if (isatty(0))
+  if (isatty(0) && !sh->in->fd)
     my_printf("if? ");
   return (1);
 }
@@ -28,7 +28,7 @@ t_clist *recup_if(t_mysh *sh, int last_ret)
 
   then = 0;
   list = NULL;
-  while (then != 2 && print_if() && (str = my_getline(sh->in)))
+  while (then != 2 && print_if(sh) && (str = my_getline(sh->in)))
   {
     if (!my_strcmp(str, "else"))
       then = 1;

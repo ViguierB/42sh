@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Thu May 18 10:02:06 2017 Alexandre Chamard-bois
+** Last update Sat May 20 15:59:36 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -78,17 +78,22 @@ void	wait_child(t_mysh *sh, t_process *proc)
 char        *substr(char *str, char *substr, int start, int len)
 {
     char    *new_str;
+    int len_add;
 
-    if (start > my_strlen(str) || start + len > my_strlen(str) ||
-        start < 0 || len < 0 || !substr)
+    len_add = 0;
+    if (substr)
+      len_add = my_strlen(substr);
+    if (!str || start > my_strlen(str) || start + len > my_strlen(str) ||
+        start < 0 || len < 0)
         return (str);
     new_str = NULL;
     if (!(new_str = malloc(sizeof(char) *
-        (my_strlen(str) + my_strlen(substr) - len + 1))))
+        (my_strlen(str) + len_add - len + 1))))
         return (NULL);
     my_strncpy(new_str, str, start);
-    my_strcpy(new_str + start, substr);
-    my_strcpy(new_str + start + my_strlen(substr), str + start + len);
-    new_str[my_strlen(str) + my_strlen(substr) - len] = 0;
+    if (substr)
+      my_strcpy(new_str + start, substr);
+    my_strcpy(new_str + start + len_add, str + start + len);
+    new_str[my_strlen(str) + len_add - len] = 0;
     return (new_str);
 }

@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:09:47 2017 Guilhem Fulcrand
-** Last update Fri May 19 18:43:45 2017 Guilhem Fulcrand
+** Last update Sat May 20 15:48:50 2017 Alexandre Chamard-bois
 */
 
 #include "42shrc.h"
@@ -36,8 +36,6 @@ void    print_alias(t_clist *list)
         tmp = CLIST_NEXT(list, tmp);
     }
 }
-
-#include <stdio.h>
 
 char        *find_alias(t_clist *list, char *cmd)
 {
