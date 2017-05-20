@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 14:23:32 2017 Alexandre Chamard-bois
-** Last update Sat May 20 16:03:48 2017 Alexandre Chamard-bois
+** Last update Sat May 20 16:50:50 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -54,5 +54,6 @@ char *magic_quote(t_mysh *sh, char *cmd, int i)
   close(fd);
   recup = recup_file();
   new_cmd = substr(cmd, recup, i, size + 1);
+  free(cmd);
   return (new_cmd);
 }
