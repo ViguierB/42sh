@@ -5,15 +5,37 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Fri May 19 19:08:51 2017 Pierre Narcisi
-** Last update Sat May 20 19:04:52 2017 Pierre Narcisi
+** Last update Sat May 20 19:42:13 2017 Pierre Narcisi
 */
 
-char *up_arrow(char *str, char c, int *cursor)
+#include "termcaps.h"
+#include <unistd.h>
+#include <stdio.h>
+
+char *up_arrow(char *str, char c, int *cursor, t_clist *list)
 {
-  return ();
+  int i;
+
+  i = 0;
+  while (i < *cursor)
+  {
+    write(1, "\10\33[1P", 5);
+    i++;
+  }
+  *cursor = 0;
+  return ("\0");
 }
 
-char *down_arrow(char *str, char c, int *cursor)
+char *down_arrow(char *str, char c, int *cursor, t_clist *list)
 {
-  return ();
+  int i;
+
+  i = 0;
+  while (i < *cursor)
+  {
+    write(1, "\10\33[1P", 5);
+    i++;
+  }
+  *cursor = 0;
+  return ("\0");
 }
