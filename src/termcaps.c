@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Mon May 15 13:43:04 2017 augustin leconte
-** Last update Fri May 19 20:44:33 2017 augustin leconte
+** Last update Sat May 20 15:01:49 2017 augustin leconte
 */
 
 #include "termcaps.h"
@@ -60,25 +60,14 @@ char     *termcaps()
 int              main(int ac, char **av, char **env)
 {
   char           *str;
-  char           *name_term;
-  struct termios term;
+  static struct termios term;
+  static struct termios save;
 
-  if ((name_term = getenv("TERM")) == NULL)
-    return (-1);
-  if (tgetent(NULL, name_term) == -1)
-    return (-1);
-  if (tcgetattr(0, &term) == -1)
-    return (-1);
-  term.c_lflag &= ~(ICANON);
-  term.c_lflag &= ~(ECHO);
-  if (tcsetattr(0, TCSADRAIN, &term) == -1)
-    return (-1);
-  if ((str = termcaps()) != NULL)
-    printf("%s\n", str);
-  if (tcgetattr(0, &term) == -1)
-   return (-1);
-  term.c_lflag = (ICANON | ECHO);
-  if (tcsetattr(0, 0, &term) == -1)
-   return (-1);
+  tcgetattr(0, &term);
+  save = term;
+  term.c_lflag &= ~(ICANON | ECHO);
+  tcsetattr(0, TCSANOW, &term);
+  str = termcaps();
+  tcsetattr(0, TCSANOW, &save);
   return (0);
 }
