@@ -5,72 +5,52 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Fri May 19 10:35:22 2017 augustin leconte
-** Last update Fri May 19 20:40:27 2017 augustin leconte
+** Last update Sat May 20 19:29:22 2017 Pierre Narcisi
 */
-
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
 
-struct termios saved_attributes;
-
-void my_putchar(char c)
+char *tab_key(char *str, char c, int *cursor)
 {
-  write (1, &c, 1);
-}
-
-void my_putstr(char *str)
-{
+  char **tab;
+  char **tab2;
   int i;
+  int j;
 
+  i = 0;
+  tab2 = malloc (sizeof (char*) * 2);
+  tab = my_split(str, ' ', NULL);
+  while (tab[i + 1] != NULL)
+    i++;
+  tab2[0] = str_conca(tab[i], "*");
+  j = i;
+  globing(&tab2)
   i = -1;
-  while (str[++i] != '\0')
-    my_putchar(str[i]);
-}
+  while (tab[i + 1] != NULL)
+    i++;
+  if (i == -1)
+    return (str);
+  else if (i == 0)
+    {
+      tab[j] = NULL;
+      str = wordtab_to_str(tab);
+      str = str_conca(str, " ");
+      str = str_conca(str, tab[0]);
+      return (str);
+    }
+  else
+    {
+      i = 0;
+      while (tab[i] != NULL)
+        {
+          printf("   %s", tab[i]);
+          i++;
+        }
+      return (str);
+    }
 
-// void reset_input_mode (void)
-// {
-//  tcsetattr (STDIN_FILENO, TCSANOW, &saved_attributes);
-// }
-//
-// int set_input_mode ()
-// {
-//  struct termios tattr;
-//
-//  if (!isatty (STDIN_FILENO))
-//     return (84);
-//  tcgetattr (STDIN_FILENO, &saved_attributes);
-//  atexit (reset_input_mode);
-//  tcgetattr (STDIN_FILENO, &tattr);
-//  tattr.c_lflag &= ~(ICANON|ECHO);
-//  tattr.c_cc[VMIN] = 1;
-//  tattr.c_cc[VTIME] = 0;
-//  tcsetattr (STDIN_FILENO, TCSAFLUSH, &tattr);
-//  return (0);
-// }
-
-int main ()
-{
- // char c;z
- int j;
- // int cursor;
-
- // cursor = 0;
- // if (set_input_mode() == 84)
-  // return (84);
- j = 0;
- while (j < 3)
-   {
-     if (j == 0)
-      my_putstr("salut");
-      j++;
-    //  j = read(STDIN_FILENO, &c, 1);
-    //  if (c == '\004')
-      //  return (0);
-      my_putstr("\033[1D");
-   }
-   while (1);
- return (0);
+  return (str);
 }
