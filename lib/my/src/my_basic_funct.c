@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Wed Nov  9 16:23:22 2016 Benjamin Viguier
-** Last update Sat May  6 21:56:54 2017 Alexandre Chamard-bois
+** Last update Sat May 20 19:20:53 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -38,7 +38,7 @@ char	*my_strndup(char *str, int n)
   res = malloc(sizeof(char) * (n + 1));
   if (!res)
     return (0);
-  res[n] = '\0';
+  my_memset(res, 0, n + 1);
   i = 0;
   while (i < n)
   {

@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 17:57:58 2017 Guilhem Fulcrand
-** Last update Sat May 20 17:00:22 2017 Alexandre Chamard-bois
+** Last update Sat May 20 19:01:18 2017 Alexandre Chamard-bois
 */
 
 #include "my_env.h"
@@ -29,5 +29,7 @@ char        *true_preparsing(t_mysh *mysh, char *cmd)
         else if (!my_strncmp(cmd + i, "!!", 2) && mysh->hist)
           cmd = substr(cmd, mysh->hist->prev->ptr, i, 2);
     }
+    if (!cmd)
+      return (NULL);
     return (clean_line(cmd));
 }

@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Sat May 20 15:37:12 2017 Alexandre Chamard-bois
+## Last update Sat May 20 19:47:47 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -53,6 +53,7 @@ SRC	= 	main.c		\
 		foreach.c	\
 		script.c	\
 		magic_quote.c	\
+		print_prompt.c	\
 
 MKLIB	=	make -C ./lib/my/
 

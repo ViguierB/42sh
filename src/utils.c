@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Sat May 20 15:59:36 2017 Alexandre Chamard-bois
+** Last update Sat May 20 19:30:41 2017 Alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -88,8 +88,9 @@ char        *substr(char *str, char *substr, int start, int len)
         return (str);
     new_str = NULL;
     if (!(new_str = malloc(sizeof(char) *
-        (my_strlen(str) + len_add - len + 1))))
+        (my_strlen(str) + len_add - len + 2))))
         return (NULL);
+    my_memset(new_str, 0, my_strlen(str) + len_add - len + 2);
     my_strncpy(new_str, str, start);
     if (substr)
       my_strcpy(new_str + start, substr);
