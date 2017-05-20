@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Thu May 18 15:31:03 2017 Pierre Narcisi
-** Last update Sat May 20 20:06:56 2017 Pierre Narcisi
+** Last update Sat May 20 20:14:44 2017 augustin leconte
 */
 
 #include <string.h>
@@ -69,7 +69,7 @@ char	*add_ch(char *str, char c, int *cursor)
   return (new);
 }
 
-char *back_space(char c, int *cursor, t_clist *list)
+t_clist *back_space(char c, int *cursor, t_clist *list)
 {
   if (*cursor > 0)
     {
@@ -80,7 +80,7 @@ char *back_space(char c, int *cursor, t_clist *list)
   return (list);
 }
 
-char *right_arrow(char c, int *cursor, t_clist *list)
+t_clist *right_arrow(char c, int *cursor, t_clist *list)
 {
   (void)list;
   (void)c;
@@ -93,7 +93,7 @@ char *right_arrow(char c, int *cursor, t_clist *list)
   return (list);
 }
 
-char *left_arrow(char c, int *cursor, t_clist *list)
+t_clist *left_arrow(char c, int *cursor, t_clist *list)
 {
   (void)list;
   (void)c;

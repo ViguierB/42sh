@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Mon May 15 13:43:04 2017 augustin leconte
-** Last update Sat May 20 20:04:59 2017 Pierre Narcisi
+** Last update Sat May 20 20:12:21 2017 augustin leconte
 */
 
 #include "termcaps.h"
@@ -49,7 +49,7 @@ char     *termcaps(t_clist *list)
           i++;
       }
     else if (g_key[i].param1 != -1)
-      str = g_key[i].term(buffer[0], &cursor, list);
+      list->ptr = g_key[i].term(buffer[0], &cursor, list);
     else
       {
         cursor++;
@@ -57,6 +57,7 @@ char     *termcaps(t_clist *list)
         write(1, &buffer[0], 1);
       }
   }
+  str = list->ptr;
   return (str);
 }
 
@@ -74,5 +75,5 @@ char              *termcap(t_mysh *sh)
   tcsetattr(0, TCSANOW, &term);
   str = termcaps(list);
   tcsetattr(0, TCSANOW, &save);
-  return (list_save);
+  return (str);
 }
