@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Wed May 17 17:52:29 2017 Guilhem Fulcrand
+** Last update Sat May 20 19:36:28 2017 Alexandre Chamard-bois
 */
 
 #ifndef LIBMY_H_
@@ -22,6 +22,7 @@
 # define LIBMY_GET 42
 # define MY_FD_BUFF_LEN 1024
 # define PSQ(x) ((x) * (x))
+# define CLIST_PREV(l, e) ((((e)->prev) == (l)) ? ((void*) 0) : ((e)->prev))
 # define CLIST_NEXT(l, e) ((((e)->next) == (l)) ? ((void*) 0) : ((e)->next))
 
 typedef struct	s_my_fd
