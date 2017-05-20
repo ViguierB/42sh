@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 14:23:32 2017 Alexandre Chamard-bois
-** Last update Sat May 20 16:50:50 2017 Alexandre Chamard-bois
+** Last update Sat May 20 17:11:48 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -42,18 +42,23 @@ char *recup_file()
 
 char *magic_quote(t_mysh *sh, char *cmd, int i)
 {
+  int save;
   int fd;
   int size;
   char *recup;
   char *new_cmd;
 
+  save = dup(1);
   if ((fd = open(". ", O_RDWR | O_CREAT | O_TRUNC, 0666)) == -1)
     return (cmd);
+  dup2(fd, 1);
   new_cmd = recup_magic(cmd, i, &size);
   do_cmd(sh, new_cmd);
   close(fd);
   recup = recup_file();
   new_cmd = substr(cmd, recup, i, size + 1);
   free(cmd);
+  dup2(save, 1);
+  close(save);
   return (new_cmd);
 }
