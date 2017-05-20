@@ -5,11 +5,10 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 18:36:50 2017 Guilhem Fulcrand
-** Last update Wed May 17 18:41:44 2017 Guilhem Fulcrand
+** Last update Sat May 20 18:24:34 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
-
 #include "libmy.h"
 
 int     is_permited(char *path)
