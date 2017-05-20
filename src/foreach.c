@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 11:11:48 2017 Alexandre Chamard-bois
-** Last update Sat May 20 11:28:24 2017 Alexandre Chamard-bois
+** Last update Sat May 20 11:30:29 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -36,7 +36,10 @@ t_clist *recup_foreach(t_mysh *sh)
       then = 1;
   }
   if (!str)
+  {
+    my_printf("foreach: end not found.\n");
     return (NULL);
+  }
   return (list);
 }
 
