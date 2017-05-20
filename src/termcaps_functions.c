@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Thu May 18 15:31:03 2017 Pierre Narcisi
-** Last update Sat May 20 18:12:50 2017 augustin leconte
+** Last update Sat May 20 19:28:37 2017 augustin leconte
 */
 
 #include <string.h>
@@ -80,8 +80,10 @@ char *back_space(char *str, char c, int *cursor)
   return (str);
 }
 
-char *right_arrow(char *str, char c, int *cursor)
+char *right_arrow(char *str, char c, int *cursor, t_clist *list)
 {
+  (void)list;
+  (void)c;
   if (*cursor < strlen (str))
   {
     *cursor += 1;
@@ -91,8 +93,10 @@ char *right_arrow(char *str, char c, int *cursor)
   return (str);
 }
 
-char *left_arrow(char *str, char c, int *cursor)
+char *left_arrow(char *str, char c, int *cursor, t_clist *list)
 {
+  (void)list;
+  (void)c;
   if (*cursor > 0)
     {
       *cursor -= 1;

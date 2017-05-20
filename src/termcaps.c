@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Mon May 15 13:43:04 2017 augustin leconte
-** Last update Sat May 20 15:01:49 2017 augustin leconte
+** Last update Sat May 20 19:39:12 2017 augustin leconte
 */
 
 #include "termcaps.h"
@@ -16,14 +16,16 @@
 #include <stdlib.h>
 #include <term.h>
 
-t_term_tab g_key[4] = {
+t_term_tab g_key[6] = {
   {127, 0, back_space},
   {27, 68, left_arrow},
   {27, 67, right_arrow},
+  {27, 65, up_arrow},
+  {27, 66, down_arrow},
   {-1, -1, NULL}
 };
 
-char     *termcaps()
+char     *termcaps(t_clist *list)
 {
   char     buffer[3];
   char     *str;
@@ -45,8 +47,8 @@ char     *termcaps()
         while (g_key[i].param2 != -1 && g_key[i].param2 != buffer[2])
           i++;
       }
-    if (g_key[i].param1 != -1)
-      str = g_key[i].term(str, buffer[0], &cursor);
+    else if (g_key[i].param1 != -1)
+      str = g_key[i].term(str, buffer[0], &cursor, list);
     else
       {
         cursor++;
@@ -57,17 +59,19 @@ char     *termcaps()
   return (str);
 }
 
-int              main(int ac, char **av, char **env)
+char              *termcap(t_mysh *sh)
 {
   char           *str;
   static struct termios term;
   static struct termios save;
+  static t_clist *list_save;
 
+list_save = sh->hist;
   tcgetattr(0, &term);
   save = term;
   term.c_lflag &= ~(ICANON | ECHO);
   tcsetattr(0, TCSANOW, &term);
-  str = termcaps();
+  str = termcaps(list);
   tcsetattr(0, TCSANOW, &save);
-  return (0);
+  return (list_save);
 }
