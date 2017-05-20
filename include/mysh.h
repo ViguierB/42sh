@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Sat May 20 11:02:39 2017 Alexandre Chamard-bois
+** Last update Sat May 20 11:25:59 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -67,6 +67,7 @@ int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);
 char *wordtab_to_str(char **tab);
 void var_last_ret(t_mysh *mysh);
+int var_set(t_mysh *mysh, char *key, char *value);
 void var_set_env(t_mysh *mysh, char *key, char *value);
 void print_var(t_mysh *mysh);
 t_clist *my_history();
@@ -92,6 +93,7 @@ int my_where(char **av, t_mysh *sh);
 int my_alias(char **av, t_mysh *sh);
 int my_if(char **tab, t_mysh *sh);
 int		my_repeat(char **av, t_mysh *sh);
+int my_foreach(char **tab, t_mysh *sh);
 
 /*
 ** ERROR functions

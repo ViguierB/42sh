@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Wed May 17 11:28:08 2017 Alexandre Chamard-bois
-** Last update Fri May 19 09:02:19 2017 Alexandre Chamard-bois
+** Last update Sat May 20 11:27:35 2017 Alexandre Chamard-bois
 */
 
 #include <stdlib.h>
@@ -59,6 +59,18 @@ void var_last_ret(t_mysh *mysh)
     my_set(tab, mysh);
     free(tab[3]);
   }
+}
+
+int var_set(t_mysh *mysh, char *key, char *value)
+{
+  char *tab[5];
+
+  tab[0] = "set";
+  tab[1] = key;
+  tab[2] = "=";
+  tab[3] = value;
+  tab[4] = NULL;
+  return (my_set(tab, mysh));
 }
 
 void var_set_env(t_mysh *mysh, char *key, char *value)
