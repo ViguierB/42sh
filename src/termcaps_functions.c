@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Thu May 18 15:31:03 2017 Pierre Narcisi
-** Last update Fri May 19 21:08:48 2017 augustin leconte
+** Last update Sat May 20 18:12:50 2017 augustin leconte
 */
 
 #include <string.h>
@@ -74,9 +74,8 @@ char *back_space(char *str, char c, int *cursor)
   if (*cursor > 0)
     {
       *cursor -= 1;
+       write(1, "\10\33[1P", 5);
       str = rm_ch(str, *cursor);
-      printf("\177");
-      fflush(stdout);
     }
   return (str);
 }
