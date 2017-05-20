@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 18:05:31 2017 Benjamin Viguier
-** Last update Thu May 18 16:15:07 2017 Guilhem Fulcrand
+** Last update Sat May 20 14:08:18 2017 Benjamin Viguier
 */
 
 #ifndef PARSER_H_
@@ -117,6 +117,7 @@ typedef struct	s_tree
 typedef struct	t_exec_opts
 {
   int		need_redir;
+  int		pipe_child;
   int		pipe_in[2];
   int		pipe_out[2];
   int		pipe_err[2];

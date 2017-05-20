@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Fri May 19 20:24:15 2017 Alexandre Chamard-bois
+** Last update Sat May 20 13:29:07 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -16,7 +16,7 @@
 #include "parser.h"
 #include "my_env.h"
 
-int	redir_ff(t_mysh_fd *fd, int mpp[2], int redir)
+int	redir_ff(t_mysh_fd *fd)
 {
   int	file_fd;
 
@@ -28,20 +28,14 @@ int	redir_ff(t_mysh_fd *fd, int mpp[2], int redir)
       dup2(file_fd, fd->fd);
       fd->fd = file_fd;
     }
-  else if (redir == 0 || redir == 1)
-    {
-      close(mpp[!redir]);
-      dup2(mpp[redir], fd->fd);
-      close(mpp[redir]);
-    }
   return (0);
 }
 
-int my_exec(t_mysh *sh, t_process *proc, t_exec_opts *opts)
+int my_exec(t_mysh *sh, t_process *proc)
 {
-  if (redir_ff(&(proc->in), opts->pipe_in, 0) < 0 ||
-      redir_ff(&(proc->out), opts->pipe_out, 1) < 0 ||
-      redir_ff(&(proc->err), opts->pipe_err, 1) < 0)
+  if (redir_ff(&(proc->in)) < 0 ||
+      redir_ff(&(proc->out)) < 0 ||
+      redir_ff(&(proc->err)) < 0)
     return (-1);
   execve(proc->name, proc->args, my_env(sh->env));
   exit(1);
@@ -63,9 +57,7 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
       if ((proc->pid = fork()) < 0)
 	return (my_perror("fork()"));
       if (proc->pid == 0)
-	{
-    my_exec(sh, proc, opts);
-	}
+	my_exec(sh, proc);
       else if (!opts->ascyn)
 	wait_child(sh, proc);
   free(proc->name);

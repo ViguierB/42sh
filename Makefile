@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Sat May 20 11:56:06 2017 Alexandre Chamard-bois
+## Last update Sat May 20 13:56:33 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -24,6 +24,7 @@ SRC	= 	main.c		\
 		env.c		\
 		env_ext.c	\
 		op_and.c	\
+		op_pipe.c	\
 		redir_parser.c	\
 		parse_argv.c	\
 		execute.c	\
