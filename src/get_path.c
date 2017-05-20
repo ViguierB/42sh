@@ -5,13 +5,23 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Thu May 18 16:53:23 2017 Alexandre Chamard-bois
+** Last update Sat May 20 10:58:17 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
 #include "mysh.h"
 #include "parser.h"
 #include "my_env.h"
+
+void free_path(char **path)
+{
+  if (path)
+  {
+    if (*path)
+      free(*path);
+    free(path);
+  }
+}
 
 char		**get_path_tab(t_env *env)
 {
@@ -55,13 +65,12 @@ char	*search_in_path(t_mysh *sh, char *name)
       if (str)
 	{
 	  if (fexists(str))
-	    return (my_sb_destroy(sb), str);
+	    return (free_path(path), my_sb_destroy(sb), str);
 	  free(str);
 	}
       i++;
     }
-  my_sb_destroy(sb);
-  return (NULL);
+  return (free_path(path), my_sb_destroy(sb), NULL);
 }
 
 char	        *search_in_all_paths(t_mysh *sh, char *name)
@@ -80,8 +89,7 @@ char	        *search_in_all_paths(t_mysh *sh, char *name)
   path = get_path_tab(sh->env);
   while (path[++i])
     {
-        tmp = my_strconca(path[i], "/");
-        tmp = my_strconca(tmp, name);
+        tmp = str_conca(3, path[i], "/", name);
         if (fexists(tmp))
         {
             str = substr(str, tmp, my_strlen(str), 0);
@@ -89,8 +97,7 @@ char	        *search_in_all_paths(t_mysh *sh, char *name)
         }
         free(tmp);
     }
-    free(path[0]);
-    free(path);
+    free_path(path);
     return (!*str ? free(str), NULL : str);
 }
 

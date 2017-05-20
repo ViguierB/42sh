@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Fri May 19 21:39:39 2017 Alexandre Chamard-bois
+** Last update Sat May 20 11:02:39 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -51,6 +51,7 @@ typedef struct	s_mysh
   t_var		*var;
   int		last_exit;
   int		exit;
+  t_my_fd	*in;
 }		t_mysh;
 
 typedef struct	s_builtin
@@ -90,6 +91,7 @@ int my_which(char **av, t_mysh *sh);
 int my_where(char **av, t_mysh *sh);
 int my_alias(char **av, t_mysh *sh);
 int my_if(char **tab, t_mysh *sh);
+int		my_repeat(char **av, t_mysh *sh);
 
 /*
 ** ERROR functions

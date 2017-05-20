@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Fri May 19 21:39:52 2017 Alexandre Chamard-bois
+## Last update Sat May 20 10:39:49 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -47,6 +47,8 @@ SRC	= 	main.c		\
 		if.c	\
 		recup_parentheses.c	\
 		wordtab_to_str.c	\
+		condition.c	\
+		repeat.c	\
 
 MKLIB	=	make -C ./lib/my/
 

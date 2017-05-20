@@ -5,58 +5,45 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May  7 20:26:36 2017 Alexandre Chamard-bois
-** Last update Sun May  7 20:43:17 2017 Alexandre Chamard-bois
+** Last update Sat May 20 10:27:05 2017 Alexandre Chamard-bois
 */
 
 #include "libmy.h"
 #include "mysh.h"
-#include "script.h"
 
-char *recup_token(char *str, int *err)
+char *conc_with_free(char *str1, char *str2)
 {
-  static int i = 0;
-  char *token;
-  int j;
+  char *tmp;
 
-  while (str[i] && str[i] != '[')
-    i++;
-  j = i;
-  while (str[j] && str[j] != ']')
-    j++;
-  if (str[i] != '[')
-  {
-    *err = 0;
-    i = 0;
-    return (NULL);
-  }
-  if (str[j] != ']' || !(token = my_strndup(str + i, j - i + 1)))
-  {
-    *err = 1;
-    i = 0;
-    return (NULL);
-  }
-  *err = 0;
-  i++;
-  return (token);
+  tmp = my_strconca(str1, str2);
+  free(str1);
+  return (tmp);
 }
 
-t_cond *build_cond(char *str)
+char *concatene_cond(char **cond)
 {
-  t_cond *next;
-  t_cond *cond;
-  char *token;
-  int err;
+  int i;
+  char *str;
+  char *tmp;
 
-  next = NULL;
-  while ((token = recup_token(str, &err)))
+  i = 0;
+  str = my_strdup("[ ");
+  while (cond[i])
   {
-    if (!(cond = malloc(sizeof(t_cond))))
-      return (NULL);
-    my_memset(cond, 0, sizeof(t_cond));
-    my_printf("%s\n", token);
-    free(token);
+    if (!my_strcmp(cond[i], "&&") || !my_strcmp(cond[i], "||"))
+    {
+      str = conc_with_free(str, "] ");
+      str = conc_with_free(str, cond[i]);
+      str = conc_with_free(str, " [ ");
+    }
+    else
+    {
+      tmp = str_conca(3, str, cond[i], " ");
+      free(str);
+      str = tmp;
+    }
+    i++;
   }
-  if (err)
-    return (NULL);
-  return (cond);
+  str = conc_with_free(str, "]");
+  return (str);
 }

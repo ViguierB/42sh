@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May 14 15:10:27 2017 Alexandre Chamard-bois
-** Last update Fri May 19 21:58:08 2017 Alexandre Chamard-bois
+** Last update Sat May 20 10:39:25 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -26,6 +26,7 @@ const t_builtin g_builtins[] =
   {"where", my_where},
   {"alias", my_alias},
   {"if", my_if},
+  {"repeat", my_repeat},
   {NULL, NULL},
 };
 
