@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Mon May 15 13:43:04 2017 augustin leconte
-** Last update Fri May 19 18:27:55 2017 Pierre Narcisi
+** Last update Fri May 19 20:44:33 2017 augustin leconte
 */
 
 #include "termcaps.h"
@@ -51,9 +51,8 @@ char     *termcaps()
       {
         cursor++;
         str = add_ch(str, buffer[0], &cursor);
+        write(1, &buffer[0], 1);
       }
-      write(1, str, strlen(str));
-      printf("\n%d\n", cursor);
   }
   return (str);
 }
