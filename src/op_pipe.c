@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 13:52:00 2017 Benjamin Viguier
-** Last update Sat May 20 14:11:26 2017 Benjamin Viguier
+** Last update Sat May 20 14:35:01 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -47,14 +47,26 @@ int		op_pipe(t_mysh *sh, t_tree *node, t_exec_opts *opts)
     }
   else
     {
-      close(fds[0]);
-      dup2(fds[1], 1);
-      close(fds[1]);
-      if (execute_tree(sh, node->l, &opts1) < 0)
-	return (pipe_error(opts));
+      if (opts->pipe_child == 0)
+	cpid = fork();
+      if (opts->pipe_child == 1 ||
+	  ((opts->pipe_child == 0) && cpid == 0))
+	{
+	  close(fds[0]);
+	  dup2(fds[1], 1);
+	  close(fds[1]);
+	  if (execute_tree(sh, node->l, &opts1) < 0)
+	    return (pipe_error(opts));
+	}
+      else
+	{
+	  t_process	tmp;
+
+	  memset(&tmp, 0, sizeof(tmp));
+	  tmp.pid = cpid;
+	  wait_child(sh, &tmp);
+	  return (0);
+	}
     }
-  if (opts->pipe_child)
-    exit (sh->last_exit);
-  else
-    return (0);
+  exit(sh->last_exit);
 }
