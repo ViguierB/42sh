@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Sat May 20 19:02:44 2017 Alexandre Chamard-bois
+** Last update Sat May 20 19:47:24 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -31,20 +31,9 @@ void init_main(int ac, t_mysh *sh, char **av, char **env)
 
 char *waitline(t_mysh *sh, t_my_fd *in)
 {
-  char bla[255];
-  char *home;
   char *cmd;
 
-  if (isatty(0))
-  {
-    home = NULL;
-    getcwd(bla, 255);
-    if (my_strncmp(my_getenv(sh->env, "HOME"),
-                    bla, my_strlen(my_getenv(sh->env, "HOME"))) == 0)
-        home = substr(bla, "~", 0, my_strlen(my_getenv(sh->env, "HOME")));
-    my_printf("%s$> ", home);
-    free(home);
-  }
+  print_prompt(sh);
   if (!(cmd = my_getline(in)))
     return (NULL);
   cmd = my_ftrim(cmd);
