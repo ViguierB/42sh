@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Thu May 18 18:28:17 2017 Pierre Narcisi
-** Last update Sat May 20 18:22:34 2017 Alexandre Chamard-bois
+** Last update Sat May 20 20:00:28 2017 Pierre Narcisi
 */
 
 #ifndef TERM_H
@@ -15,7 +15,7 @@ typedef struct s_term_tab
 {
   int param1;
   int param2;
-  char		*(*term)(char *str, char c, int *cursor);
+  char		*(*term)(char c, int *cursor, t_clist *list);
 }               t_term_tab;
 
 char	*rm_ch(char *str, int cursor);

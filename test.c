@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Fri May 19 10:35:22 2017 augustin leconte
-** Last update Sat May 20 19:29:22 2017 Pierre Narcisi
+** Last update Sat May 20 20:07:24 2017 Pierre Narcisi
 */
 
 #include <unistd.h>
@@ -51,6 +51,5 @@ char *tab_key(char *str, char c, int *cursor)
         }
       return (str);
     }
-
   return (str);
 }

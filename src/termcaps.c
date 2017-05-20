@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Mon May 15 13:43:04 2017 augustin leconte
-** Last update Sat May 20 19:39:12 2017 augustin leconte
+** Last update Sat May 20 20:04:59 2017 Pierre Narcisi
 */
 
 #include "termcaps.h"
@@ -32,10 +32,11 @@ char     *termcaps(t_clist *list)
   int      cursor;
   int      i;
 
-  cursor = 0;
   if ((str = malloc(sizeof(char))) == NULL)
     return (NULL);
   str[0] = '\0';
+  clist_push(list, str);
+  cursor = 0;
   while (1)
   {
     read(0, buffer, 3);
@@ -48,11 +49,11 @@ char     *termcaps(t_clist *list)
           i++;
       }
     else if (g_key[i].param1 != -1)
-      str = g_key[i].term(str, buffer[0], &cursor, list);
+      str = g_key[i].term(buffer[0], &cursor, list);
     else
       {
         cursor++;
-        str = add_ch(str, buffer[0], &cursor);
+        list->ptr = add_ch(list->ptr, buffer[0], &cursor);
         write(1, &buffer[0], 1);
       }
   }
@@ -62,11 +63,11 @@ char     *termcaps(t_clist *list)
 char              *termcap(t_mysh *sh)
 {
   char           *str;
-  static struct termios term;
-  static struct termios save;
-  static t_clist *list_save;
+  struct termios term;
+  struct termios save;
+  t_clist *list_save;
 
-list_save = sh->hist;
+  list_save = sh->hist;
   tcgetattr(0, &term);
   save = term;
   term.c_lflag &= ~(ICANON | ECHO);

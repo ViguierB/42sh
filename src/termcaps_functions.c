@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Thu May 18 15:31:03 2017 Pierre Narcisi
-** Last update Sat May 20 19:28:37 2017 augustin leconte
+** Last update Sat May 20 20:06:56 2017 Pierre Narcisi
 */
 
 #include <string.h>
@@ -69,18 +69,18 @@ char	*add_ch(char *str, char c, int *cursor)
   return (new);
 }
 
-char *back_space(char *str, char c, int *cursor)
+char *back_space(char c, int *cursor, t_clist *list)
 {
   if (*cursor > 0)
     {
       *cursor -= 1;
        write(1, "\10\33[1P", 5);
-      str = rm_ch(str, *cursor);
+      list->ptr = rm_ch(list->ptr, *cursor);
     }
-  return (str);
+  return (list);
 }
 
-char *right_arrow(char *str, char c, int *cursor, t_clist *list)
+char *right_arrow(char c, int *cursor, t_clist *list)
 {
   (void)list;
   (void)c;
@@ -90,10 +90,10 @@ char *right_arrow(char *str, char c, int *cursor, t_clist *list)
     printf("\033[1C");
     fflush(stdout);
   }
-  return (str);
+  return (list);
 }
 
-char *left_arrow(char *str, char c, int *cursor, t_clist *list)
+char *left_arrow(char c, int *cursor, t_clist *list)
 {
   (void)list;
   (void)c;
@@ -103,5 +103,5 @@ char *left_arrow(char *str, char c, int *cursor, t_clist *list)
       printf("\033[1D");
       fflush(stdout);
     }
-  return (str);
+  return (list);
 }
