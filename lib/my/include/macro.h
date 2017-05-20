@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:41:43 2017 Alexandre Chamard-bois
-** Last update Wed May 17 15:26:42 2017 Alexandre Chamard-bois
+** Last update Sat May 20 12:09:50 2017 Alexandre Chamard-bois
 */
 
 #ifndef MACRO_H_
@@ -55,6 +55,9 @@
 #endif
 #ifndef READ_SIZE
 # define READ_SIZE  1024
+#endif
+#ifndef COMMENT_CHAR
+# define COMMENT_CHAR  '#'
 #endif
 
 #endif

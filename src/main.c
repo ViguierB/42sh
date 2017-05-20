@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Sat May 20 11:03:19 2017 Alexandre Chamard-bois
+** Last update Sat May 20 11:44:41 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -23,7 +23,10 @@ void init_main(int ac, t_mysh *sh, char **av, char **env)
   sh->alias = my_source(NULL);
   my_name(LIBMY_INIT, av[0]);
   var_last_ret(sh);
-  sh->in = my_fd_from_fd(0);
+  if (ac == 1)
+    sh->in = my_fd_from_fd(0);
+  else
+    main_script(ac, av, sh);
 }
 
 char *waitline(t_mysh *sh, t_my_fd *in)
