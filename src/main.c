@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Sat May 20 19:47:24 2017 Alexandre Chamard-bois
+** Last update Sun May 21 10:32:51 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -19,7 +19,7 @@ void init_main(int ac, t_mysh *sh, char **av, char **env)
   (void) ac;
   my_memset(sh, 0, sizeof(*sh));
   my_init_env(&sh->env, env);
-  sh->hist = my_history();
+  sh->hist = NULL;
   sh->alias = my_source(NULL);
   my_name(LIBMY_INIT, av[0]);
   var_last_ret(sh);
@@ -48,7 +48,6 @@ char *waitline(t_mysh *sh, t_my_fd *in)
 int end_main(t_mysh *sh, t_my_fd *in)
 {
   free_env(sh->env);
-  write_hist(sh->hist);
   clist_free_data(sh->hist, free);
   clist_free_data(sh->alias, free_alias);
   free(in);
