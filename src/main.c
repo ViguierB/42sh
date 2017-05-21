@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Sun May 21 11:05:49 2017 Alexandre Chamard-bois
+** Last update Sun May 21 12:21:06 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -30,23 +30,16 @@ void init_main(int ac, t_mysh *sh, char **av, char **env)
 
 char *waitline(t_mysh *sh, t_my_fd *in)
 {
-  t_clist *tmp;
   char *cmd;
 
   print_prompt(sh);
-  // if (isatty(0))
-  //   cmd = termcap(sh);
-  // else
-    cmd = my_getline(in);
+  cmd = my_getline(in);
   if (!cmd)
     return (NULL);
   cmd = my_ftrim(cmd);
   if (!(cmd = true_preparsing(sh, cmd)) || !*cmd)
   {
-    tmp = sh->hist;
-    sh->hist = sh->hist->next;
-    free(tmp->ptr);
-    free(tmp);
+    free(cmd);
     return (waitline(sh, in));
   }
   return (cmd);
