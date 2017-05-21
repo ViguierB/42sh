@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Thu May 18 15:31:03 2017 Pierre Narcisi
-** Last update Sat May 20 20:06:56 2017 Pierre Narcisi
+** Last update Sat May 20 22:23:09 2017 Pierre Narcisi
 */
 
 #include <string.h>
@@ -80,7 +80,7 @@ char *back_space(char c, int *cursor, t_clist *list)
   return (list);
 }
 
-char *right_arrow(char c, int *cursor, t_clist *list)
+char *right_arrow(int *cursor, t_clist *list)
 {
   (void)list;
   (void)c;
