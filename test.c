@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Fri May 19 10:35:22 2017 augustin leconte
-** Last update Sat May 20 22:25:10 2017 Pierre Narcisi
+** Last update Sun May 21 15:23:23 2017 augustin leconte
 */
 
 #include <unistd.h>
@@ -72,12 +72,9 @@ t_clist *tab_key(int *cursor, t_clist *list)
     list->ptr = complete(j, tab, str);
   else if (i != -1)
     {
-      i = 0;
-      while (tab[i] != NULL)
-        {
-          printf("   %s", tab[i]);
-          i++;
-        }
+      i = -1;
+      while (tab[++i] != NULL)
+      printf("   %s", tab[i]);
     }
   return (list);
 }
