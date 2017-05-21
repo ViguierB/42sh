@@ -5,11 +5,11 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Mon May 15 13:43:04 2017 augustin leconte
-** Last update Sat May 20 22:33:10 2017 Alexandre Chamard-bois
+** Last update Sun May 21 10:39:05 2017 Alexandre Chamard-bois
 */
 
-#include "termcaps.h"
-#include "mysh.h"
+#include "include/termcaps.h"
+#include "include/mysh.h"
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
@@ -57,8 +57,7 @@ t_clist     *termcaps(t_clist *list)
     else
       {
         list->ptr = add_ch(buffer[0], &cursor, list->ptr);
-        printf("\033[%dD%s%s\033[%dD\033[1C", cursor,
-              (!cursor ? "\033[1C" : ""),
+        printf("\033[%dD%s\033[%dD\033[1C", cursor,
               (char*)list->ptr, my_strlen(list->ptr) - cursor);
         cursor++;
       }
@@ -87,4 +86,13 @@ char              *termcap(t_mysh *sh)
   else
     sh->hist = list;
   return (sh->hist->ptr);
+}
+
+int main()
+{
+  t_mysh mysh;
+
+  printf("%d\n", COLUMN);
+  memset(&mysh, 0, sizeof(t_mysh));
+  printf("string: -%s-\n", termcap(&mysh));
 }

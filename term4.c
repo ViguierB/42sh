@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Thu May 18 15:31:03 2017 Pierre Narcisi
-** Last update Sat May 20 22:23:14 2017 Alexandre Chamard-bois
+** Last update Sun May 21 10:38:50 2017 Alexandre Chamard-bois
 */
 
 #include <string.h>
@@ -84,20 +84,12 @@ t_clist *back_space(int *cursor, t_clist *list)
 
 t_clist *right_arrow(int *cursor, t_clist *list)
 {
-  if (*cursor < (int) strlen(list->ptr))
-  {
-    *cursor += 1;
-    printf("\033[1C");
-  }
+  printf("\033[1C");
   return (list);
 }
 
 t_clist *left_arrow(int *cursor, t_clist *list)
 {
-  if (*cursor > 0)
-    {
-      *cursor -= 1;
-      printf("\033[1D");
-    }
+  printf("\033[1D");
   return (list);
 }
