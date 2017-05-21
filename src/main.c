@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Sat May 20 22:41:22 2017 Alexandre Chamard-bois
+** Last update Sun May 21 11:05:49 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -16,10 +16,9 @@
 
 void init_main(int ac, t_mysh *sh, char **av, char **env)
 {
-  (void) ac;
   my_memset(sh, 0, sizeof(*sh));
   my_init_env(&sh->env, env);
-  sh->hist = my_history();
+  sh->hist = NULL;
   sh->alias = my_source(NULL);
   my_name(LIBMY_INIT, av[0]);
   var_last_ret(sh);
@@ -35,9 +34,9 @@ char *waitline(t_mysh *sh, t_my_fd *in)
   char *cmd;
 
   print_prompt(sh);
-  if (isatty(0))
-    cmd = termcap(sh);
-  else
+  // if (isatty(0))
+  //   cmd = termcap(sh);
+  // else
     cmd = my_getline(in);
   if (!cmd)
     return (NULL);
@@ -56,7 +55,6 @@ char *waitline(t_mysh *sh, t_my_fd *in)
 int end_main(t_mysh *sh, t_my_fd *in)
 {
   free_env(sh->env);
-  write_hist(sh->hist);
   clist_free_data(sh->hist, free);
   clist_free_data(sh->alias, free_alias);
   free(in);
@@ -83,6 +81,7 @@ int		main(int ac, char **av, char **env)
       if (tree)
 	execute_tree(&sh, tree, &opts);
       free_tree(tree);
+  sh.hist = clist_push(sh.hist, cmd);
       if (sh.exit)
 	break;
     }
