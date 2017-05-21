@@ -5,14 +5,14 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Fri May 19 19:08:51 2017 Pierre Narcisi
-** Last update Sat May 20 19:58:49 2017 Pierre Narcisi
+** Last update Sat May 20 22:27:19 2017 Alexandre Chamard-bois
 */
 
 #include "termcaps.h"
 #include <unistd.h>
 #include <stdio.h>
 
-char *up_arrow(char c, int *cursor, t_clist *list)
+t_clist *up_arrow(int *cursor, t_clist *list)
 {
   int i;
 
@@ -23,10 +23,12 @@ char *up_arrow(char c, int *cursor, t_clist *list)
     i++;
   }
   *cursor = 0;
-  return ("\0");
+  list = list->prev;
+  printf("%s", (char*)list->ptr);
+  return (list);
 }
 
-char *down_arrow(char c, int *cursor, t_clist *list)
+t_clist *down_arrow(int *cursor, t_clist *list)
 {
   int i;
 
@@ -37,5 +39,7 @@ char *down_arrow(char c, int *cursor, t_clist *list)
     i++;
   }
   *cursor = 0;
-  return ("\0");
+  list = list->next;
+  printf("%s", (char*)list->ptr);
+  return (list);
 }

@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ##
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Sat May 20 19:47:47 2017 Alexandre Chamard-bois
+## Last update Sat May 20 20:37:25 2017 Alexandre Chamard-bois
 ##
 
 include ./include/depend.mk
@@ -54,6 +54,9 @@ SRC	= 	main.c		\
 		script.c	\
 		magic_quote.c	\
 		print_prompt.c	\
+		termcaps.c	\
+		termcaps_functions.c	\
+		termcaps_functions2.c	\
 
 MKLIB	=	make -C ./lib/my/
 

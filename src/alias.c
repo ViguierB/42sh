@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Tue May 16 16:09:47 2017 Guilhem Fulcrand
-** Last update Sat May 20 15:48:50 2017 Alexandre Chamard-bois
+** Last update Sun May 21 10:42:01 2017 Guilhem Fulcrand
 */
 
 #include "42shrc.h"
@@ -30,7 +30,7 @@ void    print_alias(t_clist *list)
     while (tmp)
     {
         my_putstr((char *)((t_alias *)tmp->ptr)->var);
-        my_putstr(" -> ");
+        my_putstr("\t");
         my_putstr((char *)((t_alias *)tmp->ptr)->val);
         my_putchar('\n');
         tmp = CLIST_NEXT(list, tmp);
@@ -58,7 +58,9 @@ int     my_alias(char **av, t_mysh *sh)
     char    *val;
 
     all.list = sh->alias;
-    if (!av[1] || !av[2])
+    if (!av[1])
+        print_alias(sh->alias);
+    if (!av[2])
         return (0);
     val = NULL;
     i = 1;
