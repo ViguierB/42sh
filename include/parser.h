@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 18:05:31 2017 Benjamin Viguier
-** Last update Sat May 20 15:36:48 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:14:58 2017 alexandre Chamard-bois
 */
 
 #ifndef PARSER_H_
@@ -132,15 +132,15 @@ void	free_tree(t_tree *node);
 int	execute_tree(t_mysh *sh, t_tree *tree, t_exec_opts *opts);
 int	parse_cmd_args(t_process *proc, char *cmd);
 int	parse_simple_cmd(t_process *proc, t_token *token);
-char*	get_real_cmd(t_mysh *sh, t_process *proc);
-int is_builtin(char *name);
-int exec_builtin(t_mysh *mysh, t_process *proc, t_exec_opts *opts);
-int globbing(char ***args);
-int preparsing(t_mysh *mysh, char ***);
-char *true_preparsing(t_mysh *mysh, char *cmd);
-char *search_in_path(t_mysh *, char *);
-char *search_in_all_paths(t_mysh *sh, char *name);
-char *magic_quote(t_mysh *sh, char *cmd, int i);
+char    *get_real_cmd(t_mysh *sh, t_process *proc);
+int	is_builtin(char *name);
+int	exec_builtin(t_mysh *mysh, t_process *proc, t_exec_opts *opts);
+int	globbing(char ***args);
+int	preparsing(t_mysh *mysh, char ***);
+char	*true_preparsing(t_mysh *mysh, char *cmd);
+char	*search_in_path(t_mysh *, char *);
+char	*search_in_all_paths(t_mysh *sh, char *name);
+char	*magic_quote(t_mysh *sh, char *cmd, int i);
 
 int	op_or(t_mysh *sh, t_tree *node, t_exec_opts *opts);
 int	op_and(t_mysh *sh, t_tree *node, t_exec_opts *opts);

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Thu Apr  6 18:14:46 2017 Benjamin Viguier
-** Last update Sat May 20 13:29:07 2017 Benjamin Viguier
+** Last update Sun May 21 20:22:26 2017 alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -60,7 +60,7 @@ int	execute_cmd(t_mysh *sh, t_process *proc, t_exec_opts *opts)
 	my_exec(sh, proc);
       else if (!opts->ascyn)
 	wait_child(sh, proc);
-  free(proc->name);
+      free(proc->name);
     }
   else
     exec_builtin(sh, proc, opts);
@@ -79,11 +79,11 @@ int	execute_tree(t_mysh *sh, t_tree *tree, t_exec_opts *opts)
   else if (tree->type == NODE_CMD)
     {
       if (execute_cmd(sh, &(tree->value.proc), opts))
-      {
-        sh->last_exit = 1;
-        var_last_ret(sh);
-        return (-1);
-      }
+	{
+	  sh->last_exit = 1;
+	  var_last_ret(sh);
+	  return (-1);
+	}
       var_last_ret(sh);
     }
   return (0);

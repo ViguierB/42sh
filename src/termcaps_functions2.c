@@ -5,7 +5,7 @@
 ** Login   <pierre.nacisi@epitech.eu>
 **
 ** Started on  Fri May 19 19:08:51 2017 Pierre Narcisi
-** Last update Sat May 20 22:27:19 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:10:42 2017 alexandre Chamard-bois
 */
 
 #include "termcaps.h"
@@ -14,14 +14,14 @@
 
 t_clist *up_arrow(int *cursor, t_clist *list)
 {
-  int i;
+  int	i;
 
   i = 0;
   while (i < *cursor)
-  {
-    write(1, "\10\33[1P", 5);
-    i++;
-  }
+    {
+      write(1, "\10\33[1P", 5);
+      i++;
+    }
   *cursor = 0;
   list = list->prev;
   printf("%s", (char*)list->ptr);
@@ -30,7 +30,7 @@ t_clist *up_arrow(int *cursor, t_clist *list)
 
 t_clist *down_arrow(int *cursor, t_clist *list)
 {
-  int i;
+  int	i;
 
   i = 0;
   while (i < *cursor)

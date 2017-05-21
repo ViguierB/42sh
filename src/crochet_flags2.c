@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 13 10:37:05 2017 Alexandre Chamard-bois
-** Last update Sat May 13 12:11:23 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:20:57 2017 alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -14,18 +14,18 @@
 #include "libmy.h"
 #include "crochet.h"
 
-int _flag_e(char *to_pars[4])
+int		_flag_e(char *to_pars[4])
 {
-  struct stat buff;
+  struct stat	buff;
 
   if (stat(to_pars[1], &buff))
     return (REV(1));
   return (REV(0));
 }
 
-int _flag_d(char *to_pars[4])
+int		_flag_d(char *to_pars[4])
 {
-  struct stat buff;
+  struct stat	buff;
 
   if (stat(to_pars[1], &buff))
     return (REV(1));
@@ -34,9 +34,9 @@ int _flag_d(char *to_pars[4])
   return (REV(1));
 }
 
-int _flag_f(char *to_pars[4])
+int	_flag_f(char *to_pars[4])
 {
-  struct stat buff;
+  struct stat	buff;
 
   if (stat(to_pars[1], &buff))
     return (REV(1));

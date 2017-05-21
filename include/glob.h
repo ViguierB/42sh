@@ -5,14 +5,14 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 22:22:41 2017 Alexandre Chamard-bois
-** Last update Thu May 11 17:41:11 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:12:09 2017 alexandre Chamard-bois
 */
 
 #include <mysh.h>
 #ifndef GLOB_H_
-#define GLOB_H_
+# define GLOB_H_
 
-#define FIRST(cut) (**cut == '/' ? "/" : ".")
+# define FIRST(cut) (**cut == '/' ? "/" : ".")
 
 typedef struct  s_glob
 {
@@ -20,8 +20,8 @@ typedef struct  s_glob
   struct s_glob *next;
 }               t_glob;
 
-char **_cut_word(char *cmd);
+char	**_cut_word(char *cmd);
 t_clist *_new_path(t_clist *, char *path);
-char **_remplace_cmd(char **cmd, int i, t_clist *add, char *cut);
+char	**_remplace_cmd(char **cmd, int i, t_clist *add, char *cut);
 
 #endif

@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Fri May 12 19:19:07 2017 Guilhem Fulcrand
-** Last update Tue May 16 15:44:29 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:08:20 2017 alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -35,7 +35,7 @@ typedef struct          s_all
     char                **rc;
 }                       t_all;
 
-t_clist *my_source(t_clist *);
+t_clist	*my_source(t_clist *);
 
 /* ALIASES */
 

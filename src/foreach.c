@@ -5,9 +5,10 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 11:11:48 2017 Alexandre Chamard-bois
-** Last update Sat May 20 12:21:12 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:23:42 2017 alexandre Chamard-bois
 */
 
+#include <stdio.h>
 #include <unistd.h>
 #include "libmy.h"
 #include "mysh.h"
@@ -20,32 +21,32 @@ int print_foreach(t_mysh *sh)
   return (1);
 }
 
-t_clist *recup_foreach(t_mysh *sh)
+t_clist		*recup_foreach(t_mysh *sh)
 {
-  t_clist *list;
-  int then;
-  char *str;
+  t_clist	*list;
+  int		then;
+  char		*str;
 
   then = 0;
   list = NULL;
   while (!then && print_foreach(sh) && (str = my_getline(sh->in)))
-  {
-    if (my_strcmp(str, "end"))
-      list = clist_push(list, str);
-    else
-      then = 1;
-  }
+    {
+      if (my_strcmp(str, "end"))
+	list = clist_push(list, str);
+      else
+	then = 1;
+    }
   if (!str)
-  {
-    my_printf("foreach: end not found.\n");
-    return (NULL);
-  }
+    {
+      dprintf(2, "foreach: end not found.\n");
+      return (NULL);
+    }
   return (list);
 }
 
-int exec_foreach(t_mysh *sh, t_clist *list)
+int		exec_foreach(t_mysh *sh, t_clist *list)
 {
-  t_clist *tmp;
+  t_clist	*tmp;
 
   tmp = list;
   while (tmp)
@@ -56,12 +57,12 @@ int exec_foreach(t_mysh *sh, t_clist *list)
   return (0);
 }
 
-int my_foreach(char **tab, t_mysh *sh)
+int		my_foreach(char **tab, t_mysh *sh)
 {
-  t_clist *list;
-  char **to_set;
-  int nb;
-  int i;
+  t_clist	*list;
+  char		**to_set;
+  int		nb;
+  int		i;
 
   nb = 4;
   if (my_nbline(tab) < 4)
@@ -70,7 +71,7 @@ int my_foreach(char **tab, t_mysh *sh)
     return (1);
   if (tab[nb])
   {
-    my_printf("foreach: Words not parenthesized.\n");
+    dprintf(2, "foreach: Words not parenthesized.\n");
     return (1);
   }
   list = recup_foreach(sh);

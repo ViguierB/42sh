@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May 14 15:10:27 2017 Alexandre Chamard-bois
-** Last update Sat May 20 11:26:26 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:19:14 2017 alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -31,9 +31,9 @@ const t_builtin g_builtins[] =
   {NULL, NULL},
 };
 
-int is_builtin(char *name)
+int	is_builtin(char *name)
 {
-  int i;
+  int	i;
 
   i = 0;
   while (g_builtins[i].name && my_strcmp(name, g_builtins[i].name))
@@ -43,12 +43,11 @@ int is_builtin(char *name)
   return (0);
 }
 
-int exec_builtin(t_mysh *mysh, t_process *proc, t_exec_opts *opts)
+int	exec_builtin(t_mysh *mysh, t_process *proc, t_exec_opts *opts)
 {
-  int i;
+  int	i;
 
   i = 0;
-  (void) mysh;
   (void) opts;
   while (g_builtins[i].name && my_strcmp(proc->name, g_builtins[i].name))
     i++;

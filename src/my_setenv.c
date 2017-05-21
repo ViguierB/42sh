@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Tue May 16 11:00:13 2017 Alexandre Chamard-bois
-** Last update Thu May 18 10:21:59 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:04:15 2017 alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -27,7 +27,7 @@ int	error_setenv(char **tab)
       if (!ALPHNUM(tab[1][i]))
 	{
 	  my_printf("setenv: Variable name must contain alphanumeric "
-              "characters.\n");
+		    "characters.\n");
 	  return (1);
 	}
       i++;
@@ -35,29 +35,29 @@ int	error_setenv(char **tab)
   return (0);
 }
 
-int my_ssetenv(char **tab, t_mysh *sh)
+int		my_ssetenv(char **tab, t_mysh *sh)
 {
-  t_env_elm *node;
-  int len;
+  t_env_elm	*node;
+  int		len;
 
   if ((len = my_nbline(tab)) > 3)
-  {
-    my_printf("setenv: Too many arguments.\n");
-    return (1);
-  }
+    {
+      my_printf("setenv: Too many arguments.\n");
+      return (1);
+    }
   if (len == 1)
     return (my_print_env(tab, sh));
   if (error_setenv(tab))
     return (1);
   if (my_setenv(sh->env, tab[1], tab[2]))
-  {
-    if (!(node = malloc(sizeof(t_env_elm))))
-      return (1);
-    my_memset(node, 0, sizeof(t_env_elm));
-    node->key = my_strdup(tab[1]);
-    if (tab[2])
-      node->value = my_strdup(tab[2]);
-    clist_push(sh->env, node);
-  }
+    {
+      if (!(node = malloc(sizeof(t_env_elm))))
+	return (1);
+      my_memset(node, 0, sizeof(t_env_elm));
+      node->key = my_strdup(tab[1]);
+      if (tab[2])
+	node->value = my_strdup(tab[2]);
+      clist_push(sh->env, node);
+    }
   return (0);
 }

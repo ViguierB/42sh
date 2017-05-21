@@ -5,9 +5,10 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sun May  7 20:17:55 2017 Alexandre Chamard-bois
-** Last update Sat May 20 12:20:36 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:31:39 2017 alexandre Chamard-bois
 */
 
+#include <stdio.h>
 #include <unistd.h>
 #include "libmy.h"
 #include "mysh.h"
@@ -20,60 +21,60 @@ int print_if(t_mysh *sh)
   return (1);
 }
 
-t_clist *recup_if(t_mysh *sh, int last_ret)
+t_clist		*recup_if(t_mysh *sh, int last_ret)
 {
-  t_clist *list;
-  int then;
-  char *str;
+  t_clist	*list;
+  int		then;
+  char		*str;
 
   then = 0;
   list = NULL;
   while (then != 2 && print_if(sh) && (str = my_getline(sh->in)))
-  {
-    if (!my_strcmp(str, "else"))
-      then = 1;
-    else if (!my_strcmp(str, "endif"))
-      then = 2;
-    if (last_ret == then)
-      list = clist_push(list, str);
-  }
+    {
+      if (!my_strcmp(str, "else"))
+	then = 1;
+      else if (!my_strcmp(str, "endif"))
+	then = 2;
+      if (last_ret == then)
+	list = clist_push(list, str);
+    }
   if (!str)
     return (NULL);
   return (list);
 }
 
-int exec_if(t_mysh *sh)
+int		exec_if(t_mysh *sh)
 {
-  t_clist *list;
-  t_clist *next;
+  t_clist	*list;
+  t_clist	*next;
 
   if (!(list = recup_if(sh, sh->last_exit)))
-  {
-    if (!sh->last_exit)
     {
-      if (isatty(0))
-      my_printf("Empty if.\n");
-      return (1);
+      if (!sh->last_exit)
+	{
+	  if (isatty(0))
+	    dprintf(2, "Empty if.\n");
+	  return (1);
+	}
+      return (0);
     }
-    return (0);
-  }
   list->prev->next = NULL;
   while (list)
-  {
-    do_cmd(sh, list->ptr);
-    next = list->next;
-    free(list->ptr);
-    free(list);
-    list = next;
-  }
+    {
+      do_cmd(sh, list->ptr);
+      next = list->next;
+      free(list->ptr);
+      free(list);
+      list = next;
+    }
   return (0);
 }
 
-int my_if(char **tab, t_mysh *sh)
+int	my_if(char **tab, t_mysh *sh)
 {
-  char **cond;
-  char *str;
-  int i;
+  char	**cond;
+  char	*str;
+  int	i;
 
   i = 3;
   if (!(cond = recup_parentheses(tab + 1, &i)))
@@ -85,10 +86,10 @@ int my_if(char **tab, t_mysh *sh)
   free(cond);
   free(str);
   if (!(str = wordtab_to_str(tab + i)))
-  {
-    if (isatty(0))
-      my_printf("Empty if.\n");
-  }
+    {
+      if (isatty(0))
+	dprintf(2, "Empty if.\n");
+    }
   else if (my_strcmp(str, "then"))
     do_cmd(sh, str);
   else

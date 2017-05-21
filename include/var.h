@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May  5 19:23:43 2017 Alexandre Chamard-bois
-** Last update Fri May 19 09:02:44 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:11:08 2017 alexandre Chamard-bois
 */
 
 #ifndef VAR_H_
@@ -50,8 +50,3 @@ typedef struct  s_function
 char *find_var(t_clist *, t_clist *, char *);
 
 #endif
-
-// str      0000 //
-// int      0001 //
-// float    0010 //
-// t_clist  1... //

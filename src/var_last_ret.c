@@ -5,18 +5,18 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Wed May 17 11:28:08 2017 Alexandre Chamard-bois
-** Last update Sat May 20 11:27:35 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:13:19 2017 alexandre Chamard-bois
 */
 
 #include <stdlib.h>
 #include "libmy.h"
 #include "mysh.h"
 
-char *cpy_ret(int ret)
+char	*cpy_ret(int ret)
 {
-  char *nb;
-  int i;
-  int decal;
+  char	*nb;
+  int	i;
+  int	decal;
 
   decal = 10;
   while (ret / decal)
@@ -25,29 +25,29 @@ char *cpy_ret(int ret)
   my_memset(nb, 0, 10);
   i = 0;
   while (decal != 1)
-  {
-    decal /= 10;
-    nb[i] = ret % 10 + '0';
-    i++;
-  }
+    {
+      decal /= 10;
+      nb[i] = ret % 10 + '0';
+      i++;
+    }
   return (nb);
 }
 
-void print_var(t_mysh *mysh)
+void	print_var(t_mysh *mysh)
 {
   t_var *elm;
 
   elm = mysh->var;
   while (elm)
-  {
-    my_printf("%s\t%s\n", NAME(elm), VALUE(elm));
-    elm = CLIST_NEXT(mysh->var, elm);
-  }
+    {
+      my_printf("%s\t%s\n", NAME(elm), VALUE(elm));
+      elm = CLIST_NEXT(mysh->var, elm);
+    }
 }
 
-void var_last_ret(t_mysh *mysh)
+void	var_last_ret(t_mysh *mysh)
 {
-  char *tab[5];
+  char	*tab[5];
 
   tab[0] = "set";
   tab[1] = "?";
@@ -55,15 +55,15 @@ void var_last_ret(t_mysh *mysh)
   tab[3] = cpy_ret(mysh->last_exit);
   tab[4] = NULL;
   if (tab[3])
-  {
-    my_set(tab, mysh);
-    free(tab[3]);
-  }
+    {
+      my_set(tab, mysh);
+      free(tab[3]);
+    }
 }
 
-int var_set(t_mysh *mysh, char *key, char *value)
+int	var_set(t_mysh *mysh, char *key, char *value)
 {
-  char *tab[5];
+  char	*tab[5];
 
   tab[0] = "set";
   tab[1] = key;
@@ -73,9 +73,9 @@ int var_set(t_mysh *mysh, char *key, char *value)
   return (my_set(tab, mysh));
 }
 
-void var_set_env(t_mysh *mysh, char *key, char *value)
+void	var_set_env(t_mysh *mysh, char *key, char *value)
 {
-  char *tab[4];
+  char	*tab[4];
 
   tab[0] = "setenv";
   tab[1] = key;

@@ -5,16 +5,16 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May 19 11:32:35 2017 Alexandre Chamard-bois
-** Last update Fri May 19 18:41:46 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:08:20 2017 alexandre Chamard-bois
 */
 
 #include "libmy.h"
 
-char **recup_parentheses(char **tab, int *pos)
+char	**recup_parentheses(char **tab, int *pos)
 {
-  int nb;
-  int i;
-  char **new_tab;
+  int	nb;
+  int	i;
+  char	**new_tab;
 
   if (my_strcmp(*tab, "("))
     return (NULL);
@@ -27,10 +27,10 @@ char **recup_parentheses(char **tab, int *pos)
     return (NULL);
   i = 0;
   while (i < nb - 1)
-  {
-    new_tab[i] = tab[i + 1];
-    i++;
-  }
+    {
+      new_tab[i] = tab[i + 1];
+      i++;
+    }
   *pos += i;
   new_tab[i] = NULL;
   return (new_tab);

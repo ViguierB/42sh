@@ -5,7 +5,7 @@
 ** Login   <arthur.devreker@epitech.eu>
 **
 ** Started on  Sun May 14 17:44:37 2017 Arthur Devreker
-** Last update Tue May 16 11:30:39 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:03:39 2017 alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -47,7 +47,7 @@ int	my_echo(char **av, t_mysh *sh)
 {
   int	i;
   int	j;
-  int ac;
+  int	ac;
 
   i = 1;
   j = 0;

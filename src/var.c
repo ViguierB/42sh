@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May  6 13:01:10 2017 Alexandre Chamard-bois
-** Last update Fri May 19 09:04:54 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:15:00 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -26,7 +26,7 @@ int	error_set(char *str)
       if (!ALPHNUM(*str))
 	{
 	  my_printf("set: Variable name must contain alphanumeric "
-              "characters.\n");
+		    "characters.\n");
 	  return (1);
 	}
       str++;
@@ -34,9 +34,9 @@ int	error_set(char *str)
   return (0);
 }
 
-static inline int change_info(t_var_elm *var, char **tab, int i)
+static inline int	change_info(t_var_elm *var, char **tab, int i)
 {
-  char *egal;
+  char			*egal;
 
   egal = NULL;
   if (var->value.ptr)
@@ -49,10 +49,10 @@ static inline int change_info(t_var_elm *var, char **tab, int i)
   return (MIN(i, 3));
 }
 
-static inline int recup_info(t_mysh *mysh, t_var_elm *var, char **tab, int i)
+static int	recup_info(t_mysh *mysh, t_var_elm *var, char **tab, int i)
 {
-  char *name;
-  char *egal;
+  char			*name;
+  char			*egal;
 
   egal = NULL;
   if (!(name = my_strdup(*tab)))
@@ -67,9 +67,9 @@ static inline int recup_info(t_mysh *mysh, t_var_elm *var, char **tab, int i)
   return (MIN(i, 3));
 }
 
-int new_var(t_mysh *mysh, char **tab, int i)
+int		new_var(t_mysh *mysh, char **tab, int i)
 {
-  t_var_elm *new_var;
+  t_var_elm	*new_var;
 
   if (!(new_var = malloc(sizeof(t_var_elm))))
     return (1);
@@ -77,10 +77,10 @@ int new_var(t_mysh *mysh, char **tab, int i)
   return (recup_info(mysh, new_var, tab, i));
 }
 
-int my_set(char **tab, t_mysh *mysh)
+int	my_set(char **tab, t_mysh *mysh)
 {
-  int i;
-  int nb_line;
+  int	i;
+  int	nb_line;
   t_var *elm;
 
   nb_line = my_nbline(tab);
@@ -88,18 +88,18 @@ int my_set(char **tab, t_mysh *mysh)
   if (nb_line == 1)
     print_var(mysh);
   while (i < nb_line)
-  {
-    elm = mysh->var;
-    while (elm && my_strcmp(NAME(elm), tab[i]))
-      elm = CLIST_NEXT(mysh->var, elm);
-    if (!elm)
     {
-      if (error_set(tab[i]))
-        return (1);
-      i += new_var(mysh, tab + i, nb_line - i);
+      elm = mysh->var;
+      while (elm && my_strcmp(NAME(elm), tab[i]))
+	elm = CLIST_NEXT(mysh->var, elm);
+      if (!elm)
+	{
+	  if (error_set(tab[i]))
+	    return (1);
+	  i += new_var(mysh, tab + i, nb_line - i);
+	}
+      else
+	i += change_info(elm->ptr, tab + i, nb_line - i);
     }
-    else
-      i += change_info(elm->ptr, tab + i, nb_line - i);
-  }
   return (0);
 }

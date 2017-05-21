@@ -5,13 +5,13 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 13 10:44:25 2017 Alexandre Chamard-bois
-** Last update Sat May 13 15:03:59 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:08:52 2017 alexandre Chamard-bois
 */
 
 #ifndef CROCHET_H_
 # define CROCHET_H_
 
-#define REV(ret) (to_pars[3] ? !ret : ret)
+# define REV(ret) (to_pars[3] ? !ret : ret)
 
 typedef struct  s_pars_crochet
 {

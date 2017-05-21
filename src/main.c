@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Sun May 21 12:21:06 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:33:40 2017 alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -28,9 +28,9 @@ void init_main(int ac, t_mysh *sh, char **av, char **env)
     main_script(ac, av, sh);
 }
 
-char *waitline(t_mysh *sh, t_my_fd *in)
+char	*waitline(t_mysh *sh, t_my_fd *in)
 {
-  char *cmd;
+  char	*cmd;
 
   print_prompt(sh);
   cmd = my_getline(in);
@@ -38,10 +38,10 @@ char *waitline(t_mysh *sh, t_my_fd *in)
     return (NULL);
   cmd = my_ftrim(cmd);
   if (!(cmd = true_preparsing(sh, cmd)) || !*cmd)
-  {
-    free(cmd);
-    return (waitline(sh, in));
-  }
+    {
+      free(cmd);
+      return (waitline(sh, in));
+    }
   return (cmd);
 }
 
@@ -74,7 +74,7 @@ int		main(int ac, char **av, char **env)
       if (tree)
 	execute_tree(&sh, tree, &opts);
       free_tree(tree);
-  sh.hist = clist_push(sh.hist, cmd);
+      sh.hist = clist_push(sh.hist, cmd);
       if (sh.exit)
 	break;
     }

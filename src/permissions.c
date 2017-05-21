@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 18:36:50 2017 Guilhem Fulcrand
-** Last update Sat May 20 18:24:34 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:06:42 2017 alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -13,11 +13,11 @@
 
 int     is_permited(char *path)
 {
-    if (access(path, F_OK) == 0)
+  if (access(path, F_OK) == 0)
     {
-        if (access(path, X_OK) == 0)
-            return (0);
-        return (1);
+      if (access(path, X_OK) == 0)
+	return (0);
+      return (1);
     }
-    return (-1);
+  return (-1);
 }

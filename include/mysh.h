@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Mar 19 19:59:51 2017 Benjamin Viguier
-** Last update Sat May 20 20:40:02 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:10:40 2017 alexandre Chamard-bois
 */
 
 #include "libmy.h"
@@ -60,43 +60,43 @@ typedef struct	s_builtin
   int     (*func)(char **taab, t_mysh *mysh);
 }		t_builtin;
 
-int main_script(int ac, char **av, t_mysh *sh);
-char *termcap(t_mysh *sh);
-int is_permited(char *path);
-int is_file(char *name);
+int	main_script(int ac, char **av, t_mysh *sh);
+char	*termcap(t_mysh *sh);
+int	is_permited(char *path);
+int	is_file(char *name);
 int	is_local_cmd(char *name);
-void print_prompt(t_mysh *sh);
+void	print_prompt(t_mysh *sh);
 int	fexists(char *name);
 void	wait_child(t_mysh *sh, t_process *proc);
-char *wordtab_to_str(char **taab);
-void var_last_ret(t_mysh *mysh);
-int var_set(t_mysh *mysh, char *key, char *value);
-void var_set_env(t_mysh *mysh, char *key, char *value);
-void print_var(t_mysh *mysh);
+char	*wordtab_to_str(char **taab);
+void	var_last_ret(t_mysh *mysh);
+int	var_set(t_mysh *mysh, char *key, char *value);
+void	var_set_env(t_mysh *mysh, char *key, char *value);
+void	print_var(t_mysh *mysh);
 t_clist *my_history();
-void write_hist(t_clist *hist);
-void print_hist(t_clist *hist);
+void	write_hist(t_clist *hist);
+void	print_hist(t_clist *hist);
 t_clist *push_in_hist(t_clist *hist, char *cmd);
-int do_cmd(t_mysh *sh, char *cmd);
+int	do_cmd(t_mysh *sh, char *cmd);
 
 /*
 ** ERROR functions
 */
 
 int	my_echo(char **av, t_mysh *sh);
-int my_cd(char **taab, t_mysh *sh);
-int my_set(char **taab, t_mysh *sh);
-int my_print_env(char **taab, t_mysh *mysh);
+int	my_cd(char **taab, t_mysh *sh);
+int	my_set(char **taab, t_mysh *sh);
+int	my_print_env(char **taab, t_mysh *mysh);
 int	my_ssetenv(char **taab, t_mysh *sh);
 int	my_unsetenv(char **taab, t_mysh *sh);
-int builtin_crochet(char **taab, t_mysh *sh);
+int	builtin_crochet(char **taab, t_mysh *sh);
 int	my_exit(char **av, t_mysh *sh);
-int my_which(char **av, t_mysh *sh);
-int my_where(char **av, t_mysh *sh);
-int my_alias(char **av, t_mysh *sh);
-int my_if(char **taab, t_mysh *sh);
-int		my_repeat(char **av, t_mysh *sh);
-int my_foreach(char **taab, t_mysh *sh);
+int	my_which(char **av, t_mysh *sh);
+int	my_where(char **av, t_mysh *sh);
+int	my_alias(char **av, t_mysh *sh);
+int	my_if(char **taab, t_mysh *sh);
+int	my_repeat(char **av, t_mysh *sh);
+int	my_foreach(char **taab, t_mysh *sh);
 
 /*
 ** ERROR functions

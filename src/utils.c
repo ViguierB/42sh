@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 21:31:06 2017 Benjamin Viguier
-** Last update Sat May 20 19:30:41 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:11:38 2017 alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -27,9 +27,9 @@ int		fexists(char *name)
     return (1);
 }
 
-int is_file(char *name)
+int		is_file(char *name)
 {
-  struct stat stats;
+  struct stat	stats;
 
   if (!stat(name, &stats))
     return (1);
@@ -75,26 +75,26 @@ void	wait_child(t_mysh *sh, t_process *proc)
     sh->last_exit = (unsigned char) WEXITSTATUS(status);
 }
 
-char        *substr(char *str, char *substr, int start, int len)
+char	*substr(char *str, char *substr, int start, int len)
 {
-    char    *new_str;
-    int len_add;
+  char	*new_str;
+  int	len_add;
 
-    len_add = 0;
-    if (substr)
-      len_add = my_strlen(substr);
-    if (!str || start > my_strlen(str) || start + len > my_strlen(str) ||
-        start < 0 || len < 0)
-        return (str);
-    new_str = NULL;
-    if (!(new_str = malloc(sizeof(char) *
-        (my_strlen(str) + len_add - len + 2))))
-        return (NULL);
-    my_memset(new_str, 0, my_strlen(str) + len_add - len + 2);
-    my_strncpy(new_str, str, start);
-    if (substr)
-      my_strcpy(new_str + start, substr);
-    my_strcpy(new_str + start + len_add, str + start + len);
-    new_str[my_strlen(str) + len_add - len] = 0;
-    return (new_str);
+  len_add = 0;
+  if (substr)
+    len_add = my_strlen(substr);
+  if (!str || start > my_strlen(str) || start + len > my_strlen(str) ||
+      start < 0 || len < 0)
+    return (str);
+  new_str = NULL;
+  if (!(new_str = malloc(sizeof(char) *
+			 (my_strlen(str) + len_add - len + 2))))
+    return (NULL);
+  my_memset(new_str, 0, my_strlen(str) + len_add - len + 2);
+  my_strncpy(new_str, str, start);
+  if (substr)
+    my_strcpy(new_str + start, substr);
+  my_strcpy(new_str + start + len_add, str + start + len);
+  new_str[my_strlen(str) + len_add - len] = 0;
+  return (new_str);
 }

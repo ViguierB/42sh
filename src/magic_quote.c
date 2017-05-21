@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 14:23:32 2017 Alexandre Chamard-bois
-** Last update Sat May 20 19:41:33 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:32:33 2017 alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -15,26 +15,26 @@
 #include "libmy.h"
 #include "mysh.h"
 
-char *recup_magic(char *cmd, int i, int *size)
+char	*recup_magic(char *cmd, int i, int *size)
 {
-  int j;
+  int	j;
 
   j = i + 1;
   while (cmd[j] && cmd[j] != '`')
     j++;
   if (!cmd[j])
-  {
-    *size = -1;
-    return (NULL);
-  }
+    {
+      *size = -1;
+      return (NULL);
+    }
   *size = j - i;
   return (my_strndup(cmd + i + 1, *size - 1));
 }
 
-char *recup_file()
+char		*recup_file()
 {
-  t_my_fd *fd;
-  char *str;
+  t_my_fd	*fd;
+  char		*str;
 
   if (!(fd = my_fopen(". ", O_RDONLY)))
     return (NULL);
@@ -45,21 +45,21 @@ char *recup_file()
   return (str);
 }
 
-char *magic_quote(t_mysh *sh, char *cmd, int i)
+char	*magic_quote(t_mysh *sh, char *cmd, int i)
 {
-  int save;
-  int fd;
-  int size;
-  char *recup;
-  char *new_cmd;
+  int	save;
+  int	fd;
+  int	size;
+  char	*recup;
+  char	*new_cmd;
 
   save = dup(1);
   new_cmd = recup_magic(cmd, i, &size);
   if (size == -1)
-  {
-    my_printf("Missing ``'.\n");
-    return (NULL);
-  }
+    {
+      dprintf(2, "Missing ``'.\n");
+      return (NULL);
+    }
   if ((fd = open(". ", O_RDWR | O_CREAT | O_TRUNC, 0666)) == -1)
     return (cmd);
   dup2(fd, 1);

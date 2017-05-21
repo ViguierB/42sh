@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 13 10:37:05 2017 Alexandre Chamard-bois
-** Last update Sat May 13 15:03:49 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:20:27 2017 alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -15,10 +15,10 @@
 int _flag_n(char *to_pars[4])
 {
   if (to_pars[2])
-  {
-    dprintf(2, "binary operator expected\n");
-    return (2);
-  }
+    {
+      dprintf(2, "binary operator expected\n");
+      return (2);
+    }
   if (!to_pars[1])
     return (REV(0));
   if (!*to_pars)
@@ -29,10 +29,10 @@ int _flag_n(char *to_pars[4])
 int _flag_z(char *to_pars[4])
 {
   if (to_pars[2])
-  {
-    dprintf(2, "binary operator expected\n");
-    return (2);
-  }
+    {
+      dprintf(2, "binary operator expected\n");
+      return (2);
+    }
   if (!to_pars[1])
     return (REV(0));
   if (*to_pars)
@@ -40,9 +40,9 @@ int _flag_z(char *to_pars[4])
   return (REV(0));
 }
 
-int _flag_eg(char *to_pars[4])
+int	_flag_eg(char *to_pars[4])
 {
-  int ret;
+  int	ret;
 
   ret = my_strcmp(to_pars[0], to_pars[2]);
   if (ret == -1)
@@ -50,9 +50,9 @@ int _flag_eg(char *to_pars[4])
   return (REV(ret));
 }
 
-int _flag_dif(char *to_pars[4])
+int	_flag_dif(char *to_pars[4])
 {
-  int ret;
+  int	ret;
 
   ret = my_strcmp(to_pars[0], to_pars[2]);
   if (ret == 0)
@@ -62,13 +62,13 @@ int _flag_dif(char *to_pars[4])
   return (REV(ret));
 }
 
-int _flag_num(char *to_pars[4])
+int	_flag_num(char *to_pars[4])
 {
   if (!my_isfloat(to_pars[0]) || !my_isfloat(to_pars[2]))
-  {
-    dprintf(2, "integer expression expected\n");
-    return (2);
-  }
+    {
+      dprintf(2, "integer expression expected\n");
+      return (2);
+    }
   if (!my_strcmp(to_pars[1], "-eq") &&
       my_atof(to_pars[0]) == my_atof(to_pars[0]))
     return (REV(0));

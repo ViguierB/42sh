@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 21:45:00 2017 Benjamin Viguier
-** Last update Wed May 17 15:17:07 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:21:29 2017 alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -59,11 +59,11 @@ int		my_setenv(t_env *env, char *key, char *value)
 	{
 	  if (cur->value)
 	    free(cur->value);
-    if (value)
-	   cur->value = my_strdup(value);
-    else
-      cur->value = NULL;
-    return (0);
+	  if (value)
+	    cur->value = my_strdup(value);
+	  else
+	    cur->value = NULL;
+	  return (0);
 	}
       elm = CLIST_NEXT(env, elm);
     }
@@ -77,14 +77,14 @@ void free_env(t_env *env)
   if (env)
     env->prev->next = NULL;
   while (env)
-  {
-    next = env->next;
-    free(GET_KEY(env));
-    free(GET_VALUE(env));
-    free(env->ptr);
-    free(env);
-    env = next;
-  }
+    {
+      next = env->next;
+      free(GET_KEY(env));
+      free(GET_VALUE(env));
+      free(env->ptr);
+      free(env);
+      env = next;
+    }
 }
 
 void	free_tmp_env(char **env)

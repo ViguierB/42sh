@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Thu May 18 20:54:01 2017 Guilhem Fulcrand
-** Last update Fri May 19 19:40:14 2017 Guilhem Fulcrand
+** Last update Sun May 21 20:27:17 2017 alexandre Chamard-bois
 */
 
 #include <sys/types.h>
@@ -17,52 +17,21 @@
 
 #include "mysh.h"
 
-t_clist      *my_history()
-{
-    t_clist  *hist;
-    t_my_fd *fd;
-    char    *line;
-
-    hist = NULL;
-    if (!(fd = my_fopen(".history", O_RDONLY)))
-        return (NULL);
-    while ((line = my_getline(fd)))
-        hist = clist_push(hist, line);
-    my_fclose(fd);
-    return (hist);
-}
-
 t_clist     *push_in_hist(t_clist *hist, char *cmd)
 {
-    if (!hist || my_strcmp((char *)hist->ptr, cmd) != 0)
-        hist = clist_push(hist, cmd);
-    return (hist);
+  if (!hist || my_strcmp((char *)hist->ptr, cmd) != 0)
+    hist = clist_push(hist, cmd);
+  return (hist);
 }
 
 void            print_hist(t_clist *hist)
 {
-    t_clist     *tmp;
+  t_clist	*tmp;
 
-    tmp = hist;
-    while (tmp)
+  tmp = hist;
+  while (tmp)
     {
-        printf("%s\n", (char *)tmp->ptr);
-        tmp = CLIST_NEXT(hist, tmp);
+      printf("%s\n", (char *)tmp->ptr);
+      tmp = CLIST_NEXT(hist, tmp);
     }
-}
-
-void        write_hist(t_clist *hist)
-{
-    int     fd;
-    t_clist *tmp;
-
-    if ((fd = open(".history", O_CREAT | O_TRUNC | O_RDWR, 0644)) == -1)
-        return;
-    tmp = hist;
-    while (tmp)
-    {
-        dprintf(fd, "%s\n", (char*)tmp->ptr);
-        tmp = CLIST_NEXT(hist, tmp);
-    }
-    close(fd);
 }

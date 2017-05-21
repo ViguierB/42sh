@@ -5,34 +5,34 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Fri May 19 21:36:01 2017 Alexandre Chamard-bois
-** Last update Fri May 19 21:45:18 2017 Alexandre Chamard-bois
+** Last update Sun May 21 21:14:25 2017 alexandre Chamard-bois
 */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "libmy.h"
 
-char *wordtab_to_str(char **tab)
+char	*wordtab_to_str(char **tab)
 {
-  int i;
-  char *str;
-  char *tmp;
+  int	i;
+  char	*str;
+  char	*tmp;
 
   if (!tab)
     return (NULL);
   i = 0;
   str = NULL;
   while (tab[i])
-  {
-    if (!str)
-      str = my_strdup(tab[i]);
-    else
     {
-      tmp = str_conca(3, str, " ", tab[i]);
-      free(str);
-      str = tmp;
+      if (!str)
+	str = my_strdup(tab[i]);
+      else
+	{
+	  tmp = str_conca(3, str, " ", tab[i]);
+	  free(str);
+	  str = tmp;
+	}
+      i++;
     }
-    i++;
-  }
   return (str);
 }

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 23:38:29 2017 Benjamin Viguier
-** Last update Sat May 20 10:58:17 2017 Alexandre Chamard-bois
+** Last update Sun May 21 20:24:18 2017 alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -45,7 +45,7 @@ char		**get_path_tab(t_env *env)
   return (simple);
 }
 
-char	*search_in_path(t_mysh *sh, char *name)
+char		*search_in_path(t_mysh *sh, char *name)
 {
   char		**path;
   char		*str;
@@ -75,30 +75,30 @@ char	*search_in_path(t_mysh *sh, char *name)
 
 char	        *search_in_all_paths(t_mysh *sh, char *name)
 {
-  char		    **path;
-  char		    *str;
+  char		**path;
+  char		*str;
   char          *tmp;
-  int		     i;
+  int		i;
 
-    if (!(str = malloc(sizeof(char) * 256)))
-        return (NULL);
-    if (!(tmp = malloc(sizeof(char) * 256)))
-        return (NULL);
-    my_memset(str, 0, 256);
+  if (!(str = malloc(sizeof(char) * 256)))
+    return (NULL);
+  if (!(tmp = malloc(sizeof(char) * 256)))
+    return (NULL);
+  my_memset(str, 0, 256);
   i = -1;
   path = get_path_tab(sh->env);
   while (path[++i])
     {
-        tmp = str_conca(3, path[i], "/", name);
-        if (fexists(tmp))
+      tmp = str_conca(3, path[i], "/", name);
+      if (fexists(tmp))
         {
-            str = substr(str, tmp, my_strlen(str), 0);
-            str = my_strconca(str, "\n");
+	  str = substr(str, tmp, my_strlen(str), 0);
+	  str = my_strconca(str, "\n");
         }
-        free(tmp);
+      free(tmp);
     }
-    free_path(path);
-    return (!*str ? free(str), NULL : str);
+  free_path(path);
+  return (!*str ? free(str), NULL : str);
 }
 
 char		*get_real_cmd(t_mysh *sh, t_process *proc)
@@ -108,11 +108,11 @@ char		*get_real_cmd(t_mysh *sh, t_process *proc)
   if (preparsing(sh, &proc->args) || globbing(&proc->args))
     return (NULL);
   if (!is_builtin(*proc->args))
-      {
-	proc->builtin = TRUE;
-	str = my_strdup(*proc->args);
-	return (str);
-      }
+    {
+      proc->builtin = TRUE;
+      str = my_strdup(*proc->args);
+      return (str);
+    }
   proc->builtin = FALSE;
   if (is_local_cmd(*proc->args))
     {

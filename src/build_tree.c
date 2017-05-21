@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr  4 14:45:41 2017 Benjamin Viguier
-** Last update Tue May 16 16:15:42 2017 Benjamin Viguier
+** Last update Sun May 21 20:17:33 2017 alexandre Chamard-bois
 */
 
 #include "mysh.h"
@@ -53,7 +53,7 @@ t_clist_elm	*get_best_sep(t_clist *begin, t_clist *end)
   return (res);
 }
 
-int	create_node(t_tree **node, t_clist *begin, t_clist *end)
+int		create_node(t_tree **node, t_clist *begin, t_clist *end)
 {
   t_clist_elm	*cur;
 
@@ -76,26 +76,26 @@ int	create_node(t_tree **node, t_clist *begin, t_clist *end)
     }
   (*node)->type = NODE_SEP;
   if (begin != cur && (create_node(&((*node)->l), begin, cur) < 0))
-      return (-1);
+    return (-1);
   if (end != cur->next && (create_node(&((*node)->r), cur->next, end) < 0))
-      return (-1);
+    return (-1);
   return (0);
 }
 
 void	free_tree(t_tree *node)
 {
   if (node)
-  {
-    if (node->type == NODE_CMD && node->value.proc.args)
-	    free(node->value.proc.args);
-    else if (node->value.token.value.info.sep)
-	   free(node->value.token.value.info.sep);
-    if (node->r)
-      free_tree(node->r);
-    if (node->l)
-      free_tree(node->l);
-   free(node);
-  }
+    {
+      if (node->type == NODE_CMD && node->value.proc.args)
+	free(node->value.proc.args);
+      else if (node->value.token.value.info.sep)
+	free(node->value.token.value.info.sep);
+      if (node->r)
+	free_tree(node->r);
+      if (node->l)
+	free_tree(node->l);
+      free(node);
+    }
 }
 
 t_tree		*parse_cmd(char *cmd)
