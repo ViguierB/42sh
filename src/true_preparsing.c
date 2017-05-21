@@ -5,7 +5,7 @@
 ** Login   <guilhem.fulcrand@epitech.eu>
 **
 ** Started on  Wed May 17 17:57:58 2017 Guilhem Fulcrand
-** Last update Sat May 20 19:01:18 2017 Alexandre Chamard-bois
+** Last update Sun May 21 11:20:33 2017 Alexandre Chamard-bois
 */
 
 #include "my_env.h"
@@ -20,7 +20,7 @@ char        *true_preparsing(t_mysh *mysh, char *cmd)
     i = -1;
     while (cmd && cmd[++i])
     {
-      if (cmd[i] == '\t')
+      if (cmd[i] == '\t' || cmd[i] == '\n')
         cmd[i] = ' ';
         else if (cmd[i] == '~' && (home = my_getenv(mysh->env, "HOME")))
           cmd = substr(cmd, home, i, 1);

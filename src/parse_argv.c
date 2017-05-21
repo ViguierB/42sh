@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Tue Apr 11 15:58:10 2017 Benjamin Viguier
-** Last update Tue May 16 14:57:59 2017 Alexandre Chamard-bois
+** Last update Sun May 21 11:11:15 2017 Alexandre Chamard-bois
 */
 
 #include "parser.h"
@@ -57,6 +57,12 @@ char	**init_argv(t_strbuilder **sb)
   return (argv);
 }
 
+void put_argv(t_process *proc, char **argv)
+{
+  proc->name = argv[0];
+  proc->args = argv;
+}
+
 int	parse_cmd_args(t_process *proc, char *cmd)
 {
   t_strbuilder	*sb;
@@ -82,7 +88,6 @@ int	parse_cmd_args(t_process *proc, char *cmd)
       cmd++;
     }
   argv[i] = my_sb_get_str(sb);
-  proc->name = argv[0];
-  proc->args = argv;
+  put_argv(proc, argv);
   return (0);
 }
