@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sat May 20 13:52:00 2017 Benjamin Viguier
-** Last update Sun May 21 21:00:21 2017 alexandre Chamard-bois
+** Last update Tue May 23 12:03:19 2017 Guilhem Fulcrand
 */
 
 #include <unistd.h>
@@ -31,13 +31,15 @@ int exec_child(t_mysh *sh, t_tree *node, int fds[2], t_exec_opts	*opts2)
   return (0);
 }
 
-int		wait_pipe(t_mysh *sh, pid_t cpid)
+int		wait_pipe(t_mysh *sh, pid_t cpid, int fds[2])
 {
   t_process	tmp;
 
   memset(&tmp, 0, sizeof(tmp));
   tmp.pid = cpid;
   wait_child(sh, &tmp);
+  close(fds[0]);
+  close(fds[1]);
   return (0);
 }
 
@@ -81,6 +83,6 @@ int		op_pipe(t_mysh *sh, t_tree *node, t_exec_opts *opts)
 	return (pipe_error(opts));
     }
   else
-    return (wait_pipe(sh, cpid));
+    return (wait_pipe(sh, cpid, fds));
   exit(sh->last_exit);
 }
