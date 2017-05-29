@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Wed Nov  9 16:23:22 2016 Benjamin Viguier
-** Last update Sat May 20 19:20:53 2017 Alexandre Chamard-bois
+** Last update Mon May 29 18:14:07 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -17,6 +17,8 @@ char		*my_strdup(char *str)
   char		*res;
   t_uint	i;
 
+  if (!str)
+    return (NULL);
   res = malloc((my_strlen(str) + 1) * sizeof(char));
   if (res == NULL)
     return (NULL);

@@ -5,11 +5,12 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 11:41:16 2017 Alexandre Chamard-bois
-** Last update Sun May 21 21:09:12 2017 alexandre Chamard-bois
+** Last update Mon May 29 16:54:43 2017 Alexandre Chamard-bois
 */
 
 #include <fcntl.h>
 #include "mysh.h"
+#include "parser.h"
 #include "42shrc.h"
 #include "my_env.h"
 
@@ -53,7 +54,12 @@ int	main_script(int ac, char **av, t_mysh *sh)
     exit(end_script_main(sh));
   while (!sh->exit && (cmd = my_getline(sh->in)))
     {
-      cmd = clean_line(cmd);
+      if (!(cmd = true_preparsing(sh, cmd)) || !*cmd)
+        {
+          if (cmd)
+            free(cmd);
+          continue;
+        }
       if (*cmd && *cmd != COMMENT_CHAR)
 	do_cmd(sh, cmd);
       free(cmd);
