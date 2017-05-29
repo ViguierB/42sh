@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Mon Apr  3 15:09:58 2017 Benjamin Viguier
-** Last update Sun May 21 20:33:40 2017 alexandre Chamard-bois
+** Last update Mon May 29 16:39:34 2017 Alexandre Chamard-bois
 */
 
 #include <unistd.h>
@@ -26,6 +26,7 @@ void init_main(int ac, t_mysh *sh, char **av, char **env)
     sh->in = my_fd_from_fd(0);
   else
     main_script(ac, av, sh);
+  sh->hist = init_hist();
 }
 
 char	*waitline(t_mysh *sh, t_my_fd *in)
@@ -47,6 +48,7 @@ char	*waitline(t_mysh *sh, t_my_fd *in)
 
 int end_main(t_mysh *sh, t_my_fd *in)
 {
+  save_hist(sh->hist);
   free_env(sh->env);
   clist_free_data(sh->hist, free);
   clist_free_data(sh->alias, free_alias);
@@ -74,7 +76,7 @@ int		main(int ac, char **av, char **env)
       if (tree)
 	execute_tree(&sh, tree, &opts);
       free_tree(tree);
-      sh.hist = clist_push(sh.hist, cmd);
+      sh.hist = push_in_hist(sh.hist, cmd);
       if (sh.exit)
 	break;
     }

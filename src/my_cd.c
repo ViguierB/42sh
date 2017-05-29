@@ -5,7 +5,7 @@
 ** Login   <augustin.leconte@epitech.eu>
 **
 ** Started on  Sun May 14 14:41:18 2017 augustin leconte
-** Last update Sun May 21 20:35:01 2017 alexandre Chamard-bois
+** Last update Mon May 29 16:31:33 2017 Alexandre Chamard-bois
 */
 
 #include <stdio.h>
@@ -75,6 +75,7 @@ int	my_cd(char **tab, t_mysh *sh)
   char	*new_cwd;
 
   getcwd(old_cwd, 1024);
+  new_cwd = NULL;
   if (!tab[1])
     {
       if (!(new_cwd = my_getenv(sh->env, "HOME")))
