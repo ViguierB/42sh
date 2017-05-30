@@ -1,13 +1,6 @@
 #!./42sh
-ls
 
 
-
-echo ok
-foreach i ( "bonjour" "ok" "aurevoir" )
+foreach i ( "bonjour" "aurevoir" "ok" )
   echo $i
-end
-foreach i ( `seq 1 10` )
-  echo $i
-  ls
 end

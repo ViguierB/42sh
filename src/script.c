@@ -5,7 +5,7 @@
 ** Login   <alexandre.chamard-bois@epitech.eu@epitech.eu>
 **
 ** Started on  Sat May 20 11:41:16 2017 Alexandre Chamard-bois
-** Last update Mon May 29 16:54:43 2017 Alexandre Chamard-bois
+** Last update Tue May 30 13:50:54 2017 Alexandre Chamard-bois
 */
 
 #include <fcntl.h>
@@ -33,8 +33,8 @@ int	init_script(t_mysh *sh, int ac, char **av)
       sh->last_exit = 1;
       return (1);
     }
-  i = 1;
-  while (i < ac - 1 && i < 10)
+  i = 2;
+  while (i < ac && i < 10)
     {
       if (var_set(sh, bla[i - 1], av[i]))
 	{
